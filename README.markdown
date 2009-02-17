@@ -1,8 +1,9 @@
-see
-===
+`see()`
+=======
 
-An alternative to `dir()`, for humans only.
+An alternative to Python's `dir()`.
 Easy to type; easy to read!
+For humans only.
 
 **Requirements**
 
