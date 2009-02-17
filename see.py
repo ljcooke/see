@@ -26,8 +26,8 @@ def see(obj):
 
     Some symbols:
 
-        ?       documentation is available using help(obj)
-        .       may have dynamic attributes
+        ?       documentation available using help(obj)
+        .*      may have dynamic attributes
         []      allows obj[key]
         for     allows iteration
         in      allows membership tests (e.g. x in obj)
@@ -38,10 +38,7 @@ def see(obj):
     # http://docs.python.org/reference/datamodel.html#specialnames
     symbols = (
         ('__call__', '()'),
-        ('__getattr__', '.'),
-        #('__setattr__', '.'),
-        #('__delattr__', '.'),
-        #('__getattribute__', '.'),
+        ('__getattr__', '.*'),
         ('__getitem__', '[]'),
         ('__setitem__', '[]'),
         ('__delitem__', '[]'),
