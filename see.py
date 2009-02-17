@@ -14,7 +14,7 @@ See COPYING for the full license text.
 
 """
 __author__ = 'Liam Cooke'
-__version__ = '2009-02-16'
+__version__ = '0.2.0'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
 
