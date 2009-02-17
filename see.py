@@ -31,6 +31,8 @@ def see(obj):
         []      allows obj[key]
         for     allows iteration
         in      allows membership tests (e.g. x in obj)
+        +@      unary positive operator (e.g. +2)
+        -@      unary negative operator (e.g. -3)
     """
 
     # http://docs.python.org/reference/datamodel.html#specialnames
@@ -48,37 +50,36 @@ def see(obj):
         ('__contains__', 'in'),
 
         ('__add__', '+'),
+        ('__iadd__', '+='),
         ('__sub__', '-'),
+        ('__isub__', '-='),
         ('__mul__', '*'),
+        ('__imul__', '*='),
         ('__div__', '/'),
         ('__truediv__', '/'),
         ('__floordiv__', '/'),
-        ('__mod__', '%'),
         ('__divmod__', '/'),
-        ('__divmod__', '%'),
-        ('__pow__', '**'),
-        ('__lshift__', '<<'),
-        ('__rshift__', '>>'),
-        ('__and__', '&'),
-        ('__xor__', '^'),
-        ('__or__', '|'),
-
-        ('__iadd__', '+='),
-        ('__isub__', '-='),
-        ('__imul__', '*='),
         ('__idiv__', '/='),
         ('__itruediv__', '/='),
         ('__ifloordiv__', '/='),
+        ('__mod__', '%'),
+        ('__divmod__', '%'),
         ('__imod__', '%='),
+        ('__pow__', '**'),
         ('__ipow__', '**='),
+        ('__lshift__', '<<'),
+        ('__rshift__', '>>'),
         ('__ilshift__', '<<='),
         ('__irshift__', '>>='),
+        ('__and__', '&'),
         ('__iand__', '&='),
+        ('__xor__', '^'),
         ('__ixor__', '^='),
+        ('__or__', '|'),
         ('__ior__', '|='),
 
-        ('__neg__', '-'),
-        ('__pos__', '+'),
+        ('__pos__', '+@'),
+        ('__neg__', '-@'),
         ('__invert__', '~'),
         ('__lt__', '<'),
         ('__le__', '<='),
