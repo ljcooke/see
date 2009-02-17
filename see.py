@@ -25,7 +25,7 @@ def see(obj):
     # http://docs.python.org/reference/datamodel.html#specialnames
     symbols = (
         ('__call__', '()'),
-        #('__getattr__', '.'),
+        ('__getattr__', '.'),
         #('__setattr__', '.'),
         #('__delattr__', '.'),
         #('__getattribute__', '.'),
