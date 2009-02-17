@@ -98,8 +98,8 @@ def see(obj):
     )
     attrs = dir(obj)
     actions = []
-    name = lambda a: '.%s%s' % (a, callable(getattr(obj, a)) and '()' or '')
-
+    name = lambda a: '.%s%s' % (a, hasattr(getattr(obj, a), '__call__') \
+                     and '()' or '')
     try:
         if obj.__doc__.strip():
             actions.append('?')
@@ -110,5 +110,5 @@ def see(obj):
             actions.append(symbol)
     attrs = filter(lambda v: not v.startswith('_'), attrs)
     actions.extend(name(a) for a in attrs)
-    print textwrap.fill('   '.join(actions), 78,
-            initial_indent='  ', subsequent_indent='  ')
+    print(textwrap.fill('   '.join(actions), 78,
+            initial_indent='  ', subsequent_indent='  '))
