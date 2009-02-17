@@ -1,8 +1,11 @@
 """
 see
+An alternative to dir(). Easy to type; easy to read. For humans only.
 
-dir() for humans
 http://github.com/inky/see
+
+    >>> from see import see
+    >>> help(see)
 
 Copyright (c) 2009 Liam Cooke
 
@@ -20,6 +23,14 @@ import textwrap
 def see(obj):
     """
     Inspect 'obj'. Like dir(obj), but easier on the eyes.
+
+    Some symbols:
+
+        ?       documentation is available using help(obj)
+        .       may have dynamic attributes
+        []      allows obj[key]
+        for     allows iteration
+        in      allows membership tests (e.g. x in obj)
     """
 
     # http://docs.python.org/reference/datamodel.html#specialnames
