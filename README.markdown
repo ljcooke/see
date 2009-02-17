@@ -71,13 +71,14 @@ using a [startup file](http://www.python.org/doc/1.5.2p2/tut/node4.html).
 
         from see import see
 
-Now see if it works!
+Now let's see if it works!
 
     bash$ python
     Python 2.5.1 (your lottery numbers)
     Type "help", "copyright", "credits" or "license" for more information.
     >>>
     >>> foo = 'bar'
+    >>> see(foo)
       ?   []   in   +   *   %   <   <=   ==   !=   >   >=   len()   .capitalize()
       .center()   .count()   .decode()   .encode()   .endswith()   .expandtabs()
       .find()   .index()   .isalnum()   .isalpha()   .isdigit()   .islower()
