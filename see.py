@@ -118,15 +118,12 @@ def see(obj):
     func = lambda a: hasattr(a, '__call__') and '()' or ''
     name = lambda a: '.%s%s' % (a, func(getattr(obj, a)))
 
-    try:
-        if obj.__doc__.strip():
-            actions.append('?')
-    except AttributeError:
-        pass
-    for attr, symbol in symbols:
-        if attr in attrs and symbol not in actions:
+    if obj.__doc__ and obj.__doc__.strip():
+        actions.append('?')
+    for var, symbol in symbols:
+        if var in attrs and symbol not in actions:
             actions.append(symbol)
-    attrs = filter(lambda v: not v.startswith('_'), attrs)
+    attrs = filter(lambda a: not a.startswith('_'), attrs)
     actions.extend(name(a) for a in attrs)
     print(textwrap.fill('   '.join(actions), 78,
             initial_indent='  ', subsequent_indent='  '))
