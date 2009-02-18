@@ -5,9 +5,12 @@ An alternative to Python's `dir()`.
 Easy to type; easy to read!
 For humans only.
 
-**Requirements**
+* __Version__: 0.3
 
-* Python (tested with 2.4 and 2.5)
+* __Requirements__: Python
+    * Works with 2.4+
+    * Not tested yet with 3.0, but some changes in this version
+      have been taken into account
 
 
 Sacrilege! Just what do you think you're doing?
@@ -55,29 +58,38 @@ in sight. I am sorry I doubted you, Computer. We can still be friends, yes?
 Okay, I'm convinced. How do I install this thing?
 --------------------
 
-The easiest way to use `see()` is to place the code somewhere Python will
-find it, and have it imported whenever you launch an interactive session,
-using a [startup file](http://docs.python.org/tutorial/interpreter.html#the-interactive-startup-file).
+If you're lucky enough to be using Linux, OS X, or anything similar,
+simply type:
 
-1. `mkdir -p ~/lib/python`
+    sudo python setup.py install
 
-2. Copy `see.py` to `~/lib/python`
+Or, if you don't have root privileges:
 
-3. Set the following environment variables (e.g. in `~/.bashrc`):
+    python setup.py install --home=~
 
-        export PYTHONPATH="$HOME/lib/python"
-        export PYTHONSTARTUP="$HOME/.pythonrc.py"
+(If you're using Windows, I can't help you out, I'm afraid.
+ A Windows installer will appear soon!)
 
-4. Create `~/.pythonrc.py` and add to it the following line:
+Now fire up a Python shell and try out this poetic little number:
 
-        from see import see
+    from see import see
 
-Now let's see if it works!
+With a bit of luck, nothing will explode, and you'll be skimming
+through attributes like nobody's business.
+
+To make things even more fun, you can make sure `see` is available
+every time you run Python. How? you might ask. By using a [startup file](http://docs.python.org/tutorial/interpreter.html#the-interactive-startup-file).
+Simply save the line above (`from see import see`) to a `.py` file
+&mdash; let's use the file `~/.pythonrc.py`. Then, set the following
+environment variable (e.g. in `.bashrc`):
+
+    export PYTHONSTARTUP="$HOME/.pythonrc.py"
+
+Now let's see if it works...
 
     bash$ python
     Python 2.5.1 (your lottery numbers)
     Type "help", "copyright", "credits" or "license" for more information.
-    >>>
     >>> foo = 'bar'
     >>> see(foo)
       ?   []   in   +   *   %   <   <=   ==   !=   >   >=   len()   .capitalize()
@@ -91,3 +103,14 @@ Now let's see if it works!
     >>>
     >>> # success!
     ...
+
+
+Acknowledgements
+----------------
+
+Some thanks are in order:
+
+  * [akuhn](http://www.reddit.com/user/akuhn/)
+    for the reddit linkage
+  * [CommodoreGuff](http://www.reddit.com/user/CommodoreGuff/)
+    for pointing out stuff that didn't work in Python 3
