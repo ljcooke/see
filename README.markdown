@@ -136,6 +136,8 @@ Some thanks are in order:
     for the reddit linkage
   * [CommodoreGuff](http://www.reddit.com/user/CommodoreGuff/)
     for pointing out stuff that didn't work in Python 3
+  * [ghoseb](http://github.com/ghoseb)
+    for contributing iPython instructions
   * [igowen](http://ian.gowen.cc/)
     for fixing the link to the startup file documentation
     (Python 1.5 &mdash; what was I thinking?)
