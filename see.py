@@ -44,35 +44,51 @@ def see(obj):
         ('__delitem__', '[]'),
 
         ('__iter__', 'for'),
+        ('__enter__', 'with'),
+        ('__exit__', 'with'),
         ('__contains__', 'in'),
 
         ('__add__', '+'),
+        ('__radd__', '+'),
         ('__iadd__', '+='),
         ('__sub__', '-'),
+        ('__rsub__', '-'),
         ('__isub__', '-='),
         ('__mul__', '*'),
+        ('__rmul__', '*'),
         ('__imul__', '*='),
         ('__div__', '/'),
+        ('__rdiv__', '/'),
         ('__truediv__', '/'),
+        ('__rtruediv__', '/'),
         ('__floordiv__', '/'),
+        ('__rfloordiv__', '/'),
         ('__divmod__', '/'),
+        ('__rdivmod__', '/'),
         ('__idiv__', '/='),
         ('__itruediv__', '/='),
         ('__ifloordiv__', '/='),
         ('__mod__', '%'),
+        ('__rmod__', '%'),
         ('__divmod__', '%'),
         ('__imod__', '%='),
         ('__pow__', '**'),
+        ('__rpow__', '**'),
         ('__ipow__', '**='),
         ('__lshift__', '<<'),
+        ('__rlshift__', '<<'),
         ('__ilshift__', '<<='),
         ('__rshift__', '>>'),
+        ('__rrshift__', '>>'),
         ('__irshift__', '>>='),
         ('__and__', '&'),
+        ('__rand__', '&'),
         ('__iand__', '&='),
         ('__xor__', '^'),
+        ('__rxor__', '^'),
         ('__ixor__', '^='),
         ('__or__', '|'),
+        ('__ror__', '|'),
         ('__ior__', '|='),
 
         ('__pos__', '+@'),
@@ -94,12 +110,14 @@ def see(obj):
         ('__len__', 'len()'),
         ('__long__', 'long()'),
         ('__oct__', 'oct()'),
+        ('__reversed__', 'reversed()'),
         ('__unicode__', 'unicode()'),
     )
     attrs = dir(obj)
     actions = []
-    name = lambda a: '.%s%s' % (a, hasattr(getattr(obj, a), '__call__') \
-                     and '()' or '')
+    func = lambda a: hasattr(a, '__call__') and '()' or ''
+    name = lambda a: '.%s%s' % (a, func(getattr(obj, a)))
+
     try:
         if obj.__doc__.strip():
             actions.append('?')
