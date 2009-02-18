@@ -90,17 +90,13 @@ If you are using iPython, enabling `see` by default is slightly more
 involved. Create a file `ipy_profile_see.py` in your `~/.ipython/`
 directory and copy the following contents into the file:
 
-<pre>
-# iPython profile to enable `see' automatically
+    from IPython import ipapi
 
-from IPython import ipapi
+    def main():
+        ip = ipapi.get()
+        ip.ex('from see import see')
 
-def main():
-    ip = ipapi.get()
-    p.ex('from see import see')
-
-main()
-</pre>
+    main()
 
 And then you can launch iPython with `see` already imported by giving
 the command `ipython -profile see` or you can make it the default
