@@ -57,7 +57,7 @@ Okay, I'm convinced. How do I install this thing?
 
 The easiest way to use `see()` is to place the code somewhere Python will
 find it, and have it imported whenever you launch an interactive session,
-using a [startup file](http://www.python.org/doc/1.5.2p2/tut/node4.html).
+using a [startup file](http://docs.python.org/tutorial/interpreter.html#the-interactive-startup-file).
 
 1. `mkdir -p ~/lib/python`
 
