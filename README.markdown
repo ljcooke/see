@@ -26,6 +26,7 @@ exactly easy on the eyes. Say you have a list of everyday items:
     pencil_case = ['pencils', 'protractor', 'ruler',
                    'a pair of compasses', 'razor blades',
                    'calculator', 'Garry Gum']
+    pencil_case.append('Anti-Garry Gum')
 
 And you want to see what you can do with this list. So you try:
 
