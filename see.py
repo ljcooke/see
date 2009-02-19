@@ -18,6 +18,7 @@ __version__ = '0.3.1'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
 
+import sys
 import textwrap
 
 def see(obj):
@@ -34,85 +35,6 @@ def see(obj):
         +@      unary positive operator (e.g. +2)
         -@      unary negative operator (e.g. -3)
     """
-
-    # http://docs.python.org/reference/datamodel.html#specialnames
-    symbols = (
-        ('__call__', '()'),
-        ('__getattr__', '.*'),
-        ('__getitem__', '[]'),
-        ('__setitem__', '[]'),
-        ('__delitem__', '[]'),
-
-        ('__iter__', 'for'),
-        ('__enter__', 'with'),
-        ('__exit__', 'with'),
-        ('__contains__', 'in'),
-
-        ('__add__', '+'),
-        ('__radd__', '+'),
-        ('__iadd__', '+='),
-        ('__sub__', '-'),
-        ('__rsub__', '-'),
-        ('__isub__', '-='),
-        ('__mul__', '*'),
-        ('__rmul__', '*'),
-        ('__imul__', '*='),
-        ('__div__', '/'),
-        ('__rdiv__', '/'),
-        ('__truediv__', '/'),
-        ('__rtruediv__', '/'),
-        ('__floordiv__', '/'),
-        ('__rfloordiv__', '/'),
-        ('__divmod__', '/'),
-        ('__rdivmod__', '/'),
-        ('__idiv__', '/='),
-        ('__itruediv__', '/='),
-        ('__ifloordiv__', '/='),
-        ('__mod__', '%'),
-        ('__rmod__', '%'),
-        ('__divmod__', '%'),
-        ('__imod__', '%='),
-        ('__pow__', '**'),
-        ('__rpow__', '**'),
-        ('__ipow__', '**='),
-        ('__lshift__', '<<'),
-        ('__rlshift__', '<<'),
-        ('__ilshift__', '<<='),
-        ('__rshift__', '>>'),
-        ('__rrshift__', '>>'),
-        ('__irshift__', '>>='),
-        ('__and__', '&'),
-        ('__rand__', '&'),
-        ('__iand__', '&='),
-        ('__xor__', '^'),
-        ('__rxor__', '^'),
-        ('__ixor__', '^='),
-        ('__or__', '|'),
-        ('__ror__', '|'),
-        ('__ior__', '|='),
-
-        ('__pos__', '+@'),
-        ('__neg__', '-@'),
-        ('__invert__', '~'),
-        ('__lt__', '<'),
-        ('__le__', '<='),
-        ('__eq__', '=='),
-        ('__ne__', '!='),
-        ('__gt__', '>'),
-        ('__ge__', '>='),
-
-        ('__abs__', 'abs()'),
-        ('__nonzero__', 'bool()'),
-        ('__complex__', 'complex()'),
-        ('__float__', 'float()'),
-        ('__hex__', 'hex()'),
-        ('__int__', 'int()'),
-        ('__len__', 'len()'),
-        ('__long__', 'long()'),
-        ('__oct__', 'oct()'),
-        ('__reversed__', 'reversed()'),
-        ('__unicode__', 'unicode()'),
-    )
     attrs = dir(obj)
     actions = []
     func = lambda f: hasattr(f, '__call__') and '()' or ''
@@ -120,7 +42,7 @@ def see(obj):
 
     if obj.__doc__ and obj.__doc__.strip():
         actions.append('?')
-    for var, symbol in symbols:
+    for var, symbol in __see_symbols:
         if var in attrs and symbol not in actions:
             actions.append(symbol)
     attrs = filter(lambda a: not a.startswith('_'), attrs)
@@ -132,3 +54,92 @@ def see(obj):
         actions.append(name(attr, prop))
     print(textwrap.fill('   '.join(actions), 78,
             initial_indent='  ', subsequent_indent='  '))
+
+PY_300 = sys.version_info >= (3, 0)
+PY_301 = sys.version_info >= (3, 0, 1)
+
+__see_symbols = tuple(filter(lambda x: x[0], (
+    ('__call__', '()'),
+    ('__getattr__', '.*'),
+    ('__getitem__', '[]'),
+    ('__setitem__', '[]'),
+    ('__delitem__', '[]'),
+
+    ('__iter__', 'for'),
+    ('__enter__', 'with'),
+    ('__exit__', 'with'),
+    ('__contains__', 'in'),
+
+    ('__add__', '+'),
+    ('__radd__', '+'),
+    ('__iadd__', '+='),
+    ('__sub__', '-'),
+    ('__rsub__', '-'),
+    ('__isub__', '-='),
+    ('__mul__', '*'),
+    ('__rmul__', '*'),
+    ('__imul__', '*='),
+    (not PY_300 and '__div__', '/'),
+    (not PY_301 and '__rdiv__', '/'),
+    ('__truediv__', '/'),
+    ('__rtruediv__', '/'),
+    ('__floordiv__', '//'),
+    ('__rfloordiv__', '//'),
+    (not PY_300 and '__idiv__', '/='),
+    ('__itruediv__', '/='),
+    ('__ifloordiv__', '//='),
+    ('__mod__', '%'),
+    ('__rmod__', '%'),
+    ('__divmod__', '%'),
+    ('__imod__', '%='),
+    ('__pow__', '**'),
+    ('__rpow__', '**'),
+    ('__ipow__', '**='),
+    ('__lshift__', '<<'),
+    ('__rlshift__', '<<'),
+    ('__ilshift__', '<<='),
+    ('__rshift__', '>>'),
+    ('__rrshift__', '>>'),
+    ('__irshift__', '>>='),
+    ('__and__', '&'),
+    ('__rand__', '&'),
+    ('__iand__', '&='),
+    ('__xor__', '^'),
+    ('__rxor__', '^'),
+    ('__ixor__', '^='),
+    ('__or__', '|'),
+    ('__ror__', '|'),
+    ('__ior__', '|='),
+
+    ('__pos__', '+@'),
+    ('__neg__', '-@'),
+    ('__invert__', '~'),
+    ('__lt__', '<'),
+    (not PY_301 and '__cmp__', '<'),
+    ('__le__', '<='),
+    (not PY_301 and '__cmp__', '<='),
+    ('__eq__', '=='),
+    (not PY_301 and '__cmp__', '=='),
+    ('__ne__', '!='),
+    (not PY_301 and '__cmp__', '!='),
+    ('__gt__', '>'),
+    (not PY_301 and '__cmp__', '>'),
+    ('__ge__', '>='),
+    (not PY_301 and '__cmp__', '>='),
+
+    ('__abs__', 'abs()'),
+    (PY_300 and '__bool__' or '__nonzero__', 'bool()'),
+    ('__complex__', 'complex()'),
+    (PY_300 and '__dir__', 'dir()'),
+    ('__divmod__', 'divmod()'),
+    ('__rdivmod__', 'divmod()'),
+    ('__float__', 'float()'),
+    (PY_300 and '__index__' or '__hex__', 'hex()'),
+    ('__int__', 'int()'),
+    ('__len__', 'len()'),
+    (not PY_300 and '__long__', 'long()'),
+    (PY_300 and '__index__' or '__oct__', 'oct()'),
+    ('__reversed__', 'reversed()'),
+    (PY_300 and '__round__', 'round()'),
+    (PY_300 and '__unicode__', 'unicode()'),
+)))
