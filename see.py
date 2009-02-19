@@ -115,8 +115,8 @@ def see(obj):
     )
     attrs = dir(obj)
     actions = []
-    func = lambda a: hasattr(a, '__call__') and '()' or ''
-    name = lambda a: '.%s%s' % (a, func(getattr(obj, a)))
+    func = lambda f: hasattr(f, '__call__') and '()' or ''
+    name = lambda a,f: '.%s%s' % (a, func(f))
 
     if obj.__doc__ and obj.__doc__.strip():
         actions.append('?')
@@ -124,6 +124,11 @@ def see(obj):
         if var in attrs and symbol not in actions:
             actions.append(symbol)
     attrs = filter(lambda a: not a.startswith('_'), attrs)
-    actions.extend(name(a) for a in attrs)
+    for attr in attrs:
+        try:
+            prop = getattr(obj, attr)
+        except AttributeError:
+            continue
+        actions.append(name(attr, prop))
     print(textwrap.fill('   '.join(actions), 78,
             initial_indent='  ', subsequent_indent='  '))
