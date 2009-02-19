@@ -27,7 +27,6 @@ def see(obj):
 
     Some symbols:
 
-        ?       documentation available using help(obj)
         .*      may have dynamic attributes
         []      allows obj[key]
         for     allows iteration
@@ -40,11 +39,12 @@ def see(obj):
     func = lambda f: hasattr(f, '__call__') and '()' or ''
     name = lambda a,f: '.%s%s' % (a, func(f))
 
-    if obj.__doc__ and obj.__doc__.strip():
-        actions.append('?')
     for var, symbol in __see_symbols:
-        if var in attrs and symbol not in actions:
-            actions.append(symbol)
+        if var not in attrs or symbol in actions:
+            continue
+        elif var == '__doc__' and not(obj.__doc__ and obj.__doc__.strip()):
+            continue
+        actions.append(symbol)
     attrs = filter(lambda a: not a.startswith('_'), attrs)
     for attr in attrs:
         try:
@@ -134,6 +134,7 @@ __see_symbols = tuple(filter(lambda x: x[0], (
     ('__divmod__', 'divmod()'),
     ('__rdivmod__', 'divmod()'),
     ('__float__', 'float()'),
+    ('__doc__', 'help()'),
     (PY_300 and '__index__' or '__hex__', 'hex()'),
     ('__int__', 'int()'),
     ('__len__', 'len()'),
