@@ -1,1 +1,1 @@
-include see.py setup.py README
+include see.py setup.py README CHANGELOG.markdown
