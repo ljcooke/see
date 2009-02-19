@@ -5,12 +5,10 @@ An alternative to Python's `dir()`.
 Easy to type; easy to read!
 For humans only.
 
-* __Version__: 0.3
+* __Version__: 0.4
 
 * __Requirements__: Python
-    * Works with 2.4+
-    * Not tested yet with 3.0, but some changes in this version
-      have been taken into account
+    * Works with 2.4+ and 3.0
 
 
 Sacrilege! Just what do you think you're doing?
