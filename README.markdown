@@ -44,9 +44,9 @@ we were just curious. Help us out here, Computer. This just will not cut it.
 Enter `see()`.
 
     >>> see(pencil_case)
-      ?   []   for   in   +   *   +=   *=   <   <=   ==   !=   >   >=   len()
-      .append()   .count()   .extend()   .index()   .insert()   .pop()   .remove()
-      .reverse()   .sort()
+      []   for   in   +   +=   *   *=   <   <=   ==   !=   >   >=   help()   len()
+      reversed()   .append()   .count()   .extend()   .index()   .insert()
+      .pop()   .remove()   .reverse()   .sort()
 
 Blimey! There's something different about this one, isn't there?
 Is this the same `pencil_case` we had before? I can _read_ it. There's
@@ -108,12 +108,12 @@ Now let's see if it works...
     Type "help", "copyright", "credits" or "license" for more information.
     >>> foo = 'bar'
     >>> see(foo)
-      ?   []   in   +   *   %   <   <=   ==   !=   >   >=   len()   .capitalize()
-      .center()   .count()   .decode()   .encode()   .endswith()   .expandtabs()
-      .find()   .index()   .isalnum()   .isalpha()   .isdigit()   .islower()
-      .isspace()   .istitle()   .isupper()   .join()   .ljust()   .lower()
-      .lstrip()   .partition()   .replace()   .rfind()   .rindex()   .rjust()
-      .rpartition()   .rsplit()   .rstrip()   .split()   .splitlines()
+      []   in   +   *   %   <   <=   ==   !=   >   >=   help()   len()
+      .capitalize()   .center()   .count()   .decode()   .encode()   .endswith()
+      .expandtabs()   .find()   .index()   .isalnum()   .isalpha()   .isdigit()
+      .islower()   .isspace()   .istitle()   .isupper()   .join()   .ljust()
+      .lower()   .lstrip()   .partition()   .replace()   .rfind()   .rindex()
+      .rjust()   .rpartition()   .rsplit()   .rstrip()   .split()   .splitlines()
       .startswith()   .strip()   .swapcase()   .title()   .translate()   .upper()
       .zfill()
     >>>
