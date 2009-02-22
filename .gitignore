@@ -1,4 +1,8 @@
-dist
-build
-Makefile
+.DS\_Store
+.*.swp
+*.pyc
+.seeprof
 MANIFEST
+Makefile
+build
+dist
