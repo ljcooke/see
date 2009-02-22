@@ -2,12 +2,11 @@
 see
 An alternative to dir(). Easy to type; easy to read. For humans only.
 
-http://github.com/inky/see
-
     >>> from see import see
     >>> help(see)
 
 Copyright (c) 2009 Liam Cooke
+http://github.com/inky/see
 
 Licensed under the GNU General Public License v3.
 See COPYING for the full license text.
@@ -36,29 +35,34 @@ def see(obj):
     """
     attrs = dir(obj)
     actions = []
+
     func = lambda f: hasattr(f, '__call__') and '()' or ''
     name = lambda a,f: '.%s%s' % (a, func(f))
 
-    for var, symbol in __see_symbols:
+    for var, symbol in SYMBOLS:
         if var not in attrs or symbol in actions:
             continue
-        elif var == '__doc__' and not(obj.__doc__ and obj.__doc__.strip()):
-            continue
+        elif var == '__doc__':
+            try:
+                obj.__doc__.strip()[0]
+            except (AttributeError, IndexError):
+                continue
         actions.append(symbol)
-    attrs = filter(lambda a: not a.startswith('_'), attrs)
-    for attr in attrs:
+
+    for attr in filter(lambda a: not a.startswith('_'), attrs):
         try:
             prop = getattr(obj, attr)
         except AttributeError:
             continue
         actions.append(name(attr, prop))
+
     print(textwrap.fill('   '.join(actions), 78,
-            initial_indent='  ', subsequent_indent='  '))
+          initial_indent='  ', subsequent_indent='  '))
 
 PY_300 = sys.version_info >= (3, 0)
 PY_301 = sys.version_info >= (3, 0, 1)
 
-__see_symbols = tuple(filter(lambda x: x[0], (
+SYMBOLS = tuple(filter(lambda x: x[0], (
     ('__call__', '()'),
     ('__getattr__', '.*'),
     ('__getitem__', '[]'),
