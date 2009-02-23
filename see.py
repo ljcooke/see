@@ -58,7 +58,7 @@ def see(obj):
 PY_300 = sys.version_info >= (3, 0)
 PY_301 = sys.version_info >= (3, 0, 1)
 
-__see_symbols = tuple(filter(lambda x: x[0], (
+__see_symbols = filter(lambda x: x[0], (
     # function calling/element access
     ('__call__', '()'),
     ('__getattr__', '.*'),
@@ -147,4 +147,4 @@ __see_symbols = tuple(filter(lambda x: x[0], (
     (PY_300 and '__round__', 'round()'),
     (PY_300 and '__unicode__', 'unicode()'),
     ('__str__', 'str()')
-)))
+))
