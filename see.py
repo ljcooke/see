@@ -143,6 +143,7 @@ SYMBOLS = filter(lambda x: x[0], (
     ('__divmod__', 'divmod()'),
     ('__rdivmod__', 'divmod()'),
     ('__float__', 'float()'),
+    ('__hash__', 'hash()'),
     ('__doc__', 'help()'),
     (PY_300 and '__index__' or '__hex__', 'hex()'),
     ('__int__', 'int()'),
