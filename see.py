@@ -63,14 +63,16 @@ PY_300 = sys.version_info >= (3, 0)
 PY_301 = sys.version_info >= (3, 0, 1)
 
 SYMBOLS = filter(lambda x: x[0], (
-    # function calling/element access
+    # callable
     ('__call__', '()'),
+
+    # element/attribute access
     ('__getattr__', '.*'),
     ('__getitem__', '[]'),
     ('__setitem__', '[]'),
     ('__delitem__', '[]'),
 
-    # iterable methods
+    # iteration
     ('__iter__', 'for'),
     ('__enter__', 'with'),
     ('__exit__', 'with'),
@@ -133,7 +135,7 @@ SYMBOLS = filter(lambda x: x[0], (
     ('__ge__', '>='),
     (not PY_301 and '__cmp__', '>='),
 
-    # casting and conversion and whatnot
+    # built-in functions
     ('__abs__', 'abs()'),
     (PY_300 and '__bool__' or '__nonzero__', 'bool()'),
     ('__complex__', 'complex()'),
@@ -147,8 +149,9 @@ SYMBOLS = filter(lambda x: x[0], (
     ('__len__', 'len()'),
     (not PY_300 and '__long__', 'long()'),
     (PY_300 and '__index__' or '__oct__', 'oct()'),
+    ('__repr__', 'repr()'),
     ('__reversed__', 'reversed()'),
     (PY_300 and '__round__', 'round()'),
+    ('__str__', 'str()'),
     (PY_300 and '__unicode__', 'unicode()'),
-    ('__str__', 'str()')
 ))
