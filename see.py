@@ -66,7 +66,7 @@ SYMBOLS = filter(lambda x: x[0], (
     # callable
     ('__call__', '()'),
 
-    # element/attribute access
+    # element/attribute access
     ('__getattr__', '.*'),
     ('__getitem__', '[]'),
     ('__setitem__', '[]'),
