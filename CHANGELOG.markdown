@@ -2,6 +2,13 @@ Change log
 ==========
 
 
+v0.4.1
+------
+
+  * New attributes: `str()` and `repr()`.
+    _(`str()` contributed by [Guff][guff].)_
+
+
 v0.4
 ----
 
@@ -69,5 +76,6 @@ v0.1
 [CommodoreGuff]: http://www.reddit.com/user/CommodoreGuff/
 [edcrypt]: http://github.com/edcrypt
 [ghoseb]: http://github.com/ghoseb
+[guff]: http://github.com/Guff
 [igowen]: http://ian.gowen.cc/
 [jdunck]: http://github.com/jdunck
