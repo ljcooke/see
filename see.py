@@ -62,18 +62,21 @@ def see(obj):
 PY_300 = sys.version_info >= (3, 0)
 PY_301 = sys.version_info >= (3, 0, 1)
 
-SYMBOLS = tuple(filter(lambda x: x[0], (
+SYMBOLS = filter(lambda x: x[0], (
+    # function calling/element access
     ('__call__', '()'),
     ('__getattr__', '.*'),
     ('__getitem__', '[]'),
     ('__setitem__', '[]'),
     ('__delitem__', '[]'),
 
+    # iterable methods
     ('__iter__', 'for'),
     ('__enter__', 'with'),
     ('__exit__', 'with'),
     ('__contains__', 'in'),
 
+    # operators
     ('__add__', '+'),
     ('__radd__', '+'),
     ('__iadd__', '+='),
@@ -114,7 +117,6 @@ SYMBOLS = tuple(filter(lambda x: x[0], (
     ('__or__', '|'),
     ('__ror__', '|'),
     ('__ior__', '|='),
-
     ('__pos__', '+@'),
     ('__neg__', '-@'),
     ('__invert__', '~'),
@@ -131,6 +133,7 @@ SYMBOLS = tuple(filter(lambda x: x[0], (
     ('__ge__', '>='),
     (not PY_301 and '__cmp__', '>='),
 
+    # casting and conversion and whatnot
     ('__abs__', 'abs()'),
     (PY_300 and '__bool__' or '__nonzero__', 'bool()'),
     ('__complex__', 'complex()'),
@@ -147,4 +150,5 @@ SYMBOLS = tuple(filter(lambda x: x[0], (
     ('__reversed__', 'reversed()'),
     (PY_300 and '__round__', 'round()'),
     (PY_300 and '__unicode__', 'unicode()'),
-)))
+    ('__str__', 'str()')
+))
