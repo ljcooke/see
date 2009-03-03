@@ -20,6 +20,25 @@ __license__ = 'GNU General Public License v3'
 import sys
 import textwrap
 
+class SeeOutput(list):
+    """
+    List-like class with a pretty __repr__ and __str__ output to retain
+    iterability of the return from see() while also permitting convenient use
+    of e.g. "print see(obj)" or just "see(obj)" in the interactive interpreter.
+    """
+    def __init__(self, actions=None):
+        if actions is None:
+            actions = []
+        self.actions = actions
+        super(SeeOutput, self).__init__(actions)
+
+    def __str__(self):
+        return textwrap.fill('   '.join(self.actions), 78,
+            initial_indent='  ', subsequent_indent='  ')
+    def __repr__(self):
+        return textwrap.fill('   '.join(self.actions), 78,
+            initial_indent='  ', subsequent_indent='  ')
+
 def see(obj):
     """
     Inspect 'obj'. Like dir(obj), but easier on the eyes.
@@ -56,8 +75,7 @@ def see(obj):
             continue
         actions.append(name(attr, prop))
 
-    print(textwrap.fill('   '.join(actions), 78,
-          initial_indent='  ', subsequent_indent='  '))
+    return SeeOutput(actions=actions)
 
 PY_300 = sys.version_info >= (3, 0)
 PY_301 = sys.version_info >= (3, 0, 1)
