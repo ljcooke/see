@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 see
 An alternative to dir(). Easy to type; easy to read. For humans only.
@@ -12,13 +14,33 @@ Licensed under the GNU General Public License v3.
 See COPYING for the full license text.
 
 """
+
 __author__ = 'Liam Cooke'
 __version__ = '0.4.1'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
 
+
 import sys
+import re
+import fnmatch
 import textwrap
+
+
+def regex_filter(names, pat):
+    pat = re.compile(pat)
+
+    def match(name, fn=pat.search):
+        return fn(name) is not None
+    return filter(match, names)
+
+
+def fn_filter(names, pat):
+
+    def match(name, fn=fnmatch.fnmatch, pat=pat):
+        return fn(name, pat)
+    return filter(match, names)
+
 
 class SeeOutput(list):
     """
@@ -26,6 +48,7 @@ class SeeOutput(list):
     iterability of the return from see() while also permitting convenient use
     of e.g. "print see(obj)" or just "see(obj)" in the interactive interpreter.
     """
+
     def __init__(self, actions=None):
         if actions is None:
             actions = []
@@ -35,11 +58,13 @@ class SeeOutput(list):
     def __str__(self):
         return textwrap.fill('   '.join(self.actions), 78,
             initial_indent='  ', subsequent_indent='  ')
+
     def __repr__(self):
         return textwrap.fill('   '.join(self.actions), 78,
             initial_indent='  ', subsequent_indent='  ')
 
-def see(obj):
+
+def see(obj, regex=None, fn=None):
     """
     Inspect 'obj'. Like dir(obj), but easier on the eyes.
 
@@ -56,7 +81,7 @@ def see(obj):
     actions = []
 
     func = lambda f: hasattr(f, '__call__') and '()' or ''
-    name = lambda a,f: '.%s%s' % (a, func(f))
+    name = lambda a, f: '.%s%s' % (a, func(f))
 
     for var, symbol in SYMBOLS:
         if var not in attrs or symbol in actions:
@@ -75,10 +100,17 @@ def see(obj):
             continue
         actions.append(name(attr, prop))
 
+    if regex is not None:
+        actions = regex_filter(actions, regex)
+    if fn is not None:
+        actions = fn_filter(actions, fn)
+
     return SeeOutput(actions=actions)
+
 
 PY_300 = sys.version_info >= (3, 0)
 PY_301 = sys.version_info >= (3, 0, 1)
+
 
 SYMBOLS = filter(lambda x: x[0], (
     # callable
@@ -91,7 +123,7 @@ SYMBOLS = filter(lambda x: x[0], (
     ('__delitem__', '[]'),
 
     # iteration
-    ('__iter__', 'for'),
+    ('__iter__', 'iter()'),
     ('__enter__', 'with'),
     ('__exit__', 'with'),
     ('__contains__', 'in'),
