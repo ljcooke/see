@@ -2,6 +2,19 @@ Change log
 ==========
 
 
+v0.5
+----
+
+  * Now returns a list-like object, for iterating through the results, while
+    still showing the human-readable output when run interactively.
+    _(Contributed by Bob Farrell.)_
+
+
+  * Optional `regex` and `fn` arguments, for regular expression and filename
+    pattern matching, respectively.
+    _(Contributed by [Ed Page][epage].)_
+
+
 v0.4.1
 ------
 
@@ -75,6 +88,7 @@ v0.1
 
 [CommodoreGuff]: http://www.reddit.com/user/CommodoreGuff/
 [edcrypt]: http://github.com/edcrypt
+[epage]: http://github.com/epage
 [ghoseb]: http://github.com/ghoseb
 [guff]: http://github.com/Guff
 [igowen]: http://ian.gowen.cc/

@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup( name='see',
-       version='0.4.1',
+       version='0.5',
        description='A human-readable alternative to dir',
        author='Liam Cooke',
        author_email='liamcooke@gmail.com',
