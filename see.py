@@ -72,7 +72,6 @@ def see(obj, regex=None, fn=None):
 
         .*      may have dynamic attributes
         []      allows obj[key]
-        for     allows iteration
         in      allows membership tests (e.g. x in obj)
         +@      unary positive operator (e.g. +2)
         -@      unary negative operator (e.g. -3)
@@ -123,7 +122,6 @@ SYMBOLS = filter(lambda x: x[0], (
     ('__delitem__', '[]'),
 
     # iteration
-    ('__iter__', 'iter()'),
     ('__enter__', 'with'),
     ('__exit__', 'with'),
     ('__contains__', 'in'),
@@ -197,6 +195,7 @@ SYMBOLS = filter(lambda x: x[0], (
     ('__doc__', 'help()'),
     (PY_300 and '__index__' or '__hex__', 'hex()'),
     ('__int__', 'int()'),
+    ('__iter__', 'iter()'),
     ('__len__', 'len()'),
     (not PY_300 and '__long__', 'long()'),
     (PY_300 and '__index__' or '__oct__', 'oct()'),
