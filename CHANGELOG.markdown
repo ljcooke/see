@@ -2,6 +2,26 @@ Change log
 ==========
 
 
+v0.5.1
+------
+
+  * Filename pattern matching is now the default. For example:
+
+        > see('', '.is*')
+          .isalnum()   .isalpha()   .isdigit()   .islower()   .isspace()
+          .istitle()   .isupper()
+
+    Regular expression matching can still be done, using the `r` argument.
+
+  * Two bugs fixed for Python 3.0:
+
+      * After the first `see()` call, subsequent calls would give no
+        output for some objects.
+
+      * Regular expression and filename pattern matching would also result
+        in nothing being output.
+
+
 v0.5
 ----
 
