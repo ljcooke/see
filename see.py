@@ -32,14 +32,14 @@ def regex_filter(names, pat):
 
     def match(name, fn=pat.search):
         return fn(name) is not None
-    return filter(match, names)
+    return tuple(filter(match, names))
 
 
 def fn_filter(names, pat):
 
     def match(name, fn=fnmatch.fnmatch, pat=pat):
         return fn(name, pat)
-    return filter(match, names)
+    return tuple(filter(match, names))
 
 
 class SeeOutput(list):
