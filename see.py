@@ -64,7 +64,7 @@ class SeeOutput(list):
             initial_indent='  ', subsequent_indent='  ')
 
 
-def see(obj, regex=None, fn=None):
+def see(obj, pattern=None, r=None):
     """
     Inspect 'obj'. Like dir(obj), but easier on the eyes.
 
@@ -99,10 +99,10 @@ def see(obj, regex=None, fn=None):
             continue
         actions.append(name(attr, prop))
 
-    if regex is not None:
-        actions = regex_filter(actions, regex)
-    if fn is not None:
-        actions = fn_filter(actions, fn)
+    if pattern is not None:
+        actions = fn_filter(actions, pattern)
+    if r is not None:
+        actions = regex_filter(actions, r)
 
     return SeeOutput(actions=actions)
 
