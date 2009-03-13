@@ -111,7 +111,7 @@ PY_300 = sys.version_info >= (3, 0)
 PY_301 = sys.version_info >= (3, 0, 1)
 
 
-SYMBOLS = filter(lambda x: x[0], (
+SYMBOLS = tuple(filter(lambda x: x[0], (
     # callable
     ('__call__', '()'),
 
@@ -204,4 +204,4 @@ SYMBOLS = filter(lambda x: x[0], (
     (PY_300 and '__round__', 'round()'),
     ('__str__', 'str()'),
     (PY_300 and '__unicode__', 'unicode()'),
-))
+)))
