@@ -22,6 +22,7 @@ __license__ = 'GNU General Public License v3'
 
 
 import fnmatch
+import inspect
 import re
 import sys
 import textwrap
@@ -64,7 +65,13 @@ class SeeOutput(list):
             initial_indent='  ', subsequent_indent='  ')
 
 
-def see(obj, pattern=None, r=None):
+class _LocalsProxy(object):
+    pass
+
+_NO_OBJ = _LocalsProxy()
+
+
+def see(obj=_NO_OBJ, pattern=None, r=None):
     """
     Inspect 'obj'. Like dir(obj), but easier on the eyes.
 
@@ -76,21 +83,26 @@ def see(obj, pattern=None, r=None):
         +@      unary positive operator (e.g. +2)
         -@      unary negative operator (e.g. -3)
     """
+    locals = obj is _NO_OBJ
+    if locals:
+        obj.__dict__ = inspect.currentframe().f_back.f_locals
     attrs = dir(obj)
     actions = []
 
+    dot = not locals and '.' or ''
     func = lambda f: hasattr(f, '__call__') and '()' or ''
-    name = lambda a, f: '.%s%s' % (a, func(f))
+    name = lambda a, f: ''.join((dot, a, func(f)))
 
-    for var, symbol in SYMBOLS:
-        if var not in attrs or symbol in actions:
-            continue
-        elif var == '__doc__':
-            try:
-                obj.__doc__.strip()[0]
-            except (AttributeError, IndexError):
+    if not locals:
+        for var, symbol in SYMBOLS:
+            if var not in attrs or symbol in actions:
                 continue
-        actions.append(symbol)
+            elif var == '__doc__':
+                try:
+                    obj.__doc__.strip()[0]
+                except (AttributeError, IndexError):
+                    continue
+            actions.append(symbol)
 
     for attr in filter(lambda a: not a.startswith('_'), attrs):
         try:
@@ -109,7 +121,6 @@ def see(obj, pattern=None, r=None):
 
 PY_300 = sys.version_info >= (3, 0)
 PY_301 = sys.version_info >= (3, 0, 1)
-
 
 SYMBOLS = tuple(filter(lambda x: x[0], (
     # callable
