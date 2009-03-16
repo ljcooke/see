@@ -2,7 +2,7 @@ Change log
 ==========
 
 
-v0.5.1
+v0.5.1 *[2009-03-13]*
 ------
 
   * Filename pattern matching is now the default. For example:
@@ -22,7 +22,7 @@ v0.5.1
         in nothing being output.
 
 
-v0.5
+v0.5 *[2009-03-07]*
 ----
 
   * Now returns a list-like object, for iterating through the results, while
@@ -35,14 +35,14 @@ v0.5
     _(Contributed by [Ed Page][epage].)_
 
 
-v0.4.1
+v0.4.1 *[2009-02-23]*
 ------
 
   * New attributes: `str()` and `repr()`.
     _(`str()` contributed by [Guff][guff].)_
 
 
-v0.4
+v0.4 *[2009-02-19]*
 ----
 
   * For Python 3.0, new attributes are included, and deprecated attributes
@@ -67,7 +67,7 @@ v0.4
     _(Contributed by [Baishampayan Ghose][ghoseb].)_
 
 
-v0.3.1
+v0.3.1 *[2009-02-18]*
 ------
 
   * Added symbols for binary arithmetic operations using reflected
@@ -76,7 +76,7 @@ v0.3.1
   * 'with' and 'reversed()' symbols added.
 
 
-v0.3
+v0.3 *[2009-02-18]*
 ----
 
   * Rudimentary Python 3.0 support, using suggestions from
@@ -88,7 +88,7 @@ v0.3
     _(Suggested by [Ian Gowen][igowen].)_
 
 
-v0.2
+v0.2 *[2009-02-17]*
 ----
 
   * Special attribute symbols reordered.
@@ -100,7 +100,7 @@ v0.2
   * `help()` documentation added.
 
 
-v0.1
+v0.1 *[2009-02-16]*
 ----
 
   * Original.
