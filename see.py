@@ -21,9 +21,9 @@ __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
 
 
-import sys
-import re
 import fnmatch
+import re
+import sys
 import textwrap
 
 
