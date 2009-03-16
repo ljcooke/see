@@ -2,6 +2,13 @@ Change log
 ==========
 
 
+v0.5.2 *[2009-03-16]*
+------
+
+  * Calling `see()` without arguments shows local variables.
+    _(Contributed by Charlie Nolan.)_
+
+
 v0.5.1 *[2009-03-13]*
 ------
 
