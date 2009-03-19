@@ -1,0 +1,7 @@
+.DS\_Store
+.*.swp
+*.pyc
+MANIFEST
+Makefile
+build
+dist
