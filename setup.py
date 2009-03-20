@@ -7,7 +7,7 @@ setup( name='see',
        description='A human-readable alternative to dir',
        author='Liam Cooke',
        author_email='liamcooke@gmail.com',
-       url='http://github.com/inky/see/tree/master',
+       url='http://inky.github.com/see/',
        py_modules=['see'],
        classifiers=[
            'Development Status :: 4 - Beta',
