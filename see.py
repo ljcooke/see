@@ -66,7 +66,8 @@ class SeeOutput(list):
 
 
 class _LocalsProxy(object):
-    pass
+    def __repr__(self):
+        return 'anything'
 
 _NO_OBJ = _LocalsProxy()
 
