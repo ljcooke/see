@@ -8,7 +8,7 @@ An alternative to dir(). Easy to type; easy to read. For humans only.
     >>> help(see)
 
 Copyright (c) 2009 Liam Cooke
-http://github.com/inky/see
+http://inky.github.com/see/
 
 Licensed under the GNU General Public License v3.
 See COPYING for the full license text.
@@ -16,7 +16,7 @@ See COPYING for the full license text.
 """
 
 __author__ = 'Liam Cooke'
-__version__ = '0.5.2'
+__version__ = '0.5.2.1'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
 
