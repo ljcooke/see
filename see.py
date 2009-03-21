@@ -20,6 +20,8 @@ __version__ = '0.5.2'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
 
+__all__ = ['see']
+
 
 import fnmatch
 import inspect
