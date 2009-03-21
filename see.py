@@ -45,25 +45,16 @@ def fn_filter(names, pat):
     return tuple(filter(match, names))
 
 
-class SeeOutput(list):
+class SeeActions(tuple):
     """
-    List-like class with a pretty __repr__ and __str__ output to retain
-    iterability of the return from see() while also permitting convenient use
-    of e.g. "print see(obj)" or just "see(obj)" in the interactive interpreter.
+    Tuple object with a pretty string representation.
     """
 
-    def __init__(self, actions=None):
-        if actions is None:
-            actions = []
-        self.actions = actions
-        super(SeeOutput, self).__init__(actions)
-
-    def __str__(self):
-        return textwrap.fill('   '.join(self.actions), 78,
-            initial_indent='  ', subsequent_indent='  ')
+    def __new__(self, actions=None):
+        return tuple.__new__(self, actions or [])
 
     def __repr__(self):
-        return textwrap.fill('   '.join(self.actions), 78,
+        return textwrap.fill('   '.join(self), 78,
             initial_indent='  ', subsequent_indent='  ')
 
 
@@ -119,7 +110,7 @@ def see(obj=_NO_OBJ, pattern=None, r=None):
     if r is not None:
         actions = regex_filter(actions, r)
 
-    return SeeOutput(actions=actions)
+    return SeeActions(actions)
 
 
 PY_300 = sys.version_info >= (3, 0)
