@@ -2,7 +2,7 @@
 
 """
 see
-An alternative to dir(). Easy to type; easy to read. For humans only.
+A human alternative to dir().
 
     >>> from see import see
     >>> help(see)
@@ -67,15 +67,23 @@ _NO_OBJ = _LocalsProxy()
 
 def see(obj=_NO_OBJ, pattern=None, r=None):
     """
-    Inspect 'obj'. Like dir(obj), but easier on the eyes.
+    Inspect obj. Like dir(obj), but easier on the eyes.
 
-    Some symbols:
+    Results can be narrowed down by supplying a search pattern.
+    Use the pattern argument for shell-style pattern matching,
+    and r for regular expressions. For example:
 
-        .*      may have dynamic attributes
-        []      allows obj[key]
-        in      allows membership tests (e.g. x in obj)
+        >>> see(23, pattern='h*')
+          hash()   help()   hex()
+
+    Some unique symbols are used:
+
+        .*      implements obj.anything
+        []      implements obj[key]
+        in      implements membership tests (e.g. x in obj)
         +@      unary positive operator (e.g. +2)
         -@      unary negative operator (e.g. -3)
+
     """
     locals = obj is _NO_OBJ
     if locals:
