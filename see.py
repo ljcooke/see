@@ -218,3 +218,5 @@ SYMBOLS = tuple(filter(lambda x: x[0], (
     ('__str__', 'str()'),
     (PY_300 and '__unicode__', 'unicode()'),
 )))
+
+# vim: expandtab tabstop=4 shiftround shiftwidth=4
