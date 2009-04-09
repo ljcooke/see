@@ -230,4 +230,8 @@ SYMBOLS = tuple(filter(lambda x: x[0], (
     (PY_300 and '__unicode__', 'unicode()'),
 )))
 
+
+if __name__ == '__main__':
+    help(see)
+
 # vim: expandtab tabstop=4 shiftround shiftwidth=4 fdm=marker
