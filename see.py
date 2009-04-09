@@ -81,8 +81,8 @@ def see(obj=_NO_OBJ, pattern=None, r=None):
         .*      implements obj.anything
         []      implements obj[key]
         in      implements membership tests (e.g. x in obj)
-        +@      unary positive operator (e.g. +2)
-        -@      unary negative operator (e.g. -3)
+        +obj    unary positive operator (e.g. +2)
+        -obj    unary negative operator (e.g. -3)
 
     """
     locals = obj is _NO_OBJ
@@ -180,8 +180,8 @@ SYMBOLS = tuple(filter(lambda x: x[0], (
     ('__or__', '|'),
     ('__ror__', '|'),
     ('__ior__', '|='),
-    ('__pos__', '+@'),
-    ('__neg__', '-@'),
+    ('__pos__', '+obj'),
+    ('__neg__', '-obj'),
     ('__invert__', '~'),
     ('__lt__', '<'),
     (not PY_301 and '__cmp__', '<'),
