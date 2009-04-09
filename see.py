@@ -65,8 +65,8 @@ class SeeActions(tuple):
         return tuple.__new__(self, actions or [])
 
     def __repr__(self):
-        return textwrap.fill('   '.join(self), 78,
-            initial_indent='  ', subsequent_indent='  ')
+        return textwrap.fill('    '.join(self), 78,
+            initial_indent='    ', subsequent_indent='    ')
 
 
 class _LocalsProxy(object):
@@ -85,7 +85,7 @@ def see(obj=_NO_OBJ, pattern=None, r=None):
     and r for regular expressions. For example:
 
         >>> see(23, pattern='h*')
-          hash()   help()   hex()
+            hash()    help()    hex()
 
     Some unique symbols are used:
 

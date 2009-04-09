@@ -46,9 +46,10 @@ curious. Help us out here, Computer. This just will not cut it.
 Enter see().
 
     >>> see(pencil_case)
-      []   for   in   +   +=   *   *=   <   <=   ==   !=   >   >=   help()
-      len()   reversed()   .append()   .count()   .extend()   .index()
-      .insert()   .pop()   .remove()   .reverse()   .sort()
+        []    in    +    +=    *    *=    <    <=    ==    !=    >    >=    hash()
+        help()    iter()    len()    repr()    reversed()    str()    .append()
+        .count()    .extend()    .index()    .insert()    .pop()    .remove()
+        .reverse()    .sort()
 
 Blimey! There's something different about this one, isn't there? Is this the
 same pencil_case we had before? I can READ it. There's functions and operators
@@ -98,18 +99,11 @@ Now let's see if it works...
     Python 2.5.1 (your lottery numbers)
     Type "help", "copyright", "credits" or "license" for more information.
     >>> foo = 'bar'
-    >>> see(foo)
-      []   in   +   *   %   <   <=   ==   !=   >   >=   help()   len()
-      .capitalize()   .center()   .count()   .decode()   .encode()
-      .endswith()   .expandtabs()   .find()   .index()   .isalnum()
-      .isalpha()   .isdigit()   .islower()   .isspace()   .istitle()
-      .isupper()   .join()   .ljust()   .lower()   .lstrip()   .partition()
-      .replace()   .rfind()   .rindex()   .rjust()   .rpartition()
-      .rsplit()   .rstrip()   .split()   .splitlines()   .startswith()
-      .strip()   .swapcase()   .title()   .translate()   .upper()   .zfill()
+    >>> see(foo, '.is*')
+        .isalnum()    .isalpha()    .isdigit()    .islower()    .isspace()
+        .istitle()    .isupper()
     >>>
     >>> # success!
-    ...
 
 For iPython users, enabling see() by default requires a little more work.
 Create a ipy_profile_see.py file in your ~/.ipython directory, and save the
