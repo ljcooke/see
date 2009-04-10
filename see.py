@@ -26,7 +26,13 @@ Licensed under the GNU General Public License v3. {{{
 }}}
 """
 
-__author__ = 'Liam Cooke'
+__author__ = """\
+Liam Cooke
+Bob Farrell
+Charlie Nolan
+Ed Page
+Gabriel Genellina
+"""
 __version__ = '0.5.2.1'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
@@ -84,8 +90,8 @@ def see(obj=_NO_OBJ, pattern=None, r=None):
     Use the pattern argument for shell-style pattern matching,
     and r for regular expressions. For example:
 
-        >>> see(23, pattern='h*')
-            hash()    help()    hex()
+        >>> see(dict, pattern='*item*')
+            .items()    .iteritems()    .popitem()
 
     Some unique symbols are used:
 
@@ -93,7 +99,7 @@ def see(obj=_NO_OBJ, pattern=None, r=None):
         []      implements obj[key]
         in      implements membership tests (e.g. x in obj)
         +obj    unary positive operator (e.g. +2)
-        -obj    unary negative operator (e.g. -3)
+        -obj    unary negative operator (e.g. -2)
 
     """
     locals = obj is _NO_OBJ
