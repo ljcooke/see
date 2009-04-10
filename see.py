@@ -11,20 +11,28 @@ Copyright (c) 2009 Liam Cooke
 http://inky.github.com/see/
 
 Licensed under the GNU General Public License v3. {{{
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 }}}
 """
+
+import fnmatch
+import inspect
+import re
+import sys
+import textwrap
+
+__all__ = ['see']
 
 __author__ = """\
 Liam Cooke
@@ -36,15 +44,6 @@ Gabriel Genellina
 __version__ = '0.5.2.1'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
-
-__all__ = ['see']
-
-
-import fnmatch
-import inspect
-import re
-import sys
-import textwrap
 
 
 def regex_filter(names, pat):
@@ -62,36 +61,35 @@ def fn_filter(names, pat):
     return tuple(filter(match, names))
 
 
-class SeeActions(tuple):
-    """
-    Tuple object with a pretty string representation.
-    """
+class _SeeOutput(tuple):
+    """Tuple-like object with a pretty string representation."""
 
     def __new__(self, actions=None):
         return tuple.__new__(self, actions or [])
 
     def __repr__(self):
         return textwrap.fill('    '.join(self), 78,
-            initial_indent='    ', subsequent_indent='    ')
+                             initial_indent='    ',
+                             subsequent_indent='    ')
 
 
-class _LocalsProxy(object):
+class _SeeDefault(object):
     def __repr__(self):
         return 'anything'
 
-_NO_OBJ = _LocalsProxy()
+_LOCALS = _SeeDefault()
 
 
-def see(obj=_NO_OBJ, pattern=None, r=None):
+def see(obj=_LOCALS, pattern=None, r=None):
     """
-    Inspect obj. Like dir(obj), but easier on the eyes.
+    Inspect an object. Like the dir() builtin, but easier on the eyes.
 
-    Results can be narrowed down by supplying a search pattern.
-    Use the pattern argument for shell-style pattern matching,
-    and r for regular expressions. For example:
+    Keyword arguments (all optional):
+    obj -- object to be inspected
+    pattern -- shell-style search pattern (e.g. '*len*')
+    r -- regular expression
 
-        >>> see(dict, pattern='*item*')
-            .items()    .iteritems()    .popitem()
+    If obj is omitted, objects in the current scope are listed instead.
 
     Some unique symbols are used:
 
@@ -102,24 +100,21 @@ def see(obj=_NO_OBJ, pattern=None, r=None):
         -obj    unary negative operator (e.g. -2)
 
     """
-    locals = obj is _NO_OBJ
-    if locals:
-        obj.__dict__ = inspect.currentframe().f_back.f_locals
+    use_locals = obj is _LOCALS
     attrs = dir(obj)
     actions = []
-
-    dot = not locals and '.' or ''
+    dot = not use_locals and '.' or ''
     func = lambda f: hasattr(f, '__call__') and '()' or ''
     name = lambda a, f: ''.join((dot, a, func(f)))
 
-    if not locals:
+    if use_locals:
+        obj.__dict__ = inspect.currentframe().f_back.f_locals
+    else:
         for var, symbol in SYMBOLS:
             if var not in attrs or symbol in actions:
                 continue
             elif var == '__doc__':
-                try:
-                    obj.__doc__.strip()[0]
-                except (AttributeError, IndexError):
+                if not obj.__doc__ or not obj.__doc__.strip():
                     continue
             actions.append(symbol)
 
@@ -135,7 +130,7 @@ def see(obj=_NO_OBJ, pattern=None, r=None):
     if r is not None:
         actions = regex_filter(actions, r)
 
-    return SeeActions(actions)
+    return _SeeOutput(actions)
 
 
 PY_300 = sys.version_info >= (3, 0)
