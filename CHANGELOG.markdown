@@ -2,6 +2,32 @@ Change log
 ==========
 
 
+v5.3 *[2009-04-12]*
+----
+
+  * New project homepage: http://inky.github.com/see/
+
+  * Results are spaced out more, and line up with the default interpreter prompt.
+    For example:
+
+        >>> see(int, pattern='h*')
+            hash()    help()    hex()
+
+  * Unary operator symbols changed from `+@` and `-@` to `+obj` and `-obj`
+    respectively.
+
+  * Running `see.py` as a script will show documentation, equivalent
+    to `help(see)`.
+
+  * If you want to be lazy, you can '`from see import *`', and only `see()`
+    will be imported.
+
+  * Bug fixed: `see()` output could be modified, but would still print
+    the original results. The output list now acts like a tuple.
+
+  * Revised code documentation and examples.
+
+
 v0.5.2 *[2009-03-16]*
 ------
 
