@@ -60,7 +60,7 @@ v0.5 *[2009-03-07]*
 
   * Now returns a list-like object, for iterating through the results, while
     still showing the human-readable output when run interactively.
-    _(Contributed by Bob Farrell.)_
+    _(Contributed by [Bob Farrell][bobf].)_
 
 
   * Optional `regex` and `fn` arguments, for regular expression and filename
@@ -139,6 +139,7 @@ v0.1 *[2009-02-16]*
   * Original.
 
 
+[bobf]: http://github.com/bobf
 [CommodoreGuff]: http://www.reddit.com/user/CommodoreGuff/
 [edcrypt]: http://github.com/edcrypt
 [epage]: http://github.com/epage
