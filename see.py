@@ -104,7 +104,6 @@ def see(obj=_LOCALS, pattern=None, r=None):
 
     """
     use_locals = obj is _LOCALS
-    attrs = dir(obj)
     actions = []
     dot = not use_locals and '.' or ''
     func = lambda f: hasattr(f, '__call__') and '()' or ''
@@ -112,7 +111,8 @@ def see(obj=_LOCALS, pattern=None, r=None):
 
     if use_locals:
         obj.__dict__ = inspect.currentframe().f_back.f_locals
-    else:
+    attrs = dir(obj)
+    if not use_locals:
         for var, symbol in SYMBOLS:
             if var not in attrs or symbol in actions:
                 continue
