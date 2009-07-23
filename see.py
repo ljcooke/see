@@ -44,7 +44,7 @@ __contributors__ = [
     'guff',
     'jdunck',
 ]
-__version__ = '0.5.3'
+__version__ = '0.5.4'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
 

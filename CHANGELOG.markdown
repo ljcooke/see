@@ -2,6 +2,12 @@ Change log
 ==========
 
 
+v5.4 *[2009-07-23]*
+----
+
+  * Bug fixed: Calling `see()` first with no arguments would return nothing.
+
+
 v5.3 *[2009-04-12]*
 ----
 
