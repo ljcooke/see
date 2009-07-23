@@ -34,13 +34,16 @@ import textwrap
 
 __all__ = ['see']
 
-__author__ = """\
-Liam Cooke
-Bob Farrell
-Charlie Nolan
-Ed Page
-Gabriel Genellina
-"""
+__author__ = 'Liam Cooke'
+__contributors__ = [
+    'Bob Farrell',
+    'Gabriel Genellina',
+    'Baishampayan Ghose',
+    'Charlie Nolan',
+    'Ed Page',
+    'guff',
+    'jdunck',
+]
 __version__ = '0.5.3'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
 __license__ = 'GNU General Public License v3'
