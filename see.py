@@ -86,9 +86,10 @@ class _SeeOutput(tuple):
                 return i.ljust(max_len * 2 + 8)
 
         padded = [justify(i) for i in self]
+        indent = ' ' * len(sys.ps1)
         return textwrap.fill(''.join(padded), 78,
-                             initial_indent='    ',
-                             subsequent_indent='    ')
+                             initial_indent=indent,
+                             subsequent_indent=indent)
 
 
 class _SeeDefault(object):
