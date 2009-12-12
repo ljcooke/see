@@ -46,10 +46,12 @@ curious. Help us out here, Computer. This just will not cut it.
 Enter see().
 
     >>> see(pencil_case)
-        []    in    +    +=    *    *=    <    <=    ==    !=    >    >=    hash()
-        help()    iter()    len()    repr()    reversed()    str()    .append()
-        .count()    .extend()    .index()    .insert()    .pop()    .remove()
-        .reverse()    .sort()
+        []            in            +             +=            *             *=
+        <             <=            ==            !=            >             >=
+        hash()        help()        iter()        len()         repr()
+        reversed()    str()         .append()     .count()      .extend()
+        .index()      .insert()     .pop()        .remove()     .reverse()
+        .sort()
 
 Blimey! There's something different about this one, isn't there? Is this the
 same pencil_case we had before? I can READ it. There's functions and operators

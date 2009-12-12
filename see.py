@@ -43,6 +43,7 @@ __contributors__ = [
     'Ed Page',
     'guff',
     'jdunck',
+    'Steve Losh',
 ]
 __version__ = '0.5.4'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
@@ -71,7 +72,10 @@ class _SeeOutput(tuple):
         return tuple.__new__(self, actions or [])
 
     def __repr__(self):
-        return textwrap.fill('    '.join(self), 78,
+        lens = sorted(map(len, self))
+
+        padded = [i.ljust(lens[-1] + 4) for i in self]
+        return textwrap.fill(''.join(padded), 78,
                              initial_indent='    ',
                              subsequent_indent='    ')
 
