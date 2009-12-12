@@ -73,8 +73,19 @@ class _SeeOutput(tuple):
 
     def __repr__(self):
         lens = sorted(map(len, self))
+        most = lens[int(len(lens)*0.9)]
+        if lens[-1] + 6 > most:
+            max_len = most
+        else:
+            max_len = lens[-1]
 
-        padded = [i.ljust(lens[-1] + 4) for i in self]
+        def justify(i):
+            if len(i) <= max_len + 2:
+                return i.ljust(max_len + 4)
+            else:
+                return i.ljust(max_len * 2 + 8)
+
+        padded = [justify(i) for i in self]
         return textwrap.fill(''.join(padded), 78,
                              initial_indent='    ',
                              subsequent_indent='    ')
