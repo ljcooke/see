@@ -44,6 +44,7 @@ __contributors__ = [
     'guff',
     'jdunck',
     'Steve Losh',
+    'Adam Lloyd',
 ]
 __version__ = '0.5.4'
 __copyright__ = 'Copyright (c) 2009 Liam Cooke'
