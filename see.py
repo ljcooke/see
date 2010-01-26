@@ -73,7 +73,7 @@ class _SeeOutput(tuple):
         return tuple.__new__(self, actions or [])
 
     def __repr__(self):
-        lens = sorted(map(len, self))
+        lens = sorted(map(len, self)) or [0]
         most = lens[int(len(lens)*0.9)]
         if lens[-1] + 6 > most:
             max_len = most
