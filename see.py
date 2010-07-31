@@ -7,7 +7,7 @@ A human alternative to dir().
     >>> from see import see
     >>> help(see)
 
-Copyright (c) 2009 Liam Cooke
+Copyright (c) 2009-2010 Liam Cooke
 http://inky.github.com/see/
 
 Licensed under the GNU General Public License v3. {{{
@@ -46,8 +46,8 @@ __contributors__ = [
     'Steve Losh',
     'Adam Lloyd',
 ]
-__version__ = '0.5.4'
-__copyright__ = 'Copyright (c) 2009 Liam Cooke'
+__version__ = '1.0.0'
+__copyright__ = 'Copyright (c) 2009-2010 Liam Cooke'
 __license__ = 'GNU General Public License v3'
 
 
