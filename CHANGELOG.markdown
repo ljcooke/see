@@ -2,13 +2,26 @@ Change log
 ==========
 
 
-v5.4 *[2009-07-23]*
+v1.0 *[2010-07-31]*
+----
+
+  * Justified columns.
+    _(Contributed by Steve Losh.)_
+
+  * Output is indented to line up with the prompt. For example, if the prompt
+    string is "<code>&gt;&nbsp;</code>", the output will be indented by two
+    spaces. _(Contributed by Liam Cooke with a bug fix from Adam Lloyd.)_
+
+  * Bug fixed: exception raised when `see()` has nothing to display.
+
+
+v0.5.4 *[2009-07-23]*
 ----
 
   * Bug fixed: Calling `see()` first with no arguments would return nothing.
 
 
-v5.3 *[2009-04-12]*
+v0.5.3 *[2009-04-12]*
 ----
 
   * New project homepage: http://inky.github.com/see/
