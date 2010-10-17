@@ -2,6 +2,12 @@ Change log
 ==========
 
 
+v1.0.1 *[2010-10-17]*
+------
+
+  * Changed the license from GPL to BSD.
+
+
 v1.0 *[2010-07-31]*
 ----
 
@@ -16,13 +22,13 @@ v1.0 *[2010-07-31]*
 
 
 v0.5.4 *[2009-07-23]*
-----
+------
 
   * Bug fixed: Calling `see()` first with no arguments would return nothing.
 
 
 v0.5.3 *[2009-04-12]*
-----
+------
 
   * New project homepage: http://inky.github.com/see/
 
