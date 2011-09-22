@@ -136,9 +136,15 @@ def see(obj=_LOCALS, pattern=None, r=None):
     use_locals = obj is _LOCALS
     actions = []
     dot = not use_locals and '.' or ''
-    func = lambda f: hasattr(f, '__call__') and '()' or ''
     name = lambda a, f: ''.join((dot, a, func(f)))
 
+    def func(f):
+        if f == SeeError: return '??'
+        if hasattr(f, '__call__'): return '()'
+        return  ''
+    
+    class SeeError:pass
+    
     if use_locals:
         obj.__dict__ = inspect.currentframe().f_back.f_locals
     attrs = dir(obj)
@@ -154,8 +160,8 @@ def see(obj=_LOCALS, pattern=None, r=None):
     for attr in filter(lambda a: not a.startswith('_'), attrs):
         try:
             prop = getattr(obj, attr)
-        except AttributeError:
-            continue
+        except (AttributeError, Exception):
+            prop = SeeError
         actions.append(name(attr, prop))
 
     if pattern is not None:
