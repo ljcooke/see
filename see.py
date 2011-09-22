@@ -143,7 +143,7 @@ def see(obj=_LOCALS, pattern=None, r=None):
     name = lambda a, f: ''.join((dot, a, suffix(f)))
 
     def suffix(f):
-        if f == SeeError:
+        if isinstance(f, SeeError):
             return '?'
         elif hasattr(f, '__call__'):
             return '()'
@@ -166,7 +166,7 @@ def see(obj=_LOCALS, pattern=None, r=None):
         try:
             prop = getattr(obj, attr)
         except (AttributeError, Exception):
-            prop = SeeError
+            prop = SeeError()
         actions.append(name(attr, prop))
 
     if pattern is not None:
