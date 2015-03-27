@@ -1,38 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta charset="utf-8">
   <title>see()</title>
-  <style type="text/css">
-    @import url('http://inky.github.com/reset.css');
-
-    body {font:12pt/1.5 'Adobe Caslon Pro', 'Palatino', 'Palatino Linotype',
-            'Palatino LT STD', 'Book Antiqua', 'Georgia', serif;
-          margin:4.5em 1.5em 4.3em 0; background:#fafafa; color:#222;}
-
-    #body {margin:0 auto; max-width:52em;}
-    #content {margin-left:9em;}
-
-    #download {float: right; padding:0 0 1.5em 1.5em; z-index:99;}
-    #download img {width:90px;}
-    #description {font-size:1.2em; line-height:1.25; margin-bottom:1.25em;}
-    #download a, #forkme a {border-bottom-width:0;}
-
-    h1 {font-size:3em; line-height:1; text-align:right; float:left;
-        width:2.5em;}
-    h2 {font:bold 1.25em/1.2 'Helvetica Neue','Helvetica',sans-serif;
-        margin:1.8em 0 0.6em;}
-
-    p {margin-bottom:1.5em;}
-    pre {font-size:0.9em; line-height:1.667; margin:1.667em;}
-    pre, code {color:#654039; font-family:'Inconsolata','Andale Mono','Consolas',monospace;}
-
-    a {font-weight:bold; text-decoration:none;}
-    a, img {border-width:0; outline-width:0;}
-    a:link, a:visited {color:#981e16; border-bottom:1px solid transparent;}
-    a:hover, a:active {color:#000; border-bottom:1px solid #888;}
-  </style>
+  <link rel="stylesheet" href="see.css">
 </head>
 
 <body>
@@ -48,61 +19,78 @@
     </div>
 
     <h1>
-      <a href="http://github.com/inky/see">see</a>
+      see
     </h1>
 
     <div id="content">
 
       <p id="description">
-        An alternative to Python&rsquo;s <code>dir</code> function.
+        An alternative to Python&rsquo;s <code>dir</code> function.<br>
         Easy to type; easy to read! For humans&nbsp;only.
       </p>
 
-      <p>Version
-        <strong class="version">1.0.1</strong>,
-        17 <span class="month">October</span> 2010
+      <p>
+        <b>Latest release</b>:
+        <a href="https://github.com/inky/see/releases">v1.0.1</a>
+        / 2010-10-17
       </p>
 
 
       <h2>Install</h2>
 
-      <p>To download and install automatically, simply&nbsp;run:</p>
-      <pre># easy_install -U see</pre>
+      <p>To install <b>see</b>, run:</p>
+
+      <pre><span>#</span> pip install --upgrade see</pre>
 
       <p>Alternatively, to install from source:</p>
+
       <pre><span>#</span> python setup.py install</pre>
 
-      <p>If you don&rsquo;t have root privileges, these commands may
-      be run with <code>--prefix="$HOME"</code> appended to install
-      to your home&nbsp;directory.</p>
 
+<!-- excerpt of HTML generated from README.md -->
 
-      <h2>Usage</h2>
+<h2>Usage</h2>
 
-      <pre>&gt;&gt;&gt; from see import see
-&gt;&gt;&gt;
+<p><strong>see</strong> is designed for the interactive Python interpreter. Import the <code>see</code>
+function like so:</p>
+
+<pre><code>&gt;&gt;&gt; from see import see
+</code></pre>
+
+<p>Call <code>see()</code> without arguments to see all objects in the global scope.</p>
+
+<pre><code>&gt;&gt;&gt; foo = 'bar'
 &gt;&gt;&gt; see()
-    os    see()    sys
-&gt;&gt;&gt; see([])
-    []           in           +            +=           *            *=
-    &lt;            &lt;=           ==           !=           &gt;            &gt;=
-    hash()       help()       iter()       len()        repr()
-    reversed()   str()        .append()    .count()     .extend()    .index()
-    .insert()    .pop()       .remove()    .reverse()   .sort()
-&gt;&gt;&gt; see(str, '.is*')
-    .isalnum()    .isalpha()    .isdigit()    .islower()    .isspace()    .istitle()
-    .isupper()</pre>
+    foo      see()
+</code></pre>
 
-      <p>If you don&rsquo;t want to type <code>from see import see</code>
-      every time you run the interpreter, you can make a Python startup
-      file containing this line. Information on how to do this is in the
-      <a href="http://github.com/inky/see/blob/master/README">readme</a>&nbsp;file.</p>
+<p>Call <code>see(an_object)</code> to see what you can do with <code>an_object</code>.</p>
+
+<pre><code>&gt;&gt;&gt; number = 1
+&gt;&gt;&gt; see(number)
+    +             -             *             /             //            %
+    **            &lt;&lt;            &gt;&gt;            &amp;             ^             |
+    +obj          -obj          ~             &lt;             &lt;=            ==
+    !=            &gt;             &gt;=            abs()         bool()
+    divmod()      float()       hash()        help()        hex()
+    int()         long()        oct()         repr()        str()
+    .bit_length()               .conjugate()  .denominator  .imag
+    .numerator    .real
+</code></pre>
+
+<!-- /README.md excerpt -->
+
+
+      <p>If you don&rsquo;t want to manually import <code>see</code> every time
+      you run the interpreter, you can make a Python startup file containing
+      this line. Information on how to do this is in the
+      <a href="http://github.com/inky/see/blob/develop/README.md">README</a>&nbsp;file.</p>
 
 
       <h2>Download</h2>
 
       <p>The latest source code can be found on
-      <a href="http://github.com/inky/see/tree/master">GitHub</a>.
+      <a href="http://github.com/inky/see">GitHub</a>.
       You can clone the project with
       <a href="http://git-scm.com/">Git</a> by&nbsp;running:</p>
 
@@ -111,29 +99,19 @@
 
       <h2>Info</h2>
 
-      <p>Copyright &copy; 2009&#8211;2010 <a href="http://inky.github.com/">Liam Cooke</a>.
+      <p>Copyright &copy; 2009&#8211;2015 <a href="http://inky.github.com/">Liam Cooke</a>.
       Licensed under the <a href="http://github.com/inky/see/raw/master/LICENSE"
         rel="license">BSD&nbsp;License</a>.</p>
       <p>
-        <a href="http://github.com/inky/see/blob/master/CHANGELOG.markdown">Changelog</a>
-      &nbsp;&bull;&nbsp;
+        <a href="http://github.com/inky/see/blob/develop/CHANGELOG.md">Change Log</a>
+        &nbsp;&bull;&nbsp;
+        <a href="http://github.com/inky/see/blob/develop/AUTHORS.md">Contributors</a>
+        &nbsp;&bull;&nbsp;
         <a href="http://pypi.python.org/pypi/see">Python Package Index</a>
       </p>
 
     </div><!-- /#content -->
 
   </div><!-- /#body -->
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-1563557-2");
-pageTracker._trackPageview();
-} catch(err) {}
-</script>
-
 </body>
 </html>

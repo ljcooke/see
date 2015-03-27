@@ -1,0 +1,81 @@
+/* reset.css */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, b, cite, code,
+del, dfn, em, i, img, ins, kbd, q, samp,
+strike, strong, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td
+{margin:0; padding:0; border:0; outline:0; font-size:100%;
+vertical-align:baseline; background:transparent;}
+html {font-size:100.01%;}
+caption, cite, code, dfn, th, var {font-style:normal; font-weight:normal;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after {content:''; content:none;}
+:focus {outline:0;}
+ins {text-decoration:underline;}
+del {text-decoration:line-through;}
+table {border-collapse:collapse; border-spacing:0;} /* still needs cellspacing="0" */
+
+
+
+body {
+    background: #fafafa;
+    color: #333;
+    font: 1em/1.5 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
+    margin: 4.5em 1.5em 4.3em 0;
+}
+
+#body {margin:0 auto; max-width:52em;}
+#content {margin-left:9em;}
+
+#download {float: right; padding:0 0 1.5em 1.5em; z-index:99;}
+#download img {width:90px;}
+#description {font-size:1.2em; line-height:1.25; margin-bottom:1.25em;}
+#download a, #forkme a {border-bottom-width:0;}
+
+h1 {
+    color: #ccc;
+    float: left;
+    font: normal 3em/0.8 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
+    text-align: right;
+    width: 2.5em;
+}
+h2 {
+    font: bold 1.25em/1.2 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
+    color: #999;
+    margin: 1.8em 0 0.6em;
+}
+
+p, dl {
+    margin-bottom: 1.5em;
+}
+
+pre {
+    font-size: 0.8em;
+    line-height: 1.875;
+    margin: 1.875em 2.5em;
+}
+pre, code {
+    color: #666;
+    font-family: 'Inconsolata', 'Andale Mono', 'Consolas', monospace;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+a, img {
+    border-width: 0;
+    outline-width: 0;
+}
+a:link, a:visited {
+    color: #981e16;
+    border-bottom: 1px solid #ccc;
+}
+a:hover, a:active {
+    color: #000;
+    border-bottom: 1px solid #888;
+}
