@@ -2,10 +2,9 @@ Change Log
 ==========
 
 All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning][semver] as of v1.1.0-dev.
+This project adheres to [Semantic Versioning][semver] as of v1.1.0.
 
-
-## [v1.1.0-dev][unreleased] / Unreleased
+## [v1.1.0][] / 2015-03-27
 
 ### Added
 
@@ -208,7 +207,8 @@ This project adheres to [Semantic Versioning][semver] as of v1.1.0-dev.
   * Original release.
 
 
-[unreleased]: https://github.com/inky/see/compare/v1.0.1...HEAD
+[unreleased]: https://github.com/inky/see/compare/v1.1.0...develop
+[v1.1.0]: https://github.com/inky/see/compare/v1.0.1...v1.1.0
 [v1.0.1]: https://github.com/inky/see/compare/v1.0-fixed...v1.0.1
 [v1.0]: https://github.com/inky/see/compare/v0.5.4...v1.0-fixed
 [v0.5.4]: https://github.com/inky/see/compare/v0.5.3...v0.5.4

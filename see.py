@@ -51,7 +51,7 @@ __all__ = ['see']
 
 __author__ = 'Liam Cooke'
 __contributors__ = 'See AUTHORS.md'
-__version__ = '1.1.0-dev'
+__version__ = '1.1.0'
 __copyright__ = 'Copyright (c) 2009-2015 Liam Cooke'
 __license__ = 'BSD License'
 

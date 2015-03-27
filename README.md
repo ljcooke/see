@@ -5,7 +5,7 @@ An alternative to Python's `dir` function.
 Easy to type; easy to read! For humans only.
 
 **Latest release**:
-[v1.0.1](https://github.com/inky/see/releases)
+[v1.1.0](https://github.com/inky/see/releases)
 
 **Requirements**:
 Python 2.4+ or 3.0
