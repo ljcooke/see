@@ -36,11 +36,18 @@ OF SUCH DAMAGE.
 
 """
 
+import fcntl
 import fnmatch
 import inspect
 import re
+import struct
 import sys
 import textwrap
+
+try:
+    import termios
+except ImportError:
+    termios = None
 
 __all__ = ['see']
 
@@ -61,13 +68,35 @@ __copyright__ = 'Copyright (c) 2009-2010 Liam Cooke'
 __license__ = 'BSD License'
 
 
+def term_width():
+    """
+    Return the column width of the terminal, or None if it can't be determined.
+
+    """
+    if termios:
+        try:
+            winsize = fcntl.ioctl(0, termios.TIOCGWINSZ, '    ')
+            _, width = struct.unpack('hh', winsize)
+            return width
+        except IOError:
+            pass
+
+def line_width(default_width=78, max_width=120):
+    """
+    Return the ideal column width for see() output, taking the terminal width
+    into account to avoid wrapping.
+
+    """
+    width = term_width()
+    return min(width, max_width) if width else default_width
+
+
 def regex_filter(names, pat):
     pat = re.compile(pat)
 
     def match(name, fn=pat.search):
         return fn(name) is not None
     return tuple(filter(match, names))
-
 
 def fn_filter(names, pat):
 
@@ -104,7 +133,7 @@ class _SeeOutput(tuple):
             indent = ' ' * len(sys.ps1)
         else:
             indent = '    '
-        return textwrap.fill(''.join(padded), 78,
+        return textwrap.fill(''.join(padded), line_width(),
                              initial_indent=indent,
                              subsequent_indent=indent)
 
