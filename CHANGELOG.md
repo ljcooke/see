@@ -192,7 +192,7 @@ This project adheres to [Semantic Versioning][semver] as of v1.1.0-dev.
 
 ### Added
 
-  * Added '.*' symbol for the `__getattr__` attribute.
+  * Added '.\*' symbol for the `__getattr__` attribute.
 
   * `help()` documentation added.
 
