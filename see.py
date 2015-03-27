@@ -76,7 +76,10 @@ def line_width(default_width=78, max_width=120):
 
     """
     width = term_width()
-    return min(width, max_width) if width else default_width
+    if width:
+        return min(width, max_width)
+    else:
+        return default_width
 
 
 def regex_filter(names, pat):
