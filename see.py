@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """
 see
 A human alternative to dir().
@@ -7,7 +6,7 @@ A human alternative to dir().
     >>> from see import see
     >>> help(see)
 
-Copyright (c) 2009-2010 Liam Cooke
+Copyright (c) 2009-2015 Liam Cooke
 http://inky.github.com/see/
 
 Redistribution and use in source and binary forms, with or without
@@ -35,7 +34,6 @@ IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 
 """
-
 import fcntl
 import fnmatch
 import inspect
@@ -52,19 +50,9 @@ except ImportError:
 __all__ = ['see']
 
 __author__ = 'Liam Cooke'
-__contributors__ = [
-    'Bob Farrell',
-    'Gabriel Genellina',
-    'Baishampayan Ghose',
-    'Charlie Nolan',
-    'Ed Page',
-    'guff',
-    'jdunck',
-    'Steve Losh',
-    'Adam Lloyd',
-]
-__version__ = '1.0.1'
-__copyright__ = 'Copyright (c) 2009-2010 Liam Cooke'
+__contributors__ = 'See AUTHORS.md'
+__version__ = '1.1.0-dev'
+__copyright__ = 'Copyright (c) 2009-2015 Liam Cooke'
 __license__ = 'BSD License'
 
 
@@ -92,16 +80,25 @@ def line_width(default_width=78, max_width=120):
 
 
 def regex_filter(names, pat):
+    """
+    Return a tuple of strings that match the regular expression pattern.
+
+    """
     pat = re.compile(pat)
 
     def match(name, fn=pat.search):
         return fn(name) is not None
+
     return tuple(filter(match, names))
 
 def fn_filter(names, pat):
+    """
+    Return a tuple of strings that match a shell-style pattern.
 
+    """
     def match(name, fn=fnmatch.fnmatch, pat=pat):
         return fn(name, pat)
+
     return tuple(filter(match, names))
 
 
@@ -109,8 +106,10 @@ class SeeError(Exception): pass
 
 
 class _SeeOutput(tuple):
-    """Tuple-like object with a pretty string representation."""
+    """
+    Tuple-like object with a pretty string representation.
 
+    """
     def __new__(self, actions=None):
         return tuple.__new__(self, actions or [])
 
@@ -133,12 +132,14 @@ class _SeeOutput(tuple):
             indent = ' ' * len(sys.ps1)
         else:
             indent = '    '
+
         return textwrap.fill(''.join(padded), line_width(),
                              initial_indent=indent,
                              subsequent_indent=indent)
 
 
 class _SeeDefault(object):
+
     def __repr__(self):
         return 'anything'
 
@@ -307,5 +308,3 @@ SYMBOLS = tuple(filter(lambda x: x[0], (
 
 if __name__ == '__main__':
     help(see)
-
-# vim: expandtab tabstop=4 shiftround shiftwidth=4 fdm=marker
