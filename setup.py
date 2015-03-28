@@ -10,7 +10,7 @@ setup( name='see',
        url='http://inky.github.io/see/',
        py_modules=['see'],
        classifiers=[
-           'Development Status :: 4 - Beta',
+           'Development Status :: 5 - Production/Stable',
            'Environment :: Console',
            'Intended Audience :: Developers',
            'License :: Freely Distributable',
