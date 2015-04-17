@@ -4,6 +4,13 @@ Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning][semver] as of v1.1.0.
 
+## [unreleased][] / 2015-04-17
+
+### Fixed
+
+  * Broken on Windows due to a dependency on the fcntl module.
+
+
 ## [v1.1.0][] / 2015-03-27
 
 ### Added
