@@ -4,11 +4,12 @@ Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning][semver] as of v1.1.0.
 
-## [unreleased][] / 2015-04-17
+## [v1.1.1][] / 2015-04-17
 
 ### Fixed
 
   * Broken on Windows due to a dependency on the fcntl module.
+    _(Spotted by Christopher Toth.)_
 
 
 ## [v1.1.0][] / 2015-03-27
@@ -214,7 +215,8 @@ This project adheres to [Semantic Versioning][semver] as of v1.1.0.
   * Original release.
 
 
-[unreleased]: https://github.com/inky/see/compare/v1.1.0...develop
+[unreleased]: https://github.com/inky/see/compare/v1.1.1...develop
+[v1.1.1]: https://github.com/inky/see/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/inky/see/compare/v1.0.1...v1.1.0
 [v1.0.1]: https://github.com/inky/see/compare/v1.0-fixed...v1.0.1
 [v1.0]: https://github.com/inky/see/compare/v0.5.4...v1.0-fixed
