@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning][semver] as of v1.1.0.
 
 ## [v1.1.1][] / 2015-04-17
 
-### Fixed
+### Fixed
 
   * Broken on Windows due to a dependency on the fcntl module.
     _(Spotted by Christopher Toth.)_
