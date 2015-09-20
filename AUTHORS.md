@@ -3,7 +3,7 @@ Authors
 
 Authors ordered by first contribution.
 
-  * [Liam Cooke](https://github.com/inky)
+  * [Liam Cooke](https://github.com/araile)
   * [Baishampayan Ghose](http://github.com/ghoseb)
   * [Jeremy Dunck](http://github.com/jdunck)
   * Gabriel Genellina
