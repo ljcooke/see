@@ -70,6 +70,7 @@ def term_width():
         except IOError:
             pass
 
+
 def line_width(default_width=78, max_width=120):
     """
     Return the ideal column width for see() output, taking the terminal width
@@ -95,6 +96,7 @@ def regex_filter(names, pat):
 
     return tuple(filter(match, names))
 
+
 def fn_filter(names, pat):
     """
     Return a tuple of strings that match a shell-style pattern.
@@ -106,7 +108,8 @@ def fn_filter(names, pat):
     return tuple(filter(match, names))
 
 
-class SeeError(Exception): pass
+class SeeError(Exception):
+    pass
 
 
 class _SeeOutput(tuple):
