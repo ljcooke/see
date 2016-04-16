@@ -15,3 +15,4 @@ Authors ordered by first contribution.
   * [Steve Losh](https://github.com/sjl)
   * [Adam Lloyd](https://github.com/alloy-d)
   * [Andrei Fokau](https://github.com/andreif)
+  * [Frederic De Groef](https://github.com/sevas)

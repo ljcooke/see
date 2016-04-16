@@ -4,6 +4,15 @@ Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning][semver] as of v1.1.0.
 
+
+## [Unreleased][]
+
+### Added
+
+  * Support for Python 3.5's matrix multiplication operators.
+    _(Contributed by Frederic De Groef.)_
+
+
 ## [v1.1.1][] / 2015-04-17
 
 ### Fixed
