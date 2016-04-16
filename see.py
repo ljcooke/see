@@ -213,6 +213,8 @@ def see(obj=_LOCALS, pattern=None, r=None):
 
 PY_300 = sys.version_info >= (3, 0)
 PY_301 = sys.version_info >= (3, 0, 1)
+PY_350 = sys.version_info >= (3, 5, 0)
+
 
 SYMBOLS = tuple(filter(lambda x: x[0], (
     # callable
@@ -239,6 +241,9 @@ SYMBOLS = tuple(filter(lambda x: x[0], (
     ('__mul__', '*'),
     ('__rmul__', '*'),
     ('__imul__', '*='),
+    (PY_350 and '__matmul__', '@'),
+    (PY_350 and '__rmatmul__', '@'),
+    (PY_350 and '__imatmul__', '@='),
     (not PY_300 and '__div__', '/'),
     (not PY_301 and '__rdiv__', '/'),
     ('__truediv__', '/'),
