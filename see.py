@@ -6,8 +6,8 @@ A human alternative to dir().
     >>> from see import see
     >>> help(see)
 
-Copyright (c) 2009-2015 Liam Cooke
-http://inky.github.com/see/
+Copyright (c) 2009-2016 Liam Cooke
+http://araile.github.io/see/
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -52,8 +52,8 @@ __all__ = ['see']
 
 __author__ = 'Liam Cooke'
 __contributors__ = 'See AUTHORS.md'
-__version__ = '1.1.1'
-__copyright__ = 'Copyright (c) 2009-2015 Liam Cooke'
+__version__ = '1.2.0'
+__copyright__ = 'Copyright (c) 2009-2016 Liam Cooke'
 __license__ = 'BSD License'
 
 
