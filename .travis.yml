@@ -15,6 +15,9 @@ sudo: false
 install:
  - pip install coverage
  - if [ "$TRAVIS_PYTHON_VERSION" == "2.6" ]; then pip install unittest2; fi
+ # Coverage 4.0 doesn't support Python 3.2
+ - if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then travis_retry pip install coverage==3.7.1; fi
+ - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
 
 script:
  - coverage run --source=see ./test_see.py -v
