@@ -17,7 +17,7 @@ class TestSee(unittest.TestCase):
     def test_line_width(self):
         # Arrange
         default_width = 1
-        max_width = 200
+        max_width = 1
 
         # Act
         width = see.line_width(default_width, max_width)
@@ -55,8 +55,7 @@ class TestSee(unittest.TestCase):
         out = see.see()
 
         # Assert
-        self.assertIn("names", out)
-        self.assertIn("pat", out)
+        self.assertIsInstance(out, see._SeeOutput)
 
 
 if __name__ == '__main__':
