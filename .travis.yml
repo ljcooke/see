@@ -20,7 +20,7 @@ install:
  - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
 
 script:
- - coverage run --source=see ./test_see.py -v
+ - coverage run --source=see tests/*.py -v
 
 after_success:
  - pip install coveralls
