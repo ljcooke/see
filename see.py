@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 see
-A human alternative to dir().
+dir for humans
 
     >>> from see import see
     >>> help(see)

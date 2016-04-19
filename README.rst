@@ -1,14 +1,23 @@
-see
-===
+see: dir for humans
+===================
 
-An alternative to Python's ``dir`` function.
-Easy to type; easy to read! For humans only.
+.. image:: https://img.shields.io/pypi/v/see.svg
+    :target: https://pypi.python.org/pypi/see
 
-Requirements
-  Python 2.6+ or 3.0+
+.. image:: https://img.shields.io/pypi/dm/see.svg
+    :target: https://pypi.python.org/pypi/see
+
+.. image:: https://travis-ci.org/araile/see.svg?branch=develop
+    :target: https://travis-ci.org/araile/see
+
+
+**see** is an alternative to the built-in ``dir`` function in Python. It shows
+you what you can do with things.
+
+Supports Python 2.6+ and 3.2+. Also works in iPython and PyPy.
 
 License
-  BSD (see the *LICENSE* file)
+    BSD
 
 Contributions are welcome. See the *CHANGELOG.md* and *AUTHORS.md* files.
 
@@ -19,10 +28,6 @@ Install
 To install **see**, run::
 
     $ pip install --upgrade see
-
-Alternatively, to install from source::
-
-    $ python setup.py install
 
 
 Usage
