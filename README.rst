@@ -19,7 +19,7 @@ Supports Python 2.6+ and 3.2+. Also works in iPython and PyPy.
 License
     BSD (see the *LICENSE* file)
 
-Contributions are welcome. See the *CHANGELOG.md* and *AUTHORS.md* files.
+Contributions are welcome. See the *CHANGELOG.rst* and *AUTHORS.rst* files.
 
 
 Install
