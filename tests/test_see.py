@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-# encoding: utf-8
 """
 Unit tests for see.py
+
 """
-from __future__ import print_function, unicode_literals
 try:
     import unittest2 as unittest
 except ImportError:
@@ -29,36 +28,52 @@ class TestSee(unittest.TestCase):
     def test_regex_filter(self):
         # Arrange
         names = ["george", "helen"]
-        pat = "or*"
+        pat_wildcard = "e.*g"
+        pat_start = "^h"
+        pat_end = "n$"
 
         # Act
-        out = see.regex_filter(names, pat)
+        out_wildcard = see.regex_filter(names, pat_wildcard)
+        out_start = see.regex_filter(names, pat_start)
+        out_end = see.regex_filter(names, pat_end)
 
         # Assert
-        self.assertIsInstance(out, tuple)
-        self.assertEqual(out, ("george",))
+        self.assertIsInstance(out_wildcard, tuple)
+        self.assertIsInstance(out_start, tuple)
+        self.assertIsInstance(out_end, tuple)
+        self.assertEqual(out_wildcard, ("george",))
+        self.assertEqual(out_start, ("helen",))
+        self.assertEqual(out_end, ("helen",))
 
     def test_fn_filter(self):
         # Arrange
         names = ["george", "helen"]
-        pat = "*or*"
+        pat_wildcard = "*or*"
+        pat_single = "h?l?n"
+        pat_partial = "e*"
 
         # Act
-        out = see.fn_filter(names, pat)
+        out_wildcard = see.fn_filter(names, pat_wildcard)
+        out_single = see.fn_filter(names, pat_single)
+        out_partial = see.fn_filter(names, pat_partial)
 
         # Assert
-        self.assertIsInstance(out, tuple)
-        self.assertEqual(out, ("george",))
+        self.assertIsInstance(out_wildcard, tuple)
+        self.assertIsInstance(out_single, tuple)
+        self.assertIsInstance(out_partial, tuple)
+        self.assertEqual(out_wildcard, ("george",))
+        self.assertEqual(out_single, ("helen",))
+        self.assertEqual(out_partial, ())
 
     def test_see_with_no_args(self):
         # Act
         out = see.see()
+        default_arg = see._LOCALS
 
         # Assert
         self.assertIsInstance(out, see._SeeOutput)
+        self.assertEqual(repr(default_arg), 'anything')
 
 
 if __name__ == '__main__':
     unittest.main()
-
-# End of file
