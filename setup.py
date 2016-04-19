@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='see',
       version='1.2.0',
@@ -9,6 +9,7 @@ setup(name='see',
       author_email='see@araile.com',
       url='http://araile.github.io/see/',
       py_modules=['see'],
+      test_suite='tests',
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Console',

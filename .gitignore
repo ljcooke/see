@@ -1,8 +1,11 @@
-.DS\_Store
+.DS?Store
 .*.swp
 *.pyc
+
 MANIFEST
-build
-dist
 .coverage
+see.egg-info/
+
+build/
+dist/
 htmlcov/
