@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning][semver] as of v1.1.0.
 
 
+## [Unreleased][]
+
+### Added
+
+  * Unit tests, continuous integration with Travis, and coverage reports
+    published on Coveralls.io.
+    _(Contributed by hugovk.)_
+
+
 ## [v1.2.0][] / 2016-04-17
 
 ### Added

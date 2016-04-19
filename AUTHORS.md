@@ -16,3 +16,4 @@ Authors ordered by first contribution.
   * [Adam Lloyd](https://github.com/alloy-d)
   * [Andrei Fokau](https://github.com/andreif)
   * [Frederic De Groef](https://github.com/sevas)
+  * [hugovk](https://github.com/hugovk)
