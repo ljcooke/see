@@ -1,0 +1,39 @@
+# Travis CI configuration for remote testing.
+# See https://docs.travis-ci.com/user/customizing-the-build/
+
+language: python
+
+python:
+ - pypy
+ - pypy3
+ - 2.6
+ - 2.7
+ - 3.2
+ - 3.3
+ - 3.4
+ - 3.5
+
+sudo: false
+
+install:
+ - pip install coverage
+ - if [ "$TRAVIS_PYTHON_VERSION" == "2.6" ]; then pip install unittest2; fi
+ # Coverage 4.0 doesn't support Python 3.2
+ - if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then travis_retry pip install coverage==3.7.1; fi
+ - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
+
+script:
+ - coverage run --source=see.py -m tests -v
+
+after_success:
+ - pip install coveralls
+ - coveralls
+
+after_script:
+ - coverage report
+ - pip install pep8 pyflakes
+ - pyflakes *.py | tee >(wc -l)
+ - pep8 --statistics --count *.py
+
+matrix:
+  fast_finish: true

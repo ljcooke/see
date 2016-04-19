@@ -1,0 +1,7 @@
+# Requirements for local development & testing.
+# To install, run: pip install -r requirements.txt
+# See also: .travis.yml
+
+coverage>=4.0.3
+pep8>=1.5.7
+pyflakes>=1.0.0
