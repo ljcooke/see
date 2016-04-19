@@ -1,3 +1,6 @@
+# Travis CI configuration for remote testing.
+# See https://docs.travis-ci.com/user/customizing-the-build/
+
 language: python
 
 python:
@@ -20,7 +23,7 @@ install:
  - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
 
 script:
- - coverage run --source=see.py tests/*.py -v
+ - coverage run --source=see.py -m tests -v
 
 after_success:
  - pip install coveralls
