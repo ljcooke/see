@@ -5,7 +5,7 @@ An alternative to Python's ``dir`` function.
 Easy to type; easy to read! For humans only.
 
 Requirements
-  Python 2.4+ or 3.0+
+  Python 2.6+ or 3.0+
 
 License
   BSD (see the *LICENSE* file)
