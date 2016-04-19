@@ -1,1 +1,1 @@
-include see.py setup.py README.rst CHANGELOG.md AUTHORS.md LICENSE
+include see.py setup.py README.rst CHANGELOG.rst AUTHORS.rst LICENSE
