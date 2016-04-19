@@ -1,0 +1,7 @@
+# Requirements for development & testing.
+# To install, run: pip install -r requirements.txt
+
+coverage>=4.0.3
+coveralls>=1.1
+pep8>=1.5.7
+pyflakes>=1.0.0
