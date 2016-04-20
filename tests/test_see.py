@@ -121,6 +121,13 @@ class TestSee(unittest.TestCase):
         self.assertIn('.count()', out)
         self.assertNotIn('+=', out)
 
+    def test_see_repr(self):
+        # Act
+        out = see.see()
+
+        # Assert
+        self.assertEqual(str(out), out.__repr__())
+
 
 if __name__ == '__main__':
     unittest.main()
