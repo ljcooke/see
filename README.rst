@@ -10,6 +10,8 @@ see: dir for humans
 .. image:: https://travis-ci.org/araile/see.svg?branch=develop
     :target: https://travis-ci.org/araile/see
 
+.. image:: https://coveralls.io/repos/github/araile/see/badge.svg?branch=develop
+    :target: https://coveralls.io/github/araile/see?branch=develop
 
 **see** is an alternative to the built-in ``dir`` function in Python. It shows
 you what you can do with things.
