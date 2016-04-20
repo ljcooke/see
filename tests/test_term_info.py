@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 """
-Unit tests to simulate non-Unixlike environments where we can't easily get
-information about the terminal.
+Unit tests for getting information about the terminal.
 
-To do this, we prevent Python from importing some modules while it loads see.
+There are separate test cases to simulate non-Unixlike environments, such as
+Windows, where information about the terminal is not easily available. To
+do this, we prevent Python from importing some modules while it loads see.
 
 """
 import sys
@@ -43,7 +44,14 @@ import see
 
 #------------------------------------------------------------------------------
 
-class TestNonUnixlike(unittest.TestCase):
+class TestUnixlike(unittest.TestCase):
+
+    def test_import_success(self):
+        self.assertIsNotNone(see.fcntl)
+        self.assertIsNotNone(see.termios)
+
+
+class TestNonUnix(unittest.TestCase):
 
     def setUp(self):
         builtins.__import__ = mock_import
@@ -52,11 +60,6 @@ class TestNonUnixlike(unittest.TestCase):
 
     def tearDown(self):
         reload(see)
-
-    def test_import_success(self):
-        reload(see)
-        self.assertIsNotNone(see.fcntl)
-        self.assertIsNotNone(see.termios)
 
     def test_import_fail(self):
         self.assertIsNone(see.fcntl)
