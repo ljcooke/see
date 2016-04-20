@@ -17,6 +17,12 @@ python:
   - "3.5-dev"
   - "nightly"
 
+matrix:
+  fast_finish: true
+  allow_failures:
+    - python: "3.5-dev"
+    - python: "nightly"
+
 sudo: false
 
 install:
@@ -39,6 +45,3 @@ after_script:
  - pip install pep8 pyflakes
  - pyflakes *.py | tee >(wc -l)
  - pep8 --statistics --count *.py
-
-matrix:
-  fast_finish: true
