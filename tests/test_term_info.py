@@ -61,6 +61,20 @@ class TestUnixlike(unittest.TestCase):
 
             self.assertIsNone(width)
 
+    def test_indent_to_prompt(self):
+        if hasattr(sys, 'ps1'):
+            self.fail('expected sys.ps1 to be absent during unit testing')
+
+        # Arrange
+        sys.ps1 = '>>>>> '
+
+        # Act
+        out = see.see()
+        indent = len(str(out)) - len(str(out).lstrip())
+
+        # Assert
+        self.assertEqual(indent, len(sys.ps1))
+
 
 class TestNonUnix(unittest.TestCase):
 
