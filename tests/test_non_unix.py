@@ -27,6 +27,8 @@ DISABLED_MODULES = (
 
 PY3 = sys.version_info >= (3, 0)
 
+real_import = builtins.__import__
+
 def mock_import(name,
                 globals=None if PY3 else {},
                 locals=None if PY3 else {},
@@ -36,28 +38,35 @@ def mock_import(name,
         raise ImportError
     return real_import(name, globals, locals, fromlist, level)
 
-real_import = builtins.__import__
-builtins.__import__ = mock_import
-
 import see
-
-builtins.__import__ = real_import
 
 #------------------------------------------------------------------------------
 
 class TestNonUnixlike(unittest.TestCase):
 
-    def test_no_fcntl(self):
+    def setUp(self):
+        builtins.__import__ = mock_import
+        reload(see)
+        builtins.__import__ = real_import
+
+    def tearDown(self):
+        reload(see)
+
+    def test_import_success(self):
+        reload(see)
+        self.assertIsNotNone(see.fcntl)
+        self.assertIsNotNone(see.termios)
+
+    def test_import_fail(self):
+        self.assertIsNone(see.fcntl)
+        self.assertIsNone(see.termios)
+
+    def test_term_width_not_available(self):
         term_width = see.term_width()
 
         self.assertIsNone(term_width)
 
-    def test_no_termios(self):
-        term_width = see.term_width()
-
-        self.assertIsNone(term_width)
-
-    def test_default_term_width(self):
+    def test_default_line_width(self):
         line_width = see.line_width()
 
         self.assertEqual(line_width, see.DEFAULT_LINE_WIDTH)
