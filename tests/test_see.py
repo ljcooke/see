@@ -83,7 +83,7 @@ class TestSee(unittest.TestCase):
         self.assertIsInstance(out, see._SeeOutput)
         self.assertEqual(repr(default_arg), 'anything')
 
-    def test_attribute_error_suffix(self):
+    def test_see_accessor_raises_exception(self):
         # Arrange
         normal_obj = 1
         err_obj = ObjectWithAttributeError()
@@ -98,6 +98,28 @@ class TestSee(unittest.TestCase):
         self.assertTrue(any(attr.endswith('?')
                             for attr in err_see))
         self.assertTrue('.bad_attribute?' in err_see)
+
+    def test_see_regex_filter(self):
+        # Arrange
+        obj = []
+
+        # Act
+        out = see.see(obj, r='[aeiou]{2}')
+
+        # Assert
+        self.assertIn('.count()', out)
+        self.assertNotIn('.pop()', out)
+
+    def test_see_pattern_filter(self):
+        # Arrange
+        obj = []
+
+        # Act
+        out = see.see(obj, '*()')
+
+        # Assert
+        self.assertIn('.count()', out)
+        self.assertNotIn('+=', out)
 
 
 if __name__ == '__main__':
