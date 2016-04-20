@@ -2,9 +2,9 @@
 import sys
 from setuptools import setup
 
-tests_require = []
-if sys.version_info < (2, 7):
-    tests_require.append('unittest2>=1.1.0')
+tests_require = [
+    'unittest2>=1.1.0' if sys.version_info < (2, 7) else None,
+]
 
 setup(name='see',
       version='1.2.0',
@@ -16,7 +16,7 @@ setup(name='see',
       py_modules=['see'],
       install_requires=[],
       test_suite='tests',
-      tests_require=tests_require,
+      tests_require=[lib for lib in tests_require if lib],
       zip_safe=True,
       classifiers=[
           'Development Status :: 5 - Production/Stable',

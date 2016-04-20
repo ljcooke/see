@@ -14,5 +14,3 @@ exclude_lines =
     # Don't complain about debug code
     if Image.DEBUG:
     if DEBUG:
-
-    except ImportError:
