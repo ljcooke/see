@@ -1,4 +1,6 @@
-# .coveragerc to control coverage.py
+# Coverage configuration
+# See:
+#   http://coverage.readthedocs.org/
 
 [report]
 # Regexes for lines to exclude from consideration
@@ -12,3 +14,5 @@ exclude_lines =
     # Don't complain about debug code
     if Image.DEBUG:
     if DEBUG:
+
+    except ImportError:
