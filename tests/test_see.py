@@ -11,6 +11,13 @@ except ImportError:
 import see
 
 
+class ObjectWithAttributeError(object):
+
+    @property
+    def bad_attribute(self):
+        raise Exception
+
+
 class TestSee(unittest.TestCase):
 
     def test_line_width(self):
@@ -75,6 +82,22 @@ class TestSee(unittest.TestCase):
         # Assert
         self.assertIsInstance(out, see._SeeOutput)
         self.assertEqual(repr(default_arg), 'anything')
+
+    def test_attribute_error_suffix(self):
+        # Arrange
+        normal_obj = 1
+        err_obj = ObjectWithAttributeError()
+
+        # Act
+        normal_see = see.see(normal_obj)
+        err_see = see.see(err_obj)
+
+        # Assert
+        self.assertTrue(not any(attr.endswith('?')
+                                for attr in normal_see))
+        self.assertTrue(any(attr.endswith('?')
+                            for attr in err_see))
+        self.assertTrue('.bad_attribute?' in err_see)
 
 
 if __name__ == '__main__':
