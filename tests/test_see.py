@@ -20,10 +20,12 @@ class TestSee(unittest.TestCase):
 
         # Act
         width = see.line_width(default_width, max_width)
+        width_no_args = see.line_width()
 
         # Assert
         self.assertIsInstance(width, int)
         self.assertEqual(width, 1)
+        self.assertLessEqual(width_no_args, see.MAX_LINE_WIDTH)
 
     def test_regex_filter(self):
         # Arrange

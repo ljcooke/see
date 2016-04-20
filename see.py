@@ -57,6 +57,10 @@ __copyright__ = 'Copyright (c) 2009-2016 Liam Cooke'
 __license__ = 'BSD License'
 
 
+DEFAULT_LINE_WIDTH = 78
+MAX_LINE_WIDTH = 120
+
+
 def term_width():
     """
     Return the column width of the terminal, or None if it can't be determined.
@@ -71,7 +75,7 @@ def term_width():
             pass
 
 
-def line_width(default_width=78, max_width=120):
+def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
     """
     Return the ideal column width for see() output, taking the terminal width
     into account to avoid wrapping.
