@@ -16,6 +16,11 @@ except ImportError:
     import unittest
 
 try:
+    import unittest.mock as mock
+except ImportError:
+    import mock
+
+try:
     import builtins  # Python 3
 except ImportError:
     import __builtin__ as builtins  # Python 2
@@ -49,6 +54,12 @@ class TestUnixlike(unittest.TestCase):
     def test_import_success(self):
         self.assertIsNotNone(see.fcntl)
         self.assertIsNotNone(see.termios)
+
+    def test_ioctl_fail(self):
+        with mock.patch('see.fcntl.ioctl', side_effect=IOError('')) as patch:
+            width = see.term_width()
+
+            self.assertIsNone(width)
 
 
 class TestNonUnix(unittest.TestCase):

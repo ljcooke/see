@@ -3,6 +3,7 @@ import sys
 from setuptools import setup
 
 tests_require = [
+    'mock>=2.0.0' if sys.version_info < (3, 3) else None,
     'unittest2>=1.1.0' if sys.version_info < (2, 7) else None,
 ]
 
