@@ -7,6 +7,7 @@ To do this, we prevent Python from importing some modules while it loads see.
 
 """
 import sys
+from imp import reload
 
 try:
     import unittest2 as unittest
