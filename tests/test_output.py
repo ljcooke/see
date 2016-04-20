@@ -47,12 +47,12 @@ class TestSeeOutput(unittest.TestCase):
     def check_ops(self, obj_type, expected_ops, see_output):
         for op in ALL_OPS:
             if op in expected_ops:
-                self.assertTrue(
-                    op in see_output,
+                self.assertIn(
+                    op, see_output,
                     'expected %s to support %s' % (obj_type, op))
             else:
-                self.assertFalse(
-                    op in see_output,
+                self.assertNotIn(
+                    op, see_output,
                     'expected %s not to support %s' % (obj_type, op))
 
     def test_int(self):

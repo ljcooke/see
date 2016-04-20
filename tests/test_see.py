@@ -97,7 +97,7 @@ class TestSee(unittest.TestCase):
                                 for attr in normal_see))
         self.assertTrue(any(attr.endswith('?')
                             for attr in err_see))
-        self.assertTrue('.bad_attribute?' in err_see)
+        self.assertIn('.bad_attribute?', err_see)
 
     def test_see_regex_filter(self):
         # Arrange
