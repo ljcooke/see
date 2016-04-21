@@ -15,6 +15,10 @@ Unreleased_
 - Unit tests, continuous integration with Travis, and coverage reports
   published on Coveralls.io.
 
+**Fixed**
+
+- Replaced one instance of ``dir`` with ``hasattr``.
+
 
 v1.2.0_ / 2016-04-17
 --------------------
