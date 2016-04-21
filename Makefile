@@ -13,3 +13,8 @@ coverage:
 .PHONY: lint
 lint:
 	@flake8 *.py && echo OK
+
+.PHONY: clean
+clean:
+	rm -vrf build ./*.pyc see/*.pyc __pycache__ see/__pycache__
+	test -d see && rmdir see || true
