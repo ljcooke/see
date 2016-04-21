@@ -25,29 +25,28 @@ try:
 except ImportError:
     import __builtin__ as builtins  # Python 2
 
-#------------------------------------------------------------------------------
+import see
 
-DISABLED_MODULES = (
+
+UNIXLIKE_MODULES = (
     'fcntl',
     'termios',
 )
 
 PY3 = sys.version_info >= (3, 0)
 
-real_import = builtins.__import__
+REAL_IMPORT = builtins.__import__
+
 
 def mock_import(name,
                 globals=None if PY3 else {},
                 locals=None if PY3 else {},
                 fromlist=None if PY3 else [],
                 level=0 if PY3 else -1):
-    if name in DISABLED_MODULES:
+    if name in UNIXLIKE_MODULES:
         raise ImportError
-    return real_import(name, globals, locals, fromlist, level)
+    return REAL_IMPORT(name, globals, locals, fromlist, level)
 
-import see
-
-#------------------------------------------------------------------------------
 
 class TestUnixlike(unittest.TestCase):
 
@@ -81,9 +80,9 @@ class TestNonUnix(unittest.TestCase):
     def setUp(self):
         builtins.__import__ = mock_import
         reload(see)
-        builtins.__import__ = real_import
 
     def tearDown(self):
+        builtins.__import__ = REAL_IMPORT
         reload(see)
 
     def test_import_fail(self):
