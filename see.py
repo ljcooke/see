@@ -51,7 +51,7 @@ except ImportError:
 __all__ = ['see']
 
 __author__ = 'Liam Cooke'
-__contributors__ = 'See AUTHORS.md'
+__contributors__ = 'See AUTHORS.rst'
 __version__ = '1.2.0'
 __copyright__ = 'Copyright (c) 2009-2016 Liam Cooke'
 __license__ = 'BSD License'
