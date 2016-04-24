@@ -20,7 +20,6 @@ python:
 matrix:
   fast_finish: true
   allow_failures:
-    - python: "3.5-dev"
     - python: "nightly"
 
 sudo: false
