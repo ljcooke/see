@@ -69,7 +69,7 @@ time you run Python. The following example uses a startup file named
 
 1. Create the Python startup file, if it does not already exist::
 
-       touch ~/.pythonrc.py
+       $ touch ~/.pythonrc.py
 
 2. Open this file in your preferred editor. Add the following line::
 
@@ -77,7 +77,7 @@ time you run Python. The following example uses a startup file named
 
 3. Set the following environment variable (e.g. in ``~/.bashrc`` for Bash)::
 
-       export PYTHONSTARTUP="$HOME/.pythonrc.py"
+       $ export PYTHONSTARTUP="$HOME/.pythonrc.py"
 
 Now you can use ``see`` immediately after running ``python``, without having to
 manually import it.
