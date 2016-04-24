@@ -7,13 +7,20 @@ All notable changes to this project will be documented in this file. This
 project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 
-Unreleased_
------------
+.. Unreleased_
+.. --------------------
+
+
+v1.3.0_ / 2016-04-24
+--------------------
 
 **Added**
 
 - Unit tests, continuous integration with Travis, and coverage reports
   published on Coveralls.io.
+
+- For Windows, adjust the output to fit the terminal width as on other
+  platforms.
 
 **Fixed**
 
@@ -215,8 +222,9 @@ v0.1 / 2009-02-16
 - Original release.
 
 
-.. _unreleased: https://github.com/inky/see/compare/v1.2.0...develop
+.. _unreleased: https://github.com/inky/see/compare/v1.3.0...develop
 
+.. _v1.3.0: https://github.com/inky/see/compare/v1.2.0...v1.3.0
 .. _v1.2.0: https://github.com/inky/see/compare/v1.1.1...v1.2.0
 .. _v1.1.1: https://github.com/inky/see/compare/v1.1.0...v1.1.1
 .. _v1.1.0: https://github.com/inky/see/compare/v1.0.1...v1.1.0

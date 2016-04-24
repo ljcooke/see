@@ -17,5 +17,8 @@ suggestions from various contributors:
 - `Steve Losh <https://github.com/sjl>`__
 - `Adam Lloyd <https://github.com/alloy-d>`__
 - `Andrei Fokau <https://github.com/andreif>`__
+- `Christopher Toth <https://github.com/ctoth>`__
+- `Elias Fotinis <https://github.com/efotinis>`__
 - `Frederic De Groef <https://github.com/sevas>`__
 - `hugovk <https://github.com/hugovk>`__
+- `dbaker <https://github.com/d-baker>`__

@@ -18,3 +18,7 @@ lint:
 clean:
 	rm -vrf build ./*.pyc see/*.pyc __pycache__ see/__pycache__
 	test -d see && rmdir see || true
+
+.PHONY: dist
+dist:
+	python setup.py sdist --formats=bztar,gztar,zip
