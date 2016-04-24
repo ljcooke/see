@@ -47,7 +47,8 @@ try:
         from ctypes import windll, create_string_buffer
         fcntl, termios = None, None
     else:
-        import fcntl, termios
+        import fcntl
+        import termios
         windll, create_string_buffer = None, None
 except ImportError:
     fcntl, termios = None, None
