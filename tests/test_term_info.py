@@ -2,9 +2,10 @@
 """
 Unit tests for getting information about the terminal.
 
-There are separate test cases to simulate non-Unixlike environments, such as
-Windows, where information about the terminal is not easily available. To
-do this, we prevent Python from importing some modules while it loads see.
+There are separate test cases to simulate unsupported environments (not
+Unixlike or Windows), where information about the terminal is not easily
+available. To do this, we prevent Python from importing some modules while it
+loads see.
 
 """
 import platform
@@ -29,7 +30,8 @@ except ImportError:
 import see
 
 
-UNIXLIKE_MODULES = (
+MOCK_EXCLUDE_MODULES = (
+    'ctypes',
     'fcntl',
     'termios',
 )
@@ -44,7 +46,7 @@ def mock_import(name,
                 locals=None if PY3 else {},
                 fromlist=None if PY3 else [],
                 level=0 if PY3 else -1):
-    if name in UNIXLIKE_MODULES:
+    if name in MOCK_EXCLUDE_MODULES:
         raise ImportError
     return REAL_IMPORT(name, globals, locals, fromlist, level)
 
@@ -98,6 +100,17 @@ class TestSupportedTerminal(unittest.TestCase):
 
         # Assert
         self.assertEqual(indent, len(sys.ps1))
+
+
+class TestMockWindowsTerminal(unittest.TestCase):
+
+    def setUp(self):
+        builtins.__import__ = mock_import
+        reload(see)
+
+    def tearDown(self):
+        builtins.__import__ = REAL_IMPORT
+        reload(see)
 
 
 class TestMockUnsupportedTerminal(unittest.TestCase):
