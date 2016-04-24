@@ -140,11 +140,11 @@ class _SeeOutput(tuple):
 
     def __repr__(self):
         lens = sorted(map(len, self)) or [0]
-        most = lens[int(len(lens)*0.9)]
-        if lens[-1] + 6 > most:
-            max_len = most
-        else:
-            max_len = lens[-1]
+        max_len = lens[-1]
+        if max_len >= 18:
+            most = lens[int(len(lens) * 0.9)]
+            if most < max_len + 6:
+                max_len = most
 
         def justify(i):
             if len(i) <= max_len + 2:
