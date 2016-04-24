@@ -45,9 +45,10 @@ import textwrap
 try:
     if platform.system() == 'Windows':
         from ctypes import windll, create_string_buffer
+        fcntl, termios = None, None
     else:
-        import fcntl
-        import termios
+        import fcntl, termios
+        windll, create_string_buffer = None, None
 except ImportError:
     fcntl, termios = None, None
     windll, create_string_buffer = None, None
