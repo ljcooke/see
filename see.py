@@ -36,23 +36,28 @@ OF SUCH DAMAGE.
 """
 import fnmatch
 import inspect
+import platform
 import re
 import struct
 import sys
 import textwrap
 
 try:
-    import fcntl
-    import termios
+    if platform.system() == 'Windows':
+        from ctypes import windll, create_string_buffer
+        fcntl, termios = None, None
+    else:
+        import fcntl, termios
+        windll, create_string_buffer = None, None
 except ImportError:
-    fcntl = None
-    termios = None
+    fcntl, termios = None, None
+    windll, create_string_buffer = None, None
 
 __all__ = ['see']
 
 __author__ = 'Liam Cooke'
 __contributors__ = 'See AUTHORS.rst'
-__version__ = '1.2.0'
+__version__ = '1.3.0-alpha.1'
 __copyright__ = 'Copyright (c) 2009-2016 Liam Cooke'
 __license__ = 'BSD License'
 
@@ -73,6 +78,15 @@ def term_width():
             return width
         except IOError:
             pass
+    elif windll and create_string_buffer:
+        stderr_handle, struct_size = -12, 22
+        handle = windll.kernel32.GetStdHandle(stderr_handle)
+        csbi = create_string_buffer(struct_size)
+        res = windll.kernel32.GetConsoleScreenBufferInfo(handle, csbi)
+        if res:
+            (_, _, _, _, _, left, _, right, _,
+             _, _) = struct.unpack('hhhhHhhhhhh', csbi.raw)
+            return right - left + 1
 
 
 def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
