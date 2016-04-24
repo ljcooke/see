@@ -18,6 +18,12 @@ class ObjectWithAttributeError(object):
         raise Exception
 
 
+class ObjectWithLongAttrName(dict):
+
+    def dajsgkljsdgklajsdgkljdsgkldsjaglkjasdgkldajsgkl(self):
+        pass
+
+
 class TestSee(unittest.TestCase):
 
     def test_line_width(self):
@@ -127,6 +133,24 @@ class TestSee(unittest.TestCase):
 
         # Assert
         self.assertEqual(str(out), out.__repr__())
+
+    def test_see_justify_attributes(self):
+        # Arrange
+        obj = ObjectWithLongAttrName()
+
+        # Act
+        out = see.see(obj)
+        col_width = see.column_width(out)
+        padded = [see.justify_token(tok, col_width) for tok in out]
+        lens = sorted(map(len, padded))
+        factors = tuple(float(num) / lens[0] for num in lens[1:])
+
+        # Assert
+        self.assertNotEqual(lens[0], lens[-1],
+                            'Expected differing column widths')
+        self.assertTrue(any(factors))
+        self.assertTrue(all(int(factor) == factor for factor in factors),
+                        'Irregular column widths')
 
 
 if __name__ == '__main__':

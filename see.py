@@ -36,6 +36,7 @@ OF SUCH DAMAGE.
 """
 import fnmatch
 import inspect
+import math
 import platform
 import re
 import struct
@@ -131,6 +132,38 @@ class SeeError(Exception):
     pass
 
 
+def column_width(tokens):
+    """
+    Return a suitable column width to display one or more strings.
+
+    """
+    lens = sorted(map(len, tokens or [])) or [0]
+    width = lens[-1]
+
+    # adjust for disproportionately long strings
+    if width >= 18:
+        most = lens[int(len(lens) * 0.9)]
+        if most < width + 6:
+            return most
+
+    return width
+
+
+def justify_token(tok, col_width):
+    """
+    Justify a string to fill one or more columns.
+
+    """
+    tok_len = len(tok)
+    cols = (int(math.ceil(float(tok_len) / col_width))
+            if col_width < tok_len + 4 else 1)
+
+    if cols > 1:
+        return tok.ljust((col_width * cols) + (4 * cols))
+    else:
+        return tok.ljust(col_width + 4)
+
+
 class _SeeOutput(tuple):
     """
     Tuple-like object with a pretty string representation.
@@ -140,20 +173,9 @@ class _SeeOutput(tuple):
         return tuple.__new__(self, actions or [])
 
     def __repr__(self):
-        lens = sorted(map(len, self)) or [0]
-        max_len = lens[-1]
-        if max_len >= 18:
-            most = lens[int(len(lens) * 0.9)]
-            if most < max_len + 6:
-                max_len = most
+        col_width = column_width(self)
 
-        def justify(i):
-            if len(i) <= max_len + 2:
-                return i.ljust(max_len + 4)
-            else:
-                return i.ljust(max_len * 2 + 8)
-
-        padded = [justify(i) for i in self]
+        padded = [justify_token(tok, col_width) for tok in self]
         if hasattr(sys, 'ps1'):
             indent = ' ' * len(sys.ps1)
         else:
