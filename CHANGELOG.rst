@@ -7,8 +7,12 @@ All notable changes to this project will be documented in this file. This
 project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 
-.. Unreleased_
-.. --------------------
+Unreleased_
+--------------------
+
+**Fixed**
+
+- Misaligned columns when some attributes have unusually long names.
 
 
 v1.3.0_ / 2016-04-24
