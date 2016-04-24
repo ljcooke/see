@@ -7,6 +7,7 @@ Windows, where information about the terminal is not easily available. To
 do this, we prevent Python from importing some modules while it loads see.
 
 """
+import platform
 import sys
 from imp import reload
 
@@ -48,13 +49,37 @@ def mock_import(name,
     return REAL_IMPORT(name, globals, locals, fromlist, level)
 
 
-class TestUnixlike(unittest.TestCase):
+class TestSupportedTerminal(unittest.TestCase):
+
+    def setUp(self):
+        self.system = platform.system()
+        self.windows = (self.system == 'Windows')
+
+    def test_system(self):
+        self.assertTrue(self.system, 'System/OS name could not be determined')
 
     def test_import_success(self):
-        self.assertIsNotNone(see.fcntl)
-        self.assertIsNotNone(see.termios)
+        if self.windows:
+            self.assertIsNone(see.fcntl)
+            self.assertIsNone(see.termios)
+            self.assertIsNotNone(see.windll)
+            self.assertIsNotNone(see.create_string_buffer)
+        else:
+            self.assertIsNotNone(see.fcntl)
+            self.assertIsNotNone(see.termios)
+            self.assertIsNone(see.windll)
+            self.assertIsNone(see.create_string_buffer)
+
+    def test_term_width(self):
+        width = see.term_width()
+
+        self.assertIsNotNone(width)
+        self.assertGreater(width, 0)
 
     def test_ioctl_fail(self):
+        if self.windows:
+            return
+
         with mock.patch('see.fcntl.ioctl', side_effect=IOError('')) as patch:
             width = see.term_width()
 
@@ -75,7 +100,7 @@ class TestUnixlike(unittest.TestCase):
         self.assertEqual(indent, len(sys.ps1))
 
 
-class TestNonUnix(unittest.TestCase):
+class TestMockUnsupportedTerminal(unittest.TestCase):
 
     def setUp(self):
         builtins.__import__ = mock_import
