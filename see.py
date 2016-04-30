@@ -110,6 +110,21 @@ def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
         return default_width
 
 
+def char_width(char):
+    """
+    Get the display length of a unicode character.
+
+    """
+    if ord(char) < 128:
+        return 1
+    elif unicodedata.east_asian_width(char) in ('F', 'W'):
+        return 2
+    elif unicodedata.category(char) in ('Mn',):
+        return 0
+    else:
+        return 1
+
+
 def display_len(text):
     """
     Get the display length of a string. This can differ from the character
@@ -117,8 +132,8 @@ def display_len(text):
 
     """
     if PY_300:
-        wide = lambda c: unicodedata.east_asian_width(c).startswith('W')
-        return sum(2 if wide(char) else 1 for char in text)
+        text = unicodedata.normalize('NFD', text)
+        return sum(char_width(char) for char in text)
     else:
         return len(text)
 
