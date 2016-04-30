@@ -42,6 +42,7 @@ import re
 import struct
 import sys
 import textwrap
+import unicodedata
 
 try:
     if platform.system() == 'Windows':
@@ -55,6 +56,7 @@ except ImportError:
     fcntl, termios = None, None
     windll, create_string_buffer = None, None
 
+
 __all__ = ['see']
 
 __author__ = 'Liam Cooke'
@@ -66,6 +68,10 @@ __license__ = 'BSD License'
 
 DEFAULT_LINE_WIDTH = 78
 MAX_LINE_WIDTH = 120
+
+PY_300 = sys.version_info >= (3, 0)
+PY_301 = sys.version_info >= (3, 0, 1)
+PY_350 = sys.version_info >= (3, 5, 0)
 
 
 def term_width():
@@ -104,6 +110,31 @@ def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
         return default_width
 
 
+def char_width(char):
+    """
+    Get the display length of a unicode character.
+
+    """
+    if ord(char) < 128:
+        return 1
+    elif unicodedata.east_asian_width(char) in ('F', 'W'):
+        return 2
+    elif unicodedata.category(char) in ('Mn',):
+        return 0
+    else:
+        return 1
+
+
+def display_len(text):
+    """
+    Get the display length of a string. This can differ from the character
+    length if the string contains wide characters.
+
+    """
+    text = unicodedata.normalize('NFD', text)
+    return sum(char_width(char) for char in text)
+
+
 def regex_filter(names, pat):
     """
     Return a tuple of strings that match the regular expression pattern.
@@ -137,7 +168,8 @@ def column_width(tokens):
     Return a suitable column width to display one or more strings.
 
     """
-    lens = sorted(map(len, tokens or [])) or [0]
+    get_len = display_len if PY_300 else len
+    lens = sorted(map(get_len, tokens or [])) or [0]
     width = lens[-1]
 
     # adjust for disproportionately long strings
@@ -154,14 +186,16 @@ def justify_token(tok, col_width):
     Justify a string to fill one or more columns.
 
     """
-    tok_len = len(tok)
+    tok_len = display_len(tok) if PY_300 else len(tok)
+    diff_len = tok_len - len(tok) if PY_300 else 0
+
     cols = (int(math.ceil(float(tok_len) / col_width))
             if col_width < tok_len + 4 else 1)
 
     if cols > 1:
-        return tok.ljust((col_width * cols) + (4 * cols))
+        return tok.ljust((col_width * cols) + (4 * cols) - diff_len)
     else:
-        return tok.ljust(col_width + 4)
+        return tok.ljust(col_width + 4 - diff_len)
 
 
 class _SeeOutput(tuple):
@@ -177,7 +211,8 @@ class _SeeOutput(tuple):
 
         padded = [justify_token(tok, col_width) for tok in self]
         if hasattr(sys, 'ps1'):
-            indent = ' ' * len(sys.ps1)
+            get_len = display_len if PY_300 else len
+            indent = ' ' * get_len(sys.ps1)
         else:
             indent = '    '
 
@@ -253,11 +288,6 @@ def see(obj=_LOCALS, pattern=None, r=None):
         actions = regex_filter(actions, r)
 
     return _SeeOutput(actions)
-
-
-PY_300 = sys.version_info >= (3, 0)
-PY_301 = sys.version_info >= (3, 0, 1)
-PY_350 = sys.version_info >= (3, 5, 0)
 
 
 SYMBOLS = tuple(filter(lambda x: x[0], (
