@@ -24,29 +24,34 @@ table {border-collapse:collapse; border-spacing:0;} /* still needs cellspacing="
 body {
     background: #fafafa;
     color: #333;
-    font: 1em/1.5 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
-    margin: 4.5em 1.5em 4.3em 0;
+    font: 1em/1.5 'Ubuntu Mono', monospace;
+    margin: 0;
 }
 
-#body {margin:0 auto; max-width:52em;}
-#content {margin-left:9em;}
-
-#download {float: right; padding:0 0 1.5em 1.5em; z-index:99;}
-#download img {width:90px;}
-#description {font-size:1.2em; line-height:1.25; margin-bottom:1.25em;}
-#download a, #forkme a {border-bottom-width:0;}
+#body {
+    margin: 0 auto;
+    max-width: 48em;
+    padding: 3em 1.5em;
+}
 
 h1 {
     color: #ccc;
-    float: left;
-    font: normal 3em/0.8 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
-    text-align: right;
-    width: 2.5em;
+    font-size: 3em;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0.5em 0;
 }
 h2 {
-    font: bold 1.25em/1.2 'Helvetica Neue', 'Arial', 'Helvetica', sans-serif;
-    color: #999;
-    margin: 1.8em 0 0.6em;
+    color: #888;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 3em 0 1.5em;
+    text-transform: uppercase;
+}
+h2::before {
+    color: #aaa;
+    content: "# ";
 }
 
 p, dl {
@@ -54,13 +59,32 @@ p, dl {
 }
 
 pre {
-    font-size: 0.8em;
-    line-height: 1.875;
-    margin: 1.875em 2.5em;
+    background: #f5f5f5;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    color: #777;
+    font-family: inherit;
+    margin: -0.75em -1em 2.25em -1em;
+    overflow-x: auto;
+    padding: 0.75em 1em;
 }
-pre, code {
-    color: #666;
-    font-family: 'Inconsolata', 'Andale Mono', 'Consolas', monospace;
+code {
+    color: #777;
+    font-family: inherit;
+    font-weight: 700;
+}
+pre code {
+    color: inherit;
+    font-weight: inherit;
+}
+
+.secondary {
+    color: #888;
+    font-weight: 400;
+}
+.sep {
+    color: #ddd;
+    font-weight: 400;
 }
 
 a {
