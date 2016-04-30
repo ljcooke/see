@@ -131,11 +131,8 @@ def display_len(text):
     length if the string contains wide characters.
 
     """
-    if PY_300:
-        text = unicodedata.normalize('NFD', text)
-        return sum(char_width(char) for char in text)
-    else:
-        return len(text)
+    text = unicodedata.normalize('NFD', text)
+    return sum(char_width(char) for char in text)
 
 
 def regex_filter(names, pat):
@@ -171,7 +168,8 @@ def column_width(tokens):
     Return a suitable column width to display one or more strings.
 
     """
-    lens = sorted(map(display_len, tokens or [])) or [0]
+    get_len = display_len if PY_300 else len
+    lens = sorted(map(get_len, tokens or [])) or [0]
     width = lens[-1]
 
     # adjust for disproportionately long strings
@@ -188,8 +186,13 @@ def justify_token(tok, col_width):
     Justify a string to fill one or more columns.
 
     """
-    tok_len = display_len(tok)
-    diff_len = tok_len - len(tok)
+    if PY_300:
+        tok_len = display_len(tok)
+        diff_len = tok_len - len(tok)
+    else:
+        tok_len = len(tok)
+        diff_len = 0
+
     cols = (int(math.ceil(float(tok_len) / col_width))
             if col_width < tok_len + 4 else 1)
 
@@ -212,7 +215,8 @@ class _SeeOutput(tuple):
 
         padded = [justify_token(tok, col_width) for tok in self]
         if hasattr(sys, 'ps1'):
-            indent = ' ' * display_len(sys.ps1)
+            get_len = display_len if PY_300 else len
+            indent = ' ' * get_len(sys.ps1)
         else:
             indent = '    '
 
