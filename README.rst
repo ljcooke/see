@@ -50,14 +50,16 @@ Call ``see(an_object)`` to see what you can do with ``an_object``. ::
 
     >>> number = 1
     >>> see(number)
-        +             -             *             /             //            %
-        **            <<            >>            &             ^             |
-        +obj          -obj          ~             <             <=            ==
-        !=            >             >=            abs()         bool()
-        divmod()      float()       hash()        help()        hex()
-        int()         long()        oct()         repr()        str()
-        .bit_length()               .conjugate()  .denominator  .imag
-        .numerator    .real
+        +                -                *                /                //
+        %                **               <<               >>               &
+        ^                |                +obj             -obj             ~
+        <                <=               ==               !=               >
+        >=               abs()            bool()           dir()
+        divmod()         float()          hash()           help()
+        hex()            int()            oct()            repr()
+        round()          str()            .bit_length()    .conjugate()
+        .denominator     .from_bytes()    .imag            .numerator
+        .real            .to_bytes()
 
 
 Startup
