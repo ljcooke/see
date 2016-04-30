@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 """
 Unit tests for see.py
 
@@ -39,6 +40,61 @@ class TestSee(unittest.TestCase):
         self.assertIsInstance(width, int)
         self.assertEqual(width, 1)
         self.assertLessEqual(width_no_args, see.MAX_LINE_WIDTH)
+
+    def test_char_width(self):
+        # Arrange
+        char_ascii = u'a'   # narrow char
+        char_accent = u'á'  # narrow char
+        char_combo = u'q̇'   # narrow char + zero-width combining char
+        char_cjk = u'猫'    # wide character
+
+        # Act
+        len_ascii = len(char_ascii)
+        len_accent = len(char_accent)
+        len_combo = len(char_combo)
+        len_cjk = len(char_cjk)
+        width_ascii = see.display_len(char_ascii)
+        width_accent = see.display_len(char_accent)
+        width_combo = see.display_len(char_combo)
+        width_cjk = see.display_len(char_cjk)
+
+        # Assert
+        self.assertEqual(len_ascii, 1)
+        self.assertEqual(len_accent, 1)
+        self.assertEqual(len_combo, 2)
+        self.assertEqual(len_cjk, 1)
+        self.assertEqual(width_ascii, 1)
+        self.assertEqual(width_accent, 1)
+        self.assertEqual(width_combo, 1)
+        self.assertEqual(width_cjk, 2)
+
+    def test_display_len(self):
+        # Arrange
+        attr_ascii = u'.hello_world()'
+        attr_cyrillic = u'.hello_мир()'
+        attr_cjk = u'.hello_世界()'
+        attr_combo = u'.hello_q̇()'
+        diff_cjk = 2 if see.PY_300 else 0
+        diff_combo = -1 if see.PY_300 else 0
+
+        # Act
+        width_ascii = see.display_len(attr_ascii)
+        width_cyrillic = see.display_len(attr_cyrillic)
+        width_cjk = see.display_len(attr_cjk)
+        width_combo = see.display_len(attr_combo)
+        justify_ascii = len(see.justify_token(attr_ascii, 20))
+        justify_cyrillic = len(see.justify_token(attr_cyrillic, 20))
+        justify_cjk = len(see.justify_token(attr_cjk, 20))
+        justify_combo = len(see.justify_token(attr_combo, 20))
+
+        # Assert
+        self.assertEqual(width_ascii, 14)
+        self.assertEqual(width_cyrillic, 12)
+        self.assertEqual(width_cjk, 13)
+        self.assertEqual(width_combo, 10)
+        self.assertEqual(justify_cyrillic, justify_ascii)
+        self.assertEqual(justify_cjk, justify_ascii - diff_cjk)
+        self.assertEqual(justify_combo, justify_ascii - diff_combo)
 
     def test_regex_filter(self):
         # Arrange
