@@ -189,13 +189,14 @@ def justify_token(tok, col_width):
 
     """
     tok_len = display_len(tok)
+    diff_len = tok_len - len(tok)
     cols = (int(math.ceil(float(tok_len) / col_width))
             if col_width < tok_len + 4 else 1)
 
     if cols > 1:
-        return tok.ljust((col_width * cols) + (4 * cols))
+        return tok.ljust((col_width * cols) + (4 * cols) - diff_len)
     else:
-        return tok.ljust(col_width + 4)
+        return tok.ljust(col_width + 4 - diff_len)
 
 
 class _SeeOutput(tuple):
