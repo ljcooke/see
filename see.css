@@ -35,14 +35,18 @@ body {
 }
 
 h1 {
-    color: #ccc;
+    color: #919191;
     font-size: 3em;
     font-weight: 400;
     line-height: 1;
     margin: 0.5em 0;
 }
+h1 .secondary {
+    color: #ddd;
+}
+
 h2 {
-    color: #888;
+    color: #707070;
     font-size: 1em;
     font-weight: 400;
     line-height: 1.5;
@@ -62,14 +66,14 @@ pre {
     background: #f5f5f5;
     border: 1px solid #eee;
     border-radius: 4px;
-    color: #777;
+    color: #707070;
     font-family: inherit;
     margin: -0.75em -1em 2.25em -1em;
     overflow-x: auto;
     padding: 0.75em 1em;
 }
 code {
-    color: #777;
+    color: #707070;
     font-family: inherit;
     font-weight: 700;
 }
@@ -79,7 +83,7 @@ pre code {
 }
 
 .secondary {
-    color: #888;
+    color: #707070;
     font-weight: 400;
 }
 .sep {
