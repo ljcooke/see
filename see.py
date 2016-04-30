@@ -42,6 +42,7 @@ import re
 import struct
 import sys
 import textwrap
+import unicodedata
 
 try:
     if platform.system() == 'Windows':
@@ -55,12 +56,6 @@ except ImportError:
     fcntl, termios = None, None
     windll, create_string_buffer = None, None
 
-try:
-    # pip install wcwidth
-    from wcwidth import wcswidth
-except ImportError:
-    wcswidth = None
-
 
 __all__ = ['see']
 
@@ -73,6 +68,10 @@ __license__ = 'BSD License'
 
 DEFAULT_LINE_WIDTH = 78
 MAX_LINE_WIDTH = 120
+
+PY_300 = sys.version_info >= (3, 0)
+PY_301 = sys.version_info >= (3, 0, 1)
+PY_350 = sys.version_info >= (3, 5, 0)
 
 
 def term_width():
@@ -116,15 +115,12 @@ def display_len(text):
     Get the display length of a string. This can differ from the character
     length if the string contains wide characters.
 
-    This relies on the optional wcwidth package. If it is not available, the
-    character length is used as a fallback.
-
     """
-    if wcswidth:
-        length = wcswidth(text)
-        if length >= 0:
-            return length
-    return len(text)
+    if PY_300:
+        wide = lambda c: unicodedata.east_asian_width(c).startswith('W')
+        return sum(2 if wide(char) else 1 for char in text)
+    else:
+        return len(text)
 
 
 def regex_filter(names, pat):
@@ -276,11 +272,6 @@ def see(obj=_LOCALS, pattern=None, r=None):
         actions = regex_filter(actions, r)
 
     return _SeeOutput(actions)
-
-
-PY_300 = sys.version_info >= (3, 0)
-PY_301 = sys.version_info >= (3, 0, 1)
-PY_350 = sys.version_info >= (3, 5, 0)
 
 
 SYMBOLS = tuple(filter(lambda x: x[0], (
