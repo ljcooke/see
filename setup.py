@@ -8,7 +8,7 @@ tests_require = [
 ]
 
 setup(name='see',
-      version='1.3.1',
+      version='1.3.2',
       description='dir for humans',
       author='Liam Cooke',
       author_email='see@araile.com',

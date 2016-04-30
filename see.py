@@ -61,7 +61,7 @@ __all__ = ['see']
 
 __author__ = 'Liam Cooke'
 __contributors__ = 'See AUTHORS.rst'
-__version__ = '1.3.1'
+__version__ = '1.3.2'
 __copyright__ = 'Copyright (c) 2009-2016 Liam Cooke'
 __license__ = 'BSD License'
 
