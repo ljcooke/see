@@ -7,8 +7,13 @@ All notable changes to this project will be documented in this file. This
 project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 
-.. Unreleased_
-.. --------------------
+Unreleased_
+--------------------
+
+**Fixed**
+
+- Misaligned columns with Unicode attribute names that include wide CJK
+  characters or combining characters.
 
 
 v1.3.1_ / 2016-04-26
