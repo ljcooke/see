@@ -186,12 +186,8 @@ def justify_token(tok, col_width):
     Justify a string to fill one or more columns.
 
     """
-    if PY_300:
-        tok_len = display_len(tok)
-        diff_len = tok_len - len(tok)
-    else:
-        tok_len = len(tok)
-        diff_len = 0
+    tok_len = display_len(tok) if PY_300 else len(tok)
+    diff_len = tok_len - len(tok) if PY_300 else 0
 
     cols = (int(math.ceil(float(tok_len) / col_width))
             if col_width < tok_len + 4 else 1)
