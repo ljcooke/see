@@ -55,6 +55,13 @@ except ImportError:
     fcntl, termios = None, None
     windll, create_string_buffer = None, None
 
+try:
+    # pip install wcwidth
+    from wcwidth import wcswidth
+except ImportError:
+    wcswidth = None
+
+
 __all__ = ['see']
 
 __author__ = 'Liam Cooke'
@@ -104,6 +111,22 @@ def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
         return default_width
 
 
+def display_len(text):
+    """
+    Get the display length of a string. This can differ from the character
+    length if the string contains wide characters.
+
+    This relies on the optional wcwidth package. If it is not available, the
+    character length is used as a fallback.
+
+    """
+    if wcswidth:
+        length = wcswidth(text)
+        if length >= 0:
+            return length
+    return len(text)
+
+
 def regex_filter(names, pat):
     """
     Return a tuple of strings that match the regular expression pattern.
@@ -137,7 +160,7 @@ def column_width(tokens):
     Return a suitable column width to display one or more strings.
 
     """
-    lens = sorted(map(len, tokens or [])) or [0]
+    lens = sorted(map(display_len, tokens or [])) or [0]
     width = lens[-1]
 
     # adjust for disproportionately long strings
@@ -154,7 +177,7 @@ def justify_token(tok, col_width):
     Justify a string to fill one or more columns.
 
     """
-    tok_len = len(tok)
+    tok_len = display_len(tok)
     cols = (int(math.ceil(float(tok_len) / col_width))
             if col_width < tok_len + 4 else 1)
 
@@ -177,7 +200,7 @@ class _SeeOutput(tuple):
 
         padded = [justify_token(tok, col_width) for tok in self]
         if hasattr(sys, 'ps1'):
-            indent = ' ' * len(sys.ps1)
+            indent = ' ' * display_len(sys.ps1)
         else:
             indent = '    '
 
