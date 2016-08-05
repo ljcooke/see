@@ -4,9 +4,6 @@ see: dir for humans
 .. image:: https://img.shields.io/pypi/v/see.svg
     :target: https://pypi.python.org/pypi/see
 
-.. image:: https://img.shields.io/pypi/dm/see.svg
-    :target: https://pypi.python.org/pypi/see
-
 .. image:: https://travis-ci.org/araile/see.svg?branch=develop
     :target: https://travis-ci.org/araile/see
 
