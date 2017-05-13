@@ -2,6 +2,7 @@
 # See:
 #   https://docs.travis-ci.com/user/customizing-the-build/
 #   https://docs.travis-ci.com/user/languages/python
+#   http://lint.travis-ci.org
 
 language: python
 
@@ -10,27 +11,28 @@ python:
   - "pypy3"
   - "2.6"
   - "2.7"
-  - "3.2"
   - "3.3"
   - "3.4"
   - "3.5"
-  - "3.5-dev"
+  - "3.6"
+  - "3.6-dev"
   - "nightly"
 
 matrix:
   fast_finish: true
   allow_failures:
+    - python: "pypy"
+    - python: "pypy3"
     - python: "nightly"
 
 sudo: false
 
 install:
- - pip install 'pbr>=1.9' 'setuptools>=17.1' 'mock>=2.0'
- - pip install coverage
+ - pip install 'setuptools>=17.1'
+ - pip install 'mock>=2.0'
  - if [ "$TRAVIS_PYTHON_VERSION" == "2.6" ]; then pip install unittest2; fi
- # Coverage 4.0 doesn't support Python 3.2
- - if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then travis_retry pip install coverage==3.7.1; fi
- - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
+ # Expecting Coverage to fail for pypy3 until Travis supports PyPy3 5.5+ (as of May 2017)
+ - pip install coverage
 
 script:
  - coverage run --source=see.py setup.py test

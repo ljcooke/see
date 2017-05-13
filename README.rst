@@ -13,7 +13,7 @@ see: dir for humans
 **see** is an alternative to the built-in ``dir`` function in Python. It shows
 you what you can do with things.
 
-Supports Python 2.6+ and 3.2+. Also works in iPython and PyPy.
+Supports Python 2.6+ and 3.3+. Also works in iPython and PyPy.
 
 License
     BSD (see the *LICENSE* file)
