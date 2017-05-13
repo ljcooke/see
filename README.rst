@@ -18,7 +18,8 @@ Supports Python 2.6+ and 3.3+. Also works in iPython and PyPy.
 License
     BSD (see the *LICENSE* file)
 
-Contributions are welcome. See the *CHANGELOG.rst* and *AUTHORS.rst* files.
+Contributions are welcome. See the *CODE_OF_CONDUCT.md*, *CHANGELOG.rst*
+and *AUTHORS.rst* files.
 
 
 Install
