@@ -15,7 +15,6 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-  - "3.6-dev"
   - "nightly"
 
 matrix:
@@ -35,7 +34,7 @@ install:
  - pip install coverage
 
 script:
- - coverage run --source=see.py setup.py test
+ - coverage run --source=see setup.py test
 
 after_success:
  - pip install coveralls
