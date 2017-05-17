@@ -24,6 +24,19 @@ class ObjectWithLongAttrName(dict):
         pass
 
 
+class ObjectWithDocstring(object):
+    """
+    Hello, world
+    """
+    pass
+
+
+class ObjectWithEmptyDocstring(object):
+    """
+    """
+    pass
+
+
 class TestSee(unittest.TestCase):
 
     def test_see_with_no_args(self):
@@ -97,6 +110,19 @@ class TestSee(unittest.TestCase):
         self.assertTrue(any(factors))
         self.assertTrue(all(int(factor) == factor for factor in factors),
                         'Irregular column widths')
+
+    def test_see_object_has_help(self):
+        # Arrange
+        obj_help = ObjectWithDocstring()
+        obj_nohelp = ObjectWithEmptyDocstring()
+
+        # Act
+        out_help = see.see(obj_help)
+        out_nohelp = see.see(obj_nohelp)
+
+        # Assert
+        self.assertTrue('help()' in out_help)
+        self.assertFalse('help()' in out_nohelp)
 
 
 if __name__ == '__main__':

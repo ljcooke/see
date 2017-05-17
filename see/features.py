@@ -82,8 +82,6 @@ class HelpFeature(Feature):
         if '__doc__' in attrs:
             lstrip = getattr(obj.__doc__, 'lstrip', False)
             return lstrip and any(lstrip())
-        else:
-            return False
 
 
 FEATURES = compact(tuple, (
