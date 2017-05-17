@@ -12,6 +12,35 @@ from see import tools
 
 class TestToolsModule(unittest.TestCase):
 
+    def test_compact_list(self):
+        # Arrange
+        items = [0, 1, '', 'foo', True, False, [], ['a'], {}, {1: 2}]
+        expected = [1, 'foo', True, ['a'], {1: 2}]
+
+        # Act
+        compact_list = tools.compact(list, items)
+        compact_tuple = tools.compact(tuple, items)
+
+        # Assert
+        self.assertEqual(compact_list, list(expected))
+        self.assertEqual(compact_tuple, tuple(expected))
+
+    def test_compact_set(self):
+        # Arrange
+        hashable = [0, 1, '', 'foo', True, False, (), ('a',)]
+        unhashable = [0, 1, '', 'foo', True, False, [], ['a']]
+        expected = [1, 'foo', True, ('a',)]
+
+        # Act
+        compact_set = tools.compact(set, hashable)
+
+        def compact_unhashable():
+            return tools.compact(set, unhashable)
+
+        # Assert
+        self.assertEqual(compact_set, set(expected))
+        self.assertRaises(TypeError, compact_unhashable)
+
     def test_filter_by_regex(self):
         # Arrange
         names = ["george", "helen"]
