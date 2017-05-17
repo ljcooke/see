@@ -5,47 +5,24 @@ Copyright (c) 2009-2017 Liam Cooke
 https://araile.github.io/see/
 
 """
-import fnmatch
 import inspect
-import re
 import sys
 import textwrap
 
-from . import output, term
+from . import output, term, tools
 from .exceptions import SeeError
 from .features import FEATURES
 
 
-def regex_filter(names, pat):
-    """
-    Return a tuple of strings that match the regular expression pattern.
-
-    """
-    pat = re.compile(pat)
-
-    def match(name, fn=pat.search):
-        return fn(name) is not None
-
-    return tuple(filter(match, names))
-
-
-def fn_filter(names, pat):
-    """
-    Return a tuple of strings that match a shell-style pattern.
-
-    """
-    def match(name, fn=fnmatch.fnmatch, pat=pat):
-        return fn(name, pat)
-
-    return tuple(filter(match, names))
-
-
-class _SeeDefault(object):
+class UseLocalScope(object):
 
     def __repr__(self):
         return 'anything'
 
-_LOCALS = _SeeDefault()
+    def update(self, frame=None):
+        self.__dict__ = frame.f_back.f_locals
+
+LOCALS = UseLocalScope()
 
 
 class SeeResult(tuple):
@@ -70,7 +47,7 @@ class SeeResult(tuple):
                              subsequent_indent=indent)
 
 
-def see(obj=_LOCALS, pattern=None, r=None):
+def see(obj=LOCALS, pattern=None, r=None):
     """
     Inspect an object. Like the dir() builtin, but easier on the eyes.
 
@@ -91,11 +68,11 @@ def see(obj=_LOCALS, pattern=None, r=None):
         ?       raised an exception
 
     """
-    use_locals = obj is _LOCALS
-    actions = []
-
+    use_locals = obj is LOCALS
     if use_locals:
-        obj.__dict__ = inspect.currentframe().f_back.f_locals
+        LOCALS.update(inspect.currentframe())
+
+    actions = []
     attrs = dir(obj)
 
     if not use_locals:
@@ -112,8 +89,9 @@ def see(obj=_LOCALS, pattern=None, r=None):
         actions.append(action)
 
     if pattern is not None:
-        actions = fn_filter(actions, pattern)
+        actions = tools.filter_wildcard(actions, pattern)
+
     if r is not None:
-        actions = regex_filter(actions, r)
+        actions = tools.filter_regex(actions, r)
 
     return SeeResult(actions)

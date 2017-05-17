@@ -12,6 +12,7 @@ except ImportError:
 from see import old_see as see
 from see import output
 from see import term
+from see import tools
 
 
 class ObjectWithAttributeError(object):
@@ -51,9 +52,9 @@ class TestSee(unittest.TestCase):
         pat_end = "n$"
 
         # Act
-        out_wildcard = see.regex_filter(names, pat_wildcard)
-        out_start = see.regex_filter(names, pat_start)
-        out_end = see.regex_filter(names, pat_end)
+        out_wildcard = tools.filter_regex(names, pat_wildcard)
+        out_start = tools.filter_regex(names, pat_start)
+        out_end = tools.filter_regex(names, pat_end)
 
         # Assert
         self.assertIsInstance(out_wildcard, tuple)
@@ -63,7 +64,7 @@ class TestSee(unittest.TestCase):
         self.assertEqual(out_start, ("helen",))
         self.assertEqual(out_end, ("helen",))
 
-    def test_fn_filter(self):
+    def test_wildcard_filter(self):
         # Arrange
         names = ["george", "helen"]
         pat_wildcard = "*or*"
@@ -71,9 +72,9 @@ class TestSee(unittest.TestCase):
         pat_partial = "e*"
 
         # Act
-        out_wildcard = see.fn_filter(names, pat_wildcard)
-        out_single = see.fn_filter(names, pat_single)
-        out_partial = see.fn_filter(names, pat_partial)
+        out_wildcard = tools.filter_wildcard(names, pat_wildcard)
+        out_single = tools.filter_wildcard(names, pat_single)
+        out_partial = tools.filter_wildcard(names, pat_partial)
 
         # Assert
         self.assertIsInstance(out_wildcard, tuple)
@@ -86,7 +87,7 @@ class TestSee(unittest.TestCase):
     def test_see_with_no_args(self):
         # Act
         out = see.see()
-        default_arg = see._LOCALS
+        default_arg = see.LOCALS
 
         # Assert
         self.assertIsInstance(out, see.SeeResult)

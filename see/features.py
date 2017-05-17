@@ -33,7 +33,7 @@ https://araile.github.io/see/
 """
 import sys
 
-from .common import compact
+from .tools import compact
 
 
 PY_VERSION = sys.version_info
