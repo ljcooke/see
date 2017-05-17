@@ -136,9 +136,9 @@ class TestMockUnsupportedTerminal(unittest.TestCase):
         self.assertIsNone(term_width)
 
     def test_default_line_width(self):
-        line_width = see.line_width()
+        line_width = term.line_width()
 
-        self.assertEqual(line_width, see.DEFAULT_LINE_WIDTH)
+        self.assertEqual(line_width, term.DEFAULT_LINE_WIDTH)
 
 
 if __name__ == '__main__':

@@ -10,6 +10,8 @@ except ImportError:
 
 # TODO
 from see import old_see as see
+from see import output
+from see import term
 
 
 class ObjectWithAttributeError(object):
@@ -33,13 +35,13 @@ class TestSee(unittest.TestCase):
         max_width = 1
 
         # Act
-        width = see.line_width(default_width, max_width)
-        width_no_args = see.line_width()
+        width = term.line_width(default_width, max_width)
+        width_no_args = term.line_width()
 
         # Assert
         self.assertIsInstance(width, int)
         self.assertEqual(width, 1)
-        self.assertLessEqual(width_no_args, see.MAX_LINE_WIDTH)
+        self.assertLessEqual(width_no_args, term.MAX_LINE_WIDTH)
 
     def test_regex_filter(self):
         # Arrange
@@ -87,7 +89,7 @@ class TestSee(unittest.TestCase):
         default_arg = see._LOCALS
 
         # Assert
-        self.assertIsInstance(out, see._SeeOutput)
+        self.assertIsInstance(out, see.SeeResult)
         self.assertEqual(repr(default_arg), 'anything')
 
     def test_see_accessor_raises_exception(self):
@@ -141,8 +143,8 @@ class TestSee(unittest.TestCase):
 
         # Act
         out = see.see(obj)
-        col_width = see.column_width(out)
-        padded = [see.justify_token(tok, col_width) for tok in out]
+        col_width = output.column_width(out)
+        padded = [output.justify_token(tok, col_width) for tok in out]
         lens = sorted(map(len, padded))
         factors = tuple(float(num) / lens[0] for num in lens[1:])
 

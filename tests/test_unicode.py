@@ -12,6 +12,7 @@ except ImportError:
 
 # TODO
 from see import old_see as see
+from see import output
 from see.features import PY3
 
 
@@ -29,10 +30,10 @@ class TestSeeUnicode(unittest.TestCase):
         len_accent = len(char_accent)
         len_combo = len(char_combo)
         len_cjk = len(char_cjk)
-        width_ascii = see.display_len(char_ascii)
-        width_accent = see.display_len(char_accent)
-        width_combo = see.display_len(char_combo)
-        width_cjk = see.display_len(char_cjk)
+        width_ascii = output.display_len(char_ascii, py2_fallback=None)
+        width_accent = output.display_len(char_accent, py2_fallback=None)
+        width_combo = output.display_len(char_combo, py2_fallback=None)
+        width_cjk = output.display_len(char_cjk, py2_fallback=None)
 
         # Assert
         self.assertEqual(len_ascii, 1)
@@ -54,14 +55,14 @@ class TestSeeUnicode(unittest.TestCase):
         diff_combo = -1 if PY3 else 0
 
         # Act
-        width_ascii = see.display_len(attr_ascii)
-        width_cyrillic = see.display_len(attr_cyrillic)
-        width_cjk = see.display_len(attr_cjk)
-        width_combo = see.display_len(attr_combo)
-        justify_ascii = len(see.justify_token(attr_ascii, 20))
-        justify_cyrillic = len(see.justify_token(attr_cyrillic, 20))
-        justify_cjk = len(see.justify_token(attr_cjk, 20))
-        justify_combo = len(see.justify_token(attr_combo, 20))
+        width_ascii = output.display_len(attr_ascii, py2_fallback=None)
+        width_cyrillic = output.display_len(attr_cyrillic, py2_fallback=None)
+        width_cjk = output.display_len(attr_cjk, py2_fallback=None)
+        width_combo = output.display_len(attr_combo, py2_fallback=None)
+        justify_ascii = len(output.justify_token(attr_ascii, 20))
+        justify_cyrillic = len(output.justify_token(attr_cyrillic, 20))
+        justify_cjk = len(output.justify_token(attr_cjk, 20))
+        justify_combo = len(output.justify_token(attr_combo, 20))
 
         # Assert
         self.assertEqual(width_ascii, 14)

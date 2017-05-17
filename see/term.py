@@ -22,6 +22,10 @@ except ImportError:
     windll, create_string_buffer = None, None
 
 
+DEFAULT_LINE_WIDTH = 78
+MAX_LINE_WIDTH = 120
+
+
 def term_width():
     """
     Return the column width of the terminal, or None if it can't be determined.
@@ -43,3 +47,15 @@ def term_width():
             (_, _, _, _, _, left, _, right, _,
              _, _) = struct.unpack('hhhhHhhhhhh', csbi.raw)
             return right - left + 1
+
+
+def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
+    """
+    Return the ideal column width for see() output, taking the terminal width
+    into account to avoid wrapping.
+    """
+    width = term_width()
+    if width:
+        return min(width, max_width)
+    else:
+        return default_width
