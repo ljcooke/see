@@ -9,30 +9,6 @@ dir for humans
 Copyright (c) 2009-2017 Liam Cooke
 https://araile.github.io/see/
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this
-list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice,
-this list of conditions and the following disclaimer in the documentation
-and/or other materials provided with the distribution.
-
-3. The name of the author may not be used to endorse or promote products
-derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY LIAM COOKE "AS IS" AND ANY EXPRESS OR IMPLIED
-WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
-EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
-IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-OF SUCH DAMAGE.
-
 """
 import fnmatch
 import inspect
@@ -56,13 +32,11 @@ except ImportError:
     fcntl, termios = None, None
     windll, create_string_buffer = None, None
 
+from .features import FEATURES, PY3
+
 
 DEFAULT_LINE_WIDTH = 78
 MAX_LINE_WIDTH = 120
-
-PY_300 = sys.version_info >= (3, 0)
-PY_301 = sys.version_info >= (3, 0, 1)
-PY_350 = sys.version_info >= (3, 5, 0)
 
 
 def term_width():
@@ -159,7 +133,7 @@ def column_width(tokens):
     Return a suitable column width to display one or more strings.
 
     """
-    get_len = display_len if PY_300 else len
+    get_len = display_len if PY3 else len
     lens = sorted(map(get_len, tokens or [])) or [0]
     width = lens[-1]
 
@@ -177,8 +151,8 @@ def justify_token(tok, col_width):
     Justify a string to fill one or more columns.
 
     """
-    tok_len = display_len(tok) if PY_300 else len(tok)
-    diff_len = tok_len - len(tok) if PY_300 else 0
+    tok_len = display_len(tok) if PY3 else len(tok)
+    diff_len = tok_len - len(tok) if PY3 else 0
 
     cols = (int(math.ceil(float(tok_len) / col_width))
             if col_width < tok_len + 4 else 1)
@@ -202,7 +176,7 @@ class _SeeOutput(tuple):
 
         padded = [justify_token(tok, col_width) for tok in self]
         if hasattr(sys, 'ps1'):
-            get_len = display_len if PY_300 else len
+            get_len = display_len if PY3 else len
             indent = ' ' * get_len(sys.ps1)
         else:
             indent = '    '
@@ -269,14 +243,11 @@ def see(obj=_LOCALS, pattern=None, r=None):
     if use_locals:
         obj.__dict__ = inspect.currentframe().f_back.f_locals
     attrs = dir(obj)
+
     if not use_locals:
-        for var, symbol in SYMBOLS:
-            if var not in attrs or symbol in actions:
-                continue
-            elif var == '__doc__':
-                if not obj.__doc__ or not obj.__doc__.strip():
-                    continue
-            actions.append(symbol)
+        for feature in FEATURES:
+            if feature.match(obj, attrs):
+                actions.append(feature.symbol)
 
     for attr in filter(lambda a: not a.startswith('_'), attrs):
         try:
@@ -291,105 +262,6 @@ def see(obj=_LOCALS, pattern=None, r=None):
         actions = regex_filter(actions, r)
 
     return _SeeOutput(actions)
-
-
-SYMBOLS = tuple(filter(lambda x: x[0], (
-    # callable
-    ('__call__', '()'),
-
-    # element/attribute access
-    ('__getattr__', '.*'),
-    ('__getitem__', '[]'),
-    ('__setitem__', '[]'),
-    ('__delitem__', '[]'),
-
-    # iteration
-    ('__enter__', 'with'),
-    ('__exit__', 'with'),
-    ('__contains__', 'in'),
-
-    # operators
-    ('__add__', '+'),
-    ('__radd__', '+'),
-    ('__iadd__', '+='),
-    ('__sub__', '-'),
-    ('__rsub__', '-'),
-    ('__isub__', '-='),
-    ('__mul__', '*'),
-    ('__rmul__', '*'),
-    ('__imul__', '*='),
-    (PY_350 and '__matmul__', '@'),
-    (PY_350 and '__rmatmul__', '@'),
-    (PY_350 and '__imatmul__', '@='),
-    (not PY_300 and '__div__', '/'),
-    (not PY_301 and '__rdiv__', '/'),
-    ('__truediv__', '/'),
-    ('__rtruediv__', '/'),
-    ('__floordiv__', '//'),
-    ('__rfloordiv__', '//'),
-    (not PY_300 and '__idiv__', '/='),
-    ('__itruediv__', '/='),
-    ('__ifloordiv__', '//='),
-    ('__mod__', '%'),
-    ('__rmod__', '%'),
-    ('__divmod__', '%'),
-    ('__imod__', '%='),
-    ('__pow__', '**'),
-    ('__rpow__', '**'),
-    ('__ipow__', '**='),
-    ('__lshift__', '<<'),
-    ('__rlshift__', '<<'),
-    ('__ilshift__', '<<='),
-    ('__rshift__', '>>'),
-    ('__rrshift__', '>>'),
-    ('__irshift__', '>>='),
-    ('__and__', '&'),
-    ('__rand__', '&'),
-    ('__iand__', '&='),
-    ('__xor__', '^'),
-    ('__rxor__', '^'),
-    ('__ixor__', '^='),
-    ('__or__', '|'),
-    ('__ror__', '|'),
-    ('__ior__', '|='),
-    ('__pos__', '+obj'),
-    ('__neg__', '-obj'),
-    ('__invert__', '~'),
-    ('__lt__', '<'),
-    (not PY_301 and '__cmp__', '<'),
-    ('__le__', '<='),
-    (not PY_301 and '__cmp__', '<='),
-    ('__eq__', '=='),
-    (not PY_301 and '__cmp__', '=='),
-    ('__ne__', '!='),
-    (not PY_301 and '__cmp__', '!='),
-    ('__gt__', '>'),
-    (not PY_301 and '__cmp__', '>'),
-    ('__ge__', '>='),
-    (not PY_301 and '__cmp__', '>='),
-
-    # built-in functions
-    ('__abs__', 'abs()'),
-    (PY_300 and '__bool__' or '__nonzero__', 'bool()'),
-    ('__complex__', 'complex()'),
-    (PY_300 and '__dir__', 'dir()'),
-    ('__divmod__', 'divmod()'),
-    ('__rdivmod__', 'divmod()'),
-    ('__float__', 'float()'),
-    ('__hash__', 'hash()'),
-    ('__doc__', 'help()'),
-    (PY_300 and '__index__' or '__hex__', 'hex()'),
-    ('__int__', 'int()'),
-    ('__iter__', 'iter()'),
-    ('__len__', 'len()'),
-    (not PY_300 and '__long__', 'long()'),
-    (PY_300 and '__index__' or '__oct__', 'oct()'),
-    ('__repr__', 'repr()'),
-    ('__reversed__', 'reversed()'),
-    (PY_300 and '__round__', 'round()'),
-    ('__str__', 'str()'),
-    (PY_300 and '__unicode__', 'unicode()'),
-)))
 
 
 if __name__ == '__main__':

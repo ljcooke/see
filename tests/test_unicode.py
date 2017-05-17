@@ -12,6 +12,7 @@ except ImportError:
 
 # TODO
 from see import old_see as see
+from see.features import PY3
 
 
 class TestSeeUnicode(unittest.TestCase):
@@ -49,8 +50,8 @@ class TestSeeUnicode(unittest.TestCase):
         attr_cyrillic = '.hello_мир()'
         attr_cjk = '.hello_世界()'
         attr_combo = '.hello_q̇()'
-        diff_cjk = 2 if see.PY_300 else 0
-        diff_combo = -1 if see.PY_300 else 0
+        diff_cjk = 2 if PY3 else 0
+        diff_combo = -1 if PY3 else 0
 
         # Act
         width_ascii = see.display_len(attr_ascii)
