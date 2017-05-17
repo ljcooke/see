@@ -253,7 +253,6 @@ def see(obj=_LOCALS, pattern=None, r=None):
     use_locals = obj is _LOCALS
     actions = []
     dot = not use_locals and '.' or ''
-    name = lambda a, f: ''.join((dot, a, suffix(f)))
 
     def suffix(f):
         if isinstance(f, SeeError):
@@ -262,6 +261,9 @@ def see(obj=_LOCALS, pattern=None, r=None):
             return '()'
         else:
             return ''
+
+    def name(attr, prop):
+        return ''.join((dot, attr, suffix(prop)))
 
     if use_locals:
         obj.__dict__ = inspect.currentframe().f_back.f_locals
