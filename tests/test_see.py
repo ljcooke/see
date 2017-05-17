@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """
 Unit tests for see.py
 
@@ -10,8 +9,6 @@ except ImportError:
 
 import see
 from see import output
-from see import term
-from see import tools
 
 
 class ObjectWithAttributeError(object):
@@ -28,60 +25,6 @@ class ObjectWithLongAttrName(dict):
 
 
 class TestSee(unittest.TestCase):
-
-    def test_line_width(self):
-        # Arrange
-        default_width = 1
-        max_width = 1
-
-        # Act
-        width = term.line_width(default_width, max_width)
-        width_no_args = term.line_width()
-
-        # Assert
-        self.assertIsInstance(width, int)
-        self.assertEqual(width, 1)
-        self.assertLessEqual(width_no_args, term.MAX_LINE_WIDTH)
-
-    def test_regex_filter(self):
-        # Arrange
-        names = ["george", "helen"]
-        pat_wildcard = "e.*g"
-        pat_start = "^h"
-        pat_end = "n$"
-
-        # Act
-        out_wildcard = tools.filter_regex(names, pat_wildcard)
-        out_start = tools.filter_regex(names, pat_start)
-        out_end = tools.filter_regex(names, pat_end)
-
-        # Assert
-        self.assertIsInstance(out_wildcard, tuple)
-        self.assertIsInstance(out_start, tuple)
-        self.assertIsInstance(out_end, tuple)
-        self.assertEqual(out_wildcard, ("george",))
-        self.assertEqual(out_start, ("helen",))
-        self.assertEqual(out_end, ("helen",))
-
-    def test_wildcard_filter(self):
-        # Arrange
-        names = ["george", "helen"]
-        pat_wildcard = "*or*"
-        pat_single = "h?l?n"
-        pat_partial = "e*"
-
-        # Act
-        out_wildcard = tools.filter_wildcard(names, pat_wildcard)
-        out_single = tools.filter_wildcard(names, pat_single)
-        out_partial = tools.filter_wildcard(names, pat_partial)
-
-        # Assert
-        self.assertIsInstance(out_wildcard, tuple)
-        self.assertIsInstance(out_single, tuple)
-        self.assertIsInstance(out_partial, tuple)
-        self.assertEqual(out_wildcard, ("george",))
-        self.assertEqual(out_single, ("helen",))
-        self.assertEqual(out_partial, ())
 
     def test_see_with_no_args(self):
         # Act
@@ -108,7 +51,7 @@ class TestSee(unittest.TestCase):
                             for attr in err_see))
         self.assertIn('.bad_attribute?', err_see)
 
-    def test_see_regex_filter(self):
+    def test_see_filter_by_regex(self):
         # Arrange
         obj = []
 
@@ -119,7 +62,7 @@ class TestSee(unittest.TestCase):
         self.assertIn('.count()', out)
         self.assertNotIn('.pop()', out)
 
-    def test_see_pattern_filter(self):
+    def test_see_filter_by_wildcard(self):
         # Arrange
         obj = []
 

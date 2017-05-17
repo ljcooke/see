@@ -1,8 +1,9 @@
-#!/usr/bin/env python
 # coding: utf-8
 from __future__ import unicode_literals
 """
-Unit tests that require Unicode string literals in Python 2.
+Unit tests for the see.output module.
+
+This requires Unicode string literals in Python 2.
 
 """
 try:
@@ -10,7 +11,6 @@ try:
 except ImportError:
     import unittest
 
-import see
 from see import output
 from see.features import PY3
 

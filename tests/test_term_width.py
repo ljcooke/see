@@ -1,6 +1,5 @@
-#!/usr/bin/env python
 """
-Unit tests for getting information about the terminal.
+Unit tests for getting the terminal width.
 
 There are separate test cases to simulate unsupported environments (not
 Unixlike or Windows), where information about the terminal is not easily

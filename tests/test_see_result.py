@@ -1,6 +1,5 @@
-#!/usr/bin/env python
 """
-Unit tests for the output of see for various types of object.
+Unit tests for the result of calling see() with various types of object.
 
 """
 import itertools
@@ -42,7 +41,7 @@ ALL_OPS = union(
 )
 
 
-class TestSeeOutput(unittest.TestCase):
+class TestSeeResult(unittest.TestCase):
 
     def check_ops(self, obj_type, expected_ops, see_output):
         for op in ALL_OPS:
