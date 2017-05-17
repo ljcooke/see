@@ -229,6 +229,28 @@ class _SeeDefault(object):
 _LOCALS = _SeeDefault()
 
 
+def display_name(name, obj, local):
+    """
+    Get the display name of an object.
+
+    Keyword arguments:
+    name -- the name of the object as a string
+    obj -- the object itself
+    local -- whether the object is in local scope or owned by an object
+
+    """
+    prefix = '' if local else '.'
+
+    if isinstance(obj, SeeError):
+        suffix = '?'
+    elif hasattr(obj, '__call__'):
+        suffix = '()'
+    else:
+        suffix = ''
+
+    return ''.join((prefix, name, suffix))
+
+
 def see(obj=_LOCALS, pattern=None, r=None):
     """
     Inspect an object. Like the dir() builtin, but easier on the eyes.
@@ -252,16 +274,6 @@ def see(obj=_LOCALS, pattern=None, r=None):
     """
     use_locals = obj is _LOCALS
     actions = []
-    dot = not use_locals and '.' or ''
-    name = lambda a, f: ''.join((dot, a, suffix(f)))
-
-    def suffix(f):
-        if isinstance(f, SeeError):
-            return '?'
-        elif hasattr(f, '__call__'):
-            return '()'
-        else:
-            return ''
 
     if use_locals:
         obj.__dict__ = inspect.currentframe().f_back.f_locals
@@ -280,7 +292,7 @@ def see(obj=_LOCALS, pattern=None, r=None):
             prop = getattr(obj, attr)
         except (AttributeError, Exception):
             prop = SeeError()
-        actions.append(name(attr, prop))
+        actions.append(display_name(name=attr, obj=prop, local=use_locals))
 
     if pattern is not None:
         actions = fn_filter(actions, pattern)
