@@ -20,4 +20,4 @@ clean:
 
 .PHONY: dist
 dist:
-	python setup.py sdist --formats=bztar,gztar,zip
+	python3 setup.py sdist --formats=bztar,gztar,zip
