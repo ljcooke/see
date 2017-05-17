@@ -27,7 +27,8 @@ try:
 except ImportError:
     import __builtin__ as builtins  # Python 2
 
-import see
+# TODO
+from see import old_see as see
 
 
 MOCK_EXCLUDE_MODULES = (
@@ -83,7 +84,9 @@ class TestSupportedTerminal(unittest.TestCase):
         if self.windows:
             return
 
-        with mock.patch('see.fcntl.ioctl', side_effect=IOError('')) as patch:
+        # TODO
+        #with mock.patch('see.fcntl.ioctl', side_effect=IOError('')) as patch:
+        with mock.patch('see.old_see.fcntl.ioctl', side_effect=IOError('')) as patch:
             width = see.term_width()
 
             self.assertIsNone(width)

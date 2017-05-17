@@ -10,7 +10,8 @@ try:
 except ImportError:
     import unittest
 
-import see
+# TODO
+from see import old_see as see
 
 
 class TestSeeUnicode(unittest.TestCase):

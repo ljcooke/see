@@ -16,7 +16,7 @@ lint:
 
 .PHONY: clean
 clean:
-	rm -vrf build ./*.pyc see/*.pyc __pycache__ see/__pycache__
+	rm -vrf build ./*.pyc see/*.pyc __pycache__ see/__pycache__ .eggs
 	test -d see && rmdir see || true
 
 .PHONY: dist
