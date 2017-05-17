@@ -6,8 +6,8 @@ dir for humans
     >>> from see import see
     >>> help(see)
 
-Copyright (c) 2009-2016 Liam Cooke
-http://araile.github.io/see/
+Copyright (c) 2009-2017 Liam Cooke
+https://araile.github.io/see/
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -62,7 +62,7 @@ __all__ = ['see']
 __author__ = 'Liam Cooke'
 __contributors__ = 'See AUTHORS.rst'
 __version__ = '1.3.2'
-__copyright__ = 'Copyright (c) 2009-2016 Liam Cooke'
+__copyright__ = 'Copyright (c) 2009-2017 Liam Cooke'
 __license__ = 'BSD License'
 
 
