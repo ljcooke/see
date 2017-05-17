@@ -10,8 +10,7 @@ try:
 except ImportError:
     import unittest
 
-# TODO
-from see import old_see as see
+import see
 
 
 def union(*sets):

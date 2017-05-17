@@ -9,10 +9,10 @@ Copyright (c) 2009-2017 Liam Cooke
 https://araile.github.io/see/
 
 """
-from .old_see import see
+from .inspector import see
 
 
-__all__ = ['old_see', 'see']
+__all__ = ['see']
 
 __author__ = 'Liam Cooke'
 __contributors__ = 'See AUTHORS.rst'

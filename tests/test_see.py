@@ -8,8 +8,7 @@ try:
 except ImportError:
     import unittest
 
-# TODO
-from see import old_see as see
+import see
 from see import output
 from see import term
 from see import tools
@@ -87,10 +86,10 @@ class TestSee(unittest.TestCase):
     def test_see_with_no_args(self):
         # Act
         out = see.see()
-        default_arg = see.LOCALS
+        default_arg = see.inspector.LOCALS
 
         # Assert
-        self.assertIsInstance(out, see.SeeResult)
+        self.assertIsInstance(out, see.inspector.SeeResult)
         self.assertEqual(repr(default_arg), 'anything')
 
     def test_see_accessor_raises_exception(self):

@@ -27,8 +27,7 @@ try:
 except ImportError:
     import __builtin__ as builtins  # Python 2
 
-# TODO
-from see import old_see as see
+import see
 from see import term
 
 

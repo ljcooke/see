@@ -1,5 +1,6 @@
 """
-see.old_see
+see.see
+Object inspector
 
 Copyright (c) 2009-2017 Liam Cooke
 https://araile.github.io/see/
@@ -49,16 +50,17 @@ class SeeResult(tuple):
 
 def see(obj=LOCALS, pattern=None, r=None):
     """
-    Inspect an object. Like the dir() builtin, but easier on the eyes.
+    Inspect an object. Like the ``dir()`` builtin, but easier on the eyes.
 
     Keyword arguments (all optional):
-    obj -- object to be inspected
-    pattern -- shell-style search pattern (e.g. '*len*')
-    r -- regular expression
+
+        obj         object to be inspected
+        pattern     shell-style search pattern (e.g. '*len*')
+        r           regular expression
 
     If obj is omitted, objects in the current scope are listed instead.
 
-    Some unique symbols are used:
+    Some unique symbols are used::
 
         .*      implements obj.anything
         []      implements obj[key]
