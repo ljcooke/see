@@ -29,6 +29,7 @@ except ImportError:
 
 # TODO
 from see import old_see as see
+from see import term
 
 
 MOCK_EXCLUDE_MODULES = (
@@ -63,18 +64,18 @@ class TestSupportedTerminal(unittest.TestCase):
 
     def test_import_success(self):
         if self.windows:
-            self.assertIsNone(see.fcntl)
-            self.assertIsNone(see.termios)
-            self.assertIsNotNone(see.windll)
-            self.assertIsNotNone(see.create_string_buffer)
+            self.assertIsNone(term.fcntl)
+            self.assertIsNone(term.termios)
+            self.assertIsNotNone(term.windll)
+            self.assertIsNotNone(term.create_string_buffer)
         else:
-            self.assertIsNotNone(see.fcntl)
-            self.assertIsNotNone(see.termios)
-            self.assertIsNone(see.windll)
-            self.assertIsNone(see.create_string_buffer)
+            self.assertIsNotNone(term.fcntl)
+            self.assertIsNotNone(term.termios)
+            self.assertIsNone(term.windll)
+            self.assertIsNone(term.create_string_buffer)
 
     def test_term_width(self):
-        width = see.term_width()
+        width = term.term_width()
 
         self.assertIsNotNone(width)
         # Note: terminal info is not available in Travis
@@ -84,10 +85,8 @@ class TestSupportedTerminal(unittest.TestCase):
         if self.windows:
             return
 
-        # TODO
-        #with mock.patch('see.fcntl.ioctl', side_effect=IOError('')) as patch:
-        with mock.patch('see.old_see.fcntl.ioctl', side_effect=IOError('')) as patch:
-            width = see.term_width()
+        with mock.patch('see.term.fcntl.ioctl', side_effect=IOError('')) as patch:
+            width = term.term_width()
 
             self.assertIsNone(width)
 
@@ -110,29 +109,29 @@ class TestMockWindowsTerminal(unittest.TestCase):
 
     def setUp(self):
         builtins.__import__ = mock_import
-        reload(see)
+        reload(term)
 
     def tearDown(self):
         builtins.__import__ = REAL_IMPORT
-        reload(see)
+        reload(term)
 
 
 class TestMockUnsupportedTerminal(unittest.TestCase):
 
     def setUp(self):
         builtins.__import__ = mock_import
-        reload(see)
+        reload(term)
 
     def tearDown(self):
         builtins.__import__ = REAL_IMPORT
-        reload(see)
+        reload(term)
 
     def test_import_fail(self):
-        self.assertIsNone(see.fcntl)
-        self.assertIsNone(see.termios)
+        self.assertIsNone(term.fcntl)
+        self.assertIsNone(term.termios)
 
     def test_term_width_not_available(self):
-        term_width = see.term_width()
+        term_width = term.term_width()
 
         self.assertIsNone(term_width)
 
