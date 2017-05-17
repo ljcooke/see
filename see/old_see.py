@@ -57,15 +57,6 @@ except ImportError:
     windll, create_string_buffer = None, None
 
 
-__all__ = ['see']
-
-__author__ = 'Liam Cooke'
-__contributors__ = 'See AUTHORS.rst'
-__version__ = '1.3.2'
-__copyright__ = 'Copyright (c) 2009-2017 Liam Cooke'
-__license__ = 'BSD License'
-
-
 DEFAULT_LINE_WIDTH = 78
 MAX_LINE_WIDTH = 120
 
