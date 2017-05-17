@@ -6,9 +6,6 @@ Copyright (c) 2009-2017 Liam Cooke
 https://araile.github.io/see/
 
 """
-
-# Note: no-coverage
-
 import platform
 import struct
 
