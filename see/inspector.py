@@ -12,7 +12,7 @@ import textwrap
 
 from . import output, term, tools
 from .exceptions import SeeError
-from .features import FEATURES
+from .features import FEATURES, PY3
 
 
 class UseLocalScope(object):
@@ -39,7 +39,8 @@ class SeeResult(tuple):
         padded = [output.justify_token(tok, col_width) for tok in self]
 
         if hasattr(sys, 'ps1'):
-            indent = ' ' * output.display_len(sys.ps1)
+            get_len = output.display_len if PY3 else len
+            indent = ' ' * get_len(sys.ps1)
         else:
             indent = '    '
 

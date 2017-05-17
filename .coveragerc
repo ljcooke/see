@@ -9,7 +9,6 @@ exclude_lines =
     pragma: no cover
 
     # Don't complain if non-runnable code isn't run:
+    no-coverage
     if 0:
     if __name__ == .__main__.:
-    if platform.*Windows.*
-    if windll.*

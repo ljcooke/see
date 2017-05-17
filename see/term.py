@@ -6,11 +6,14 @@ Copyright (c) 2009-2017 Liam Cooke
 https://araile.github.io/see/
 
 """
+
+# Note: no-coverage
+
 import platform
 import struct
 
 try:
-    if platform.system() == 'Windows':
+    if platform.system() == 'Windows':  # no-coverage: Windows
         from ctypes import windll, create_string_buffer
         fcntl, termios = None, None
     else:
@@ -29,7 +32,6 @@ MAX_LINE_WIDTH = 120
 def term_width():
     """
     Return the column width of the terminal, or None if it can't be determined.
-
     """
     if fcntl and termios:
         try:
@@ -38,7 +40,7 @@ def term_width():
             return width
         except IOError:
             pass
-    elif windll and create_string_buffer:
+    elif windll and create_string_buffer:  # no-coverage: Windows
         stderr_handle, struct_size = -12, 22
         handle = windll.kernel32.GetStdHandle(stderr_handle)
         csbi = create_string_buffer(struct_size)
@@ -55,7 +57,7 @@ def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
     into account to avoid wrapping.
     """
     width = term_width()
-    if width:
+    if width:  # no-coverage: terminal width not available with Travis CI
         return min(width, max_width)
     else:
         return default_width
