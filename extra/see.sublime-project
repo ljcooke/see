@@ -2,7 +2,14 @@
     "folders":
     [
         {
-            "path": ".."
+            "path": "..",
+            "folder_exclude_patterns": [
+                "__pycache__",
+                ".eggs",
+                "*.egg-info",
+                "build",
+                "htmlcov"
+            ]
         }
     ],
     "settings":
