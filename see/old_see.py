@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """
 see.old_see
 
@@ -222,7 +221,3 @@ def see(obj=_LOCALS, pattern=None, r=None):
         actions = regex_filter(actions, r)
 
     return _SeeOutput(actions)
-
-
-if __name__ == '__main__':
-    help(see)
