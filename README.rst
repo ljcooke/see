@@ -58,6 +58,14 @@ Call ``see(an_object)`` to see what you can do with ``an_object``. ::
         .denominator     .from_bytes()    .imag            .numerator
         .real            .to_bytes()
 
+    >>> async def hello_world():
+    ...     print("Hello World!")
+    ...
+    >>> see(hello_world)
+        iscoroutinefunction         isfunction    isroutine     ()
+        <             <=            ==            !=            >
+        >=            dir()         hash()        repr()        str()
+
 
 Startup
 -------
