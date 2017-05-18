@@ -1,2 +1,6 @@
+include see/*.py
+include tests/*.py
+
 include LICENSE
-include *.rst *.md
+include *.md
+include *.rst
