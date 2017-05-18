@@ -7,8 +7,13 @@ All notable changes to this project will be documented in this file. This
 project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 
-.. Unreleased_
-.. --------------------
+Unreleased_
+--------------------
+
+**Added**
+
+- Test each of the ``is`` functions from the *inspect* module, such as
+  ``isclass`` and ``isgenerator``, and include them in the result.
 
 
 v1.3.2_ / 2016-04-30

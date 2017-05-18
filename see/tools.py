@@ -10,11 +10,11 @@ import fnmatch
 import re
 
 
-def compact(cls, objects):
+def compact(objects):
     """
     Filter out any falsey objects in a sequence.
     """
-    return cls(filter(bool, objects or []))
+    return tuple(filter(bool, objects or []))
 
 
 def filter_regex(names, pat):

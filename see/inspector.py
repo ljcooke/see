@@ -61,6 +61,11 @@ class SeeResult(tuple):
                              subsequent_indent=indent)
 
 
+# Get all the 'is' functions from the inspect module.
+INSPECT_FUNCS = tuple((name, getattr(inspect, name))
+                      for name in dir(inspect) if name.startswith('is'))
+
+
 def see(obj=DEFAULT_ARG, pattern=None, r=None):
     """
     Inspect an object. Like the ``dir()`` builtin, but easier on the eyes.
@@ -94,6 +99,11 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
     attrs = dir(obj)
 
     if not use_locals:
+
+        for name, func in INSPECT_FUNCS:
+            if func(obj):
+                actions.append(name)
+
         for feature in FEATURES:
             if feature.match(obj, attrs):
                 actions.append(feature.symbol)
