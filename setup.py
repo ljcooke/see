@@ -8,13 +8,13 @@ tests_require = [
 ]
 
 setup(name='see',
-      version='1.3.2',
+      version='2.0.0a0',
       description='dir for humans',
       author='Liam Cooke',
       author_email='see@araile.com',
       license='BSD License',
       url='https://araile.github.io/see/',
-      py_modules=['see'],
+      packages=['see'],
       install_requires=[],
       test_suite='tests',
       tests_require=[lib for lib in tests_require if lib],

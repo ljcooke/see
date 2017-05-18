@@ -1,6 +1,5 @@
-#!/usr/bin/env python
 """
-Unit tests for getting information about the terminal.
+Unit tests for getting the terminal width.
 
 There are separate test cases to simulate unsupported environments (not
 Unixlike or Windows), where information about the terminal is not easily
@@ -28,6 +27,7 @@ except ImportError:
     import __builtin__ as builtins  # Python 2
 
 import see
+from see import term
 
 
 MOCK_EXCLUDE_MODULES = (
@@ -62,29 +62,31 @@ class TestSupportedTerminal(unittest.TestCase):
 
     def test_import_success(self):
         if self.windows:
-            self.assertIsNone(see.fcntl)
-            self.assertIsNone(see.termios)
-            self.assertIsNotNone(see.windll)
-            self.assertIsNotNone(see.create_string_buffer)
+            self.assertIsNone(term.fcntl)
+            self.assertIsNone(term.termios)
+            self.assertIsNotNone(term.windll)
+            self.assertIsNotNone(term.create_string_buffer)
         else:
-            self.assertIsNotNone(see.fcntl)
-            self.assertIsNotNone(see.termios)
-            self.assertIsNone(see.windll)
-            self.assertIsNone(see.create_string_buffer)
+            self.assertIsNotNone(term.fcntl)
+            self.assertIsNotNone(term.termios)
+            self.assertIsNone(term.windll)
+            self.assertIsNone(term.create_string_buffer)
 
     def test_term_width(self):
-        width = see.term_width()
+        width = term.term_width()
 
         self.assertIsNotNone(width)
+
         # Note: terminal info is not available in Travis
-        #self.assertGreater(width, 0)
+        # self.assertGreater(width, 0)
 
     def test_ioctl_fail(self):
         if self.windows:
             return
 
-        with mock.patch('see.fcntl.ioctl', side_effect=IOError('')) as patch:
-            width = see.term_width()
+        package = 'see.term.fcntl.ioctl'
+        with mock.patch(package, side_effect=IOError('')) as patch:
+            width = term.term_width()
 
             self.assertIsNone(width)
 
@@ -93,7 +95,7 @@ class TestSupportedTerminal(unittest.TestCase):
             self.fail('expected sys.ps1 to be absent during unit testing')
 
         # Arrange
-        sys.ps1 = '>>>>> '
+        sys.ps1 = '[arbitrary prompt string]'
 
         # Act
         out = see.see()
@@ -107,37 +109,33 @@ class TestMockWindowsTerminal(unittest.TestCase):
 
     def setUp(self):
         builtins.__import__ = mock_import
-        reload(see)
+        reload(term)
 
     def tearDown(self):
         builtins.__import__ = REAL_IMPORT
-        reload(see)
+        reload(term)
 
 
 class TestMockUnsupportedTerminal(unittest.TestCase):
 
     def setUp(self):
         builtins.__import__ = mock_import
-        reload(see)
+        reload(term)
 
     def tearDown(self):
         builtins.__import__ = REAL_IMPORT
-        reload(see)
+        reload(term)
 
     def test_import_fail(self):
-        self.assertIsNone(see.fcntl)
-        self.assertIsNone(see.termios)
+        self.assertIsNone(term.fcntl)
+        self.assertIsNone(term.termios)
 
     def test_term_width_not_available(self):
-        term_width = see.term_width()
+        term_width = term.term_width()
 
         self.assertIsNone(term_width)
 
     def test_default_line_width(self):
-        line_width = see.line_width()
+        line_width = term.line_width()
 
-        self.assertEqual(line_width, see.DEFAULT_LINE_WIDTH)
-
-
-if __name__ == '__main__':
-    unittest.main()
+        self.assertEqual(line_width, term.DEFAULT_LINE_WIDTH)

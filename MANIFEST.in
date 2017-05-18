@@ -1,1 +1,2 @@
-include see.py setup.py tests/test_*.py README.rst CHANGELOG.rst AUTHORS.rst CODE_OF_CONDUCT.md LICENSE
+include LICENSE
+include *.rst *.md

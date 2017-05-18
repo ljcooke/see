@@ -15,8 +15,7 @@ you what you can do with things.
 
 Supports Python 2.6+ and 3.3+. Also works in iPython and PyPy.
 
-License
-    BSD (see the *LICENSE* file)
+Licensed under the BSD 3-Clause License. See the *LICENSE* file.
 
 Contributions are welcome. See the *CODE_OF_CONDUCT.md*, *CHANGELOG.rst*
 and *AUTHORS.rst* files.
@@ -27,7 +26,7 @@ Install
 
 To install **see**, run::
 
-    $ pip install --upgrade see
+    $ pip3 install --upgrade see
 
 
 Usage
