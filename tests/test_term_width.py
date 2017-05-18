@@ -76,14 +76,16 @@ class TestSupportedTerminal(unittest.TestCase):
         width = term.term_width()
 
         self.assertIsNotNone(width)
+
         # Note: terminal info is not available in Travis
-        #self.assertGreater(width, 0)
+        # self.assertGreater(width, 0)
 
     def test_ioctl_fail(self):
         if self.windows:
             return
 
-        with mock.patch('see.term.fcntl.ioctl', side_effect=IOError('')) as patch:
+        package = 'see.term.fcntl.ioctl'
+        with mock.patch(package, side_effect=IOError('')) as patch:
             width = term.term_width()
 
             self.assertIsNone(width)
@@ -93,7 +95,7 @@ class TestSupportedTerminal(unittest.TestCase):
             self.fail('expected sys.ps1 to be absent during unit testing')
 
         # Arrange
-        sys.ps1 = '>>>>> '
+        sys.ps1 = '[arbitrary prompt string]'
 
         # Act
         out = see.see()
