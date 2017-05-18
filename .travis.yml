@@ -43,5 +43,5 @@ after_success:
 after_script:
  - coverage report
  - pip install pep8 pyflakes
- - pyflakes *.py | tee >(wc -l)
- - pep8 --statistics --count *.py
+ - pyflakes see | tee >(wc -l)
+ - pep8 --statistics --count see
