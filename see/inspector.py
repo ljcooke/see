@@ -24,6 +24,7 @@ class DefaultArg(object):
     def __repr__(self):
         return 'anything'
 
+
 DEFAULT_ARG = DefaultArg()
 
 
@@ -41,16 +42,17 @@ class SeeResult(tuple):
     """
     Tuple-like output with a pretty string representation.
     """
-    def __new__(self, actions=None):
-        return tuple.__new__(self, actions or [])
+    def __new__(cls, actions=None):
+        return tuple.__new__(cls, actions or [])
 
     def __repr__(self):
         col_width = output.column_width(self)
         padded = [output.justify_token(tok, col_width) for tok in self]
 
-        if hasattr(sys, 'ps1'):
+        ps1 = getattr(sys, 'ps1', None)
+        if ps1:
             get_len = output.display_len if PY3 else len
-            indent = ' ' * get_len(sys.ps1)
+            indent = ' ' * get_len(ps1)
         else:
             indent = '    '
 
