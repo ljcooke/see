@@ -58,7 +58,7 @@ class Feature(object):
 
     def __init__(self, symbol, attrs=None):
         self.symbol = symbol
-        self.attrs = compact(set, attrs)
+        self.attrs = set(compact(attrs))
 
     def match(self, obj, attrs):
         """
@@ -82,7 +82,7 @@ class HelpFeature(Feature):
             return lstrip and any(lstrip())
 
 
-FEATURES = compact(tuple, (
+FEATURES = compact((
 
     # -------------------------------------------------------------------------
     # Callable
