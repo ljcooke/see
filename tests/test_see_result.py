@@ -88,7 +88,3 @@ class TestSeeResult(unittest.TestCase):
 
         self.check_ops('float literal', lit_ops, lit_see)
         self.check_ops('float object', obj_ops, obj_see)
-
-
-if __name__ == '__main__':
-    unittest.main()

@@ -71,7 +71,3 @@ class TestSeeUnicode(unittest.TestCase):
         self.assertEqual(justify_cyrillic, justify_ascii)
         self.assertEqual(justify_cjk, justify_ascii - diff_cjk)
         self.assertEqual(justify_combo, justify_ascii - diff_combo)
-
-
-if __name__ == '__main__':
-    unittest.main()

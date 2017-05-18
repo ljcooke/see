@@ -25,7 +25,3 @@ class TestTerm(unittest.TestCase):
         self.assertIsInstance(width, int)
         self.assertEqual(width, 1)
         self.assertLessEqual(width_no_args, term.MAX_LINE_WIDTH)
-
-
-if __name__ == '__main__':
-    unittest.main()

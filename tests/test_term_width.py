@@ -137,7 +137,3 @@ class TestMockUnsupportedTerminal(unittest.TestCase):
         line_width = term.line_width()
 
         self.assertEqual(line_width, term.DEFAULT_LINE_WIDTH)
-
-
-if __name__ == '__main__':
-    unittest.main()

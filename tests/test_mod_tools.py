@@ -80,7 +80,3 @@ class TestToolsModule(unittest.TestCase):
         self.assertEqual(out_wildcard, ("george",))
         self.assertEqual(out_single, ("helen",))
         self.assertEqual(out_partial, ())
-
-
-if __name__ == '__main__':
-    unittest.main()

@@ -123,7 +123,3 @@ class TestSee(unittest.TestCase):
         # Assert
         self.assertTrue('help()' in out_help)
         self.assertFalse('help()' in out_nohelp)
-
-
-if __name__ == '__main__':
-    unittest.main()
