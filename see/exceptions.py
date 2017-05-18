@@ -7,6 +7,7 @@ https://araile.github.io/see/
 
 """
 
+
 class SeeError(Exception):
     """
     Generic see exception.

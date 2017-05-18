@@ -15,15 +15,21 @@ from .exceptions import SeeError
 from .features import FEATURES, PY3
 
 
-class UseLocalScope(object):
-
+class LocalScope(object):
+    """
+    Local scope proxy object.
+    """
     def __repr__(self):
         return 'anything'
 
-    def update(self, frame=None):
-        self.__dict__ = frame.f_back.f_locals
+    def _update(self, frame=None):
+        """
+        Replace this object's namespace with the local namespace of a given
+        stack frame.
+        """
+        self.__dict__ = frame.f_locals
 
-LOCALS = UseLocalScope()
+LOCALS = LocalScope()
 
 
 class SeeResult(tuple):
@@ -73,7 +79,8 @@ def see(obj=LOCALS, pattern=None, r=None):
     """
     use_locals = obj is LOCALS
     if use_locals:
-        LOCALS.update(inspect.currentframe())
+        # Get the local scope from the caller's stack frame.
+        LOCALS._update(inspect.currentframe().f_back)
 
     actions = []
     attrs = dir(obj)
