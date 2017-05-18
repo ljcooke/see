@@ -88,3 +88,13 @@ class TestSeeResult(unittest.TestCase):
 
         self.check_ops('float literal', lit_ops, lit_see)
         self.check_ops('float object', obj_ops, obj_see)
+
+    def test_isfunction(self):
+
+        def a_function():
+            pass
+
+        output = see.see(a_function)
+
+        self.assertIn('isfunction', output)
+        self.assertIn('()', output)
