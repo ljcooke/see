@@ -6,6 +6,7 @@ test:
 .PHONY: coverage
 coverage:
 	coverage run --source=see setup.py test
+	coverage report
 	coverage html
 	pyflakes *.py
 	pep8 --statistics --count *.py
