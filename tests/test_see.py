@@ -42,7 +42,7 @@ class TestSee(unittest.TestCase):
     def test_see_with_no_args(self):
         # Act
         out = see.see()
-        default_arg = see.inspector.LOCALS
+        default_arg = see.inspector.DEFAULT_ARG
 
         # Assert
         self.assertIsInstance(out, see.inspector.SeeResult)

@@ -1,5 +1,5 @@
 """
-see.see
+see.inspector
 Object inspector
 
 Copyright (c) 2009-2017 Liam Cooke
@@ -15,28 +15,32 @@ from .exceptions import SeeError
 from .features import FEATURES, PY3
 
 
-class LocalScope(object):
+class DefaultArg(object):
     """
-    Local scope proxy object.
+    An object to use as the default argument to ``see``. This allows for
+    a distinction between calling ``see()`` without arguments and calling it
+    with a falsey argument like ``see(None)``.
     """
     def __repr__(self):
         return 'anything'
 
-    def _update(self, frame=None):
-        """
-        Replace this object's namespace with the local namespace of a given
-        stack frame.
-        """
-        self.__dict__ = frame.f_locals
+DEFAULT_ARG = DefaultArg()
 
-LOCALS = LocalScope()
+
+class Namespace(object):
+    """
+    An object that provides attribute access to its namespace.
+
+    See also: ``types.SimpleNamespace`` in Python 3.
+    """
+    def __init__(self, namespace):
+        self.__dict__.update(namespace)
 
 
 class SeeResult(tuple):
     """
     Tuple-like output with a pretty string representation.
     """
-
     def __new__(self, actions=None):
         return tuple.__new__(self, actions or [])
 
@@ -55,7 +59,7 @@ class SeeResult(tuple):
                              subsequent_indent=indent)
 
 
-def see(obj=LOCALS, pattern=None, r=None):
+def see(obj=DEFAULT_ARG, pattern=None, r=None):
     """
     Inspect an object. Like the ``dir()`` builtin, but easier on the eyes.
 
@@ -77,10 +81,12 @@ def see(obj=LOCALS, pattern=None, r=None):
         ?       raised an exception
 
     """
-    use_locals = obj is LOCALS
+    use_locals = obj is DEFAULT_ARG
+
     if use_locals:
         # Get the local scope from the caller's stack frame.
-        LOCALS._update(inspect.currentframe().f_back)
+        # Typically this is the scope of an interactive Python session.
+        obj = Namespace(inspect.currentframe().f_back.f_locals)
 
     actions = []
     attrs = dir(obj)

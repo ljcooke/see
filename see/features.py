@@ -58,7 +58,6 @@ class Feature(object):
     """
 
     def __init__(self, symbol, attrs=None):
-        super(Feature, self).__init__()
         self.symbol = symbol
         self.attrs = compact(set, attrs)
 
