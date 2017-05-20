@@ -101,7 +101,12 @@ html_theme_options = {
     #'canonical_url': '',
 
     'fixed_sidebar': True,
+
+    'font_family': '-apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Helvetica", sans-serif',
 }
+
+html_theme_options['caption_font_family'] = html_theme_options['font_family']
+html_theme_options['head_font_family'] = html_theme_options['font_family']
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

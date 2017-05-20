@@ -20,14 +20,14 @@ Release v\ |release|.
 .. image:: https://coveralls.io/repos/github/araile/see/badge.svg?branch=develop
     :target: https://coveralls.io/github/araile/see?branch=develop
 
-**see** is a friendly alternative to the ``dir`` function in Python.
+**see** is an alternative to ``dir()`` in Python.
 It shows you a summary of what you can do with an object.
 
-Supports Python 2.6+ and 3.3+. Also works in iPython and PyPy.
+To get started, see the :doc:`install` and :doc:`usage` pages.
 
 
-See in action
--------------
+Example
+-------
 
 Compare the following::
 
@@ -63,6 +63,7 @@ Contents
 
    install
    usage
+   startup
    api/index
    license
 
