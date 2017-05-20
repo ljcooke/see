@@ -15,10 +15,19 @@ project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 **Added**
 
+- New API for filtering the output of ``see``. Instead of passing in
+  a ``pattern`` or ``r`` argument, call ``see().match()`` or ``see().re()``
+  respectively.
+
 - Test each of the ``is`` functions from the *inspect* module, such as
   ``isclass`` and ``isgenerator``, and include them in the result.
 
 - Documentation using Sphinx.
+
+**Deprecated**
+
+- Dropped the ``pattern`` and ``r`` arguments. These are still
+  this release (via ``*args`` and ``**kwargs``) but they will be removed
 
 
 v1.3.2_ / 2016-04-30

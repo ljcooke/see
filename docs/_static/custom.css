@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,700');
 
 
+
 html, body, div.body {
     background: #fafafa;
 }
+
 
 
 dl.class,
@@ -28,6 +30,7 @@ dl.exception .property {
 }
 
 
+
 code.descclassname,
 code.descname,
 .sig-paren {
@@ -35,6 +38,18 @@ code.descname,
 }
 
 
+
 pre {
     border-radius: 4px;
+}
+
+
+
+div.admonition {
+    border-radius: 4px;
+}
+
+div.admonition p.admonition-title {
+    font-size: 1em;
+    font-style: italic;
 }

@@ -3,9 +3,10 @@ see: dir for humans.
 
 """
 from .inspector import see
+from .output import SeeResult
 
 
-__all__ = ['see']
+__all__ = ['see', 'SeeResult']
 
 __author__ = 'Liam Cooke'
 __contributors__ = 'See AUTHORS.rst'

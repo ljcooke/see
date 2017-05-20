@@ -45,7 +45,7 @@ class TestSee(unittest.TestCase):
         default_arg = see.inspector.DEFAULT_ARG
 
         # Assert
-        self.assertIsInstance(out, see.inspector.SeeResult)
+        self.assertIsInstance(out, see.output.SeeResult)
         self.assertEqual(repr(default_arg), 'anything')
 
     def test_see_accessor_raises_exception(self):

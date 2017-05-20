@@ -4,9 +4,8 @@ Object inspector.
 """
 import inspect
 import sys
-import textwrap
 
-from . import output, term, tools
+from . import output, tools
 from .exceptions import SeeError
 from .features import FEATURES, PY3
 
@@ -28,33 +27,13 @@ class Namespace(object):
     """
     An object that provides attribute access to its namespace.
 
-    See also: ``types.SimpleNamespace`` in Python 3.
+    See the SimpleNamespace_ class introduced in Python 3.
+
+    .. _SimpleNamespace:  https://
+       docs.python.org/3/library/types.html#types.SimpleNamespace
     """
     def __init__(self, namespace):
         self.__dict__.update(namespace)
-
-
-class SeeResult(tuple):
-    """
-    Tuple-like output with a pretty string representation.
-    """
-    def __new__(cls, actions=None):
-        return tuple.__new__(cls, actions or [])
-
-    def __repr__(self):
-        col_width = output.column_width(self)
-        padded = [output.justify_token(tok, col_width) for tok in self]
-
-        ps1 = getattr(sys, 'ps1', None)
-        if ps1:
-            get_len = output.display_len if PY3 else len
-            indent = ' ' * get_len(ps1)
-        else:
-            indent = '    '
-
-        return textwrap.fill(''.join(padded), term.line_width(),
-                             initial_indent=indent,
-                             subsequent_indent=indent)
 
 
 # Get all the 'is' functions from the inspect module.
@@ -62,71 +41,34 @@ INSPECT_FUNCS = tuple((name, getattr(inspect, name))
                       for name in dir(inspect) if name.startswith('is'))
 
 
-def see(obj=DEFAULT_ARG, pattern=None, r=None):
+def see(obj=DEFAULT_ARG, *args, **kwargs):
     """
-    Inspect an object. Like the ``dir()`` builtin, but easier on the eyes.
+    see(obj=anything)
 
-    Keyword arguments (all optional):
+    Show the features and attributes of an object.
 
-    * ``obj`` -- the object to be inspected. If this is omitted, the objects
-      in the current scope are shown instead.
-
-    * ``pattern`` -- filter the results with a shell-style search pattern
-      (e.g. ``'*len*'``).
-
-    * ``r`` -- filter the results with a regular expression
-      (e.g. ``'get|set'``).
-
-    Some special symbols are included in the output:
-
-    ``()``
-        | Object is a function or may be called like a function.
-        | Example: ``obj()``
-    ``.*``
-        | Object implements ``__getattr__``, so it may allow you to access
-          attributes that are not defined.
-        | Example: ``obj.anything``.
-    ``[]``
-        | Object supports the ``[]`` syntax.
-        | Example: ``obj[index]``
-    ``with``
-        | Object can be used in a ``with`` statement.
-        | Example: ``with obj as target``
-    ``in``
-        | Object supports the ``in`` operator.
-        | Example: ``for item in obj``
-    ``+ - * / // % **``
-        | Object supports these arithmetic operators.
-        | Example: ``obj + 1``
-    ``<< >> & ^ |``
-        | Object supports these bitwise operators.
-        | Example: ``obj << 1``
-    ``+obj -obj``
-        | Object supports the unary arithmetic operators ``+`` (positive)
-          and ``-`` (negative) respectively.
-        | Example: ``+1``, ``-1``
-    ``~``
-        | Object supports the unary bitwise operator ``~`` (invert).
-        | Example: ``~1``
-    ``< <= == != > >=``
-        | Object supports these comparison operators.
-        | Example: ``obj << 1``
-    ``@``
-        | Object supports the ``@`` operator (matrix multiplication),
-          introduced in Python 3.5.
-        | Example: ``obj @ matrix``
-
-    The result of see is displayed neatly in columns in the Python interpreter.
-    This result is a regular Python object however, an instance of the
-    :class:`SeeResult` class, which can be treated as a tuple of strings.
+    This function takes a single argument, ``obj``, which can be of any type.
+    A summary of the object is printed immediately in the Python interpreter.
     For example::
 
-        >>> first_result = see()[0]
+        >>> see([])
+            []            in            +             +=            *
+            *=            <             <=            ==            !=
+            >             >=            dir()         hash()
+            help()        iter()        len()         repr()
+            reversed()    str()         .append()     .clear()
+            .copy()       .count()      .extend()     .index()
+            .insert()     .pop()        .remove()     .reverse()
+            .sort()
 
-        >>> for string in see():
-        ...     print(string)
+    If this function is run without arguments, it will instead list the objects
+    that are available in the current scope. ::
+
+        >>> see()
+            os        random    see()     sys
 
     """
+    arg = obj
     use_locals = obj is DEFAULT_ARG
 
     if use_locals:
@@ -134,18 +76,18 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
         # Typically this is the scope of an interactive Python session.
         obj = Namespace(inspect.currentframe().f_back.f_locals)
 
-    actions = []
+    tokens = []
     attrs = dir(obj)
 
     if not use_locals:
 
         for name, func in INSPECT_FUNCS:
             if func(obj):
-                actions.append(name)
+                tokens.append(name)
 
         for feature in FEATURES:
             if feature.match(obj, attrs):
-                actions.append(feature.symbol)
+                tokens.append(feature.symbol)
 
     for attr in filter(lambda a: not a.startswith('_'), attrs):
         try:
@@ -153,12 +95,22 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
         except (AttributeError, Exception):
             prop = SeeError()
         action = output.display_name(name=attr, obj=prop, local=use_locals)
-        actions.append(action)
+        tokens.append(action)
 
+    # Backwards compatibility:
+    # Filter the output with arguments named pattern and r
+    old_args = len(args)
+    pattern = args[0] if old_args else kwargs.get('pattern', None)
+    regex = args[1] if old_args > 1 else kwargs.get('r', None)
     if pattern is not None:
-        actions = tools.filter_wildcard(actions, pattern)
+        tokens = tools.filter_wildcard(tokens, pattern)
+        sys.stderr.write(
+            'The "pattern" argument is deprecated and will be removed in a '
+            'later release. Please use see(%s).match() now.\n' % repr(arg))
+    if regex is not None:
+        tokens = tools.filter_regex(tokens, regex)
+        sys.stderr.write(
+            'The "r" argument is deprecated and will be removed in a '
+            'later release. Please use see(%s).re() now.\n' % repr(arg))
 
-    if r is not None:
-        actions = tools.filter_regex(actions, r)
-
-    return SeeResult(actions)
+    return output.SeeResult(tokens)

@@ -1,7 +1,7 @@
 # coding: utf-8
 from __future__ import unicode_literals
 """
-Unit tests for the see.output module.
+Unit tests for Unicode issues.
 
 This requires Unicode string literals in Python 2.
 
@@ -11,7 +11,7 @@ try:
 except ImportError:
     import unittest
 
-from see import output
+from see import output, tools
 from see.features import PY3
 
 
@@ -29,10 +29,10 @@ class TestSeeUnicode(unittest.TestCase):
         len_accent = len(char_accent)
         len_combo = len(char_combo)
         len_cjk = len(char_cjk)
-        width_ascii = output.display_len(char_ascii)
-        width_accent = output.display_len(char_accent)
-        width_combo = output.display_len(char_combo)
-        width_cjk = output.display_len(char_cjk)
+        width_ascii = tools.display_len(char_ascii)
+        width_accent = tools.display_len(char_accent)
+        width_combo = tools.display_len(char_combo)
+        width_cjk = tools.display_len(char_cjk)
 
         # Assert
         self.assertEqual(len_ascii, 1)
@@ -54,10 +54,10 @@ class TestSeeUnicode(unittest.TestCase):
         diff_combo = -1 if PY3 else 0
 
         # Act
-        width_ascii = output.display_len(attr_ascii)
-        width_cyrillic = output.display_len(attr_cyrillic)
-        width_cjk = output.display_len(attr_cjk)
-        width_combo = output.display_len(attr_combo)
+        width_ascii = tools.display_len(attr_ascii)
+        width_cyrillic = tools.display_len(attr_cyrillic)
+        width_cjk = tools.display_len(attr_cjk)
+        width_combo = tools.display_len(attr_combo)
         justify_ascii = len(output.justify_token(attr_ascii, 20))
         justify_cyrillic = len(output.justify_token(attr_cyrillic, 20))
         justify_cjk = len(output.justify_token(attr_cjk, 20))

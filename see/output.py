@@ -3,40 +3,108 @@ Manipulating strings for output.
 
 """
 import math
-import unicodedata
+import sys
+import textwrap
 
+from . import term, tools
 from .exceptions import SeeError
 from .features import PY3
 
 
-def char_width(char):
+def filter_regex(names, pattern):
     """
-    Get the display length of a unicode character.
+    Return a tuple of strings that match the regular expression pattern.
     """
-    if ord(char) < 128:
-        return 1
-    elif unicodedata.east_asian_width(char) in ('F', 'W'):
-        return 2
-    elif unicodedata.category(char) in ('Mn',):
-        return 0
-    else:
-        return 1
+    pattern = re.compile(pattern)
+
+    def match(name, fn=pattern.search):
+        return fn(name) is not None
+
+    return tuple(filter(match, names))
 
 
-def display_len(text):
+def filter_wildcard(names, pattern):
     """
-    Get the display length of a string. This can differ from the character
-    length if the string contains wide characters.
+    Return a tuple of strings that match a shell-style pattern.
     """
-    text = unicodedata.normalize('NFD', text)
-    return sum(char_width(char) for char in text)
+    def match(name, fn=fnmatch.fnmatch, pattern=pattern):
+        return fn(name, pattern)
+
+    return tuple(filter(match, names))
+
+
+class SeeResult(object):
+    """
+    The output of the :func:`see` function.
+
+    If there are too many results, you can filter them using the
+    :func:`match` and :func:`re` functions.
+
+    This acts like a tuple of strings, so you can iterate over the results.
+    results. For example::
+
+        >>> first_result = see()[0]
+
+        >>> for string in see():
+        ...     print(string)
+
+    """
+    def __init__(self, tokens):
+        self._tokens = tuple(tokens)
+
+    def __repr__(self):
+        col_width = column_width(self)
+        padded = [justify_token(tok, col_width) for tok in self]
+
+        ps1 = getattr(sys, 'ps1', None)
+        if ps1:
+            get_len = tools.display_len if PY3 else len
+            indent = ' ' * get_len(ps1)
+        else:
+            indent = '    '
+
+        return textwrap.fill(''.join(padded), term.line_width(),
+                             initial_indent=indent,
+                             subsequent_indent=indent)
+
+    def __iter__(self):
+        return iter(self._tokens)
+
+    def __len__(self):
+        return len(self._tokens)
+
+    def __getitem__(self, index):
+        return self._tokens[index]
+
+    def match(self, pattern):
+        """
+        Filter the result using a shell-style wildcard pattern. ::
+
+            >>> see([]).glob('*op*')
+                .copy()    .pop()
+
+        See fnmatch_ in the Python documentation.
+
+        .. _fnmatch: https://docs.python.org/3/library/fnmatch.html
+        """
+        return SeeResult(tools.filter_wildcard(self, pattern))
+
+    def re(self, pattern):
+        """
+        Filter the result using a regular expression. ::
+
+            >>> see([]).re('[aeiou]{2}')
+                .clear()    .count()
+
+        """
+        return SeeResult(tools.filter_regex(self, pattern))
 
 
 def column_width(tokens):
     """
     Return a suitable column width to display one or more strings.
     """
-    get_len = display_len if PY3 else len
+    get_len = tools.display_len if PY3 else len
     lens = sorted(map(get_len, tokens or [])) or [0]
     width = lens[-1]
 
@@ -53,7 +121,7 @@ def justify_token(tok, col_width):
     """
     Justify a string to fill one or more columns.
     """
-    get_len = display_len if PY3 else len
+    get_len = tools.display_len if PY3 else len
     tok_len = get_len(tok)
     diff_len = tok_len - len(tok) if PY3 else 0
 
