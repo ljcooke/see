@@ -64,7 +64,7 @@ Contents
    install
    usage
    startup
-   api/index
+   dev/index
    license
 
 
