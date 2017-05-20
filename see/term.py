@@ -1,9 +1,5 @@
 """
-see.term
-Terminal info
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+Terminal info.
 
 """
 import platform
@@ -28,7 +24,8 @@ MAX_LINE_WIDTH = 120
 
 def term_width():
     """
-    Return the column width of the terminal, or None if it can't be determined.
+    Return the column width of the terminal, or ``None`` if it can't be
+    determined.
     """
     if fcntl and termios:
         try:
@@ -50,8 +47,8 @@ def term_width():
 
 def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
     """
-    Return the ideal column width for see() output, taking the terminal width
-    into account to avoid wrapping.
+    Return the ideal column width for the output from :func:`see.see`, taking
+    the terminal width into account to avoid wrapping.
     """
     width = term_width()
     if width:  # no-coverage: terminal width not available with Travis CI

@@ -33,8 +33,8 @@ sys.path.insert(0, os.path.abspath('..'))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.doctest',
     'sphinx.ext.coverage',
+    'sphinx.ext.doctest',
     'sphinx.ext.githubpages',
 ]
 
@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'see'
-copyright = '2009-2017, Liam Cooke'
+copyright = '2009–2017, Liam Cooke'
 author = 'Liam Cooke'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -100,14 +100,24 @@ html_theme_options = {
     # This value must end with a trailing slash.
     #'canonical_url': '',
 
-    'github_user': 'araile',
-    'github_repo': 'see',
+    'fixed_sidebar': True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
+html_sidebars = {
+    '**': [
+        'about.html',
+        'navigation.html',
+        'relations.html',
+        'searchbox.html',
+        'donate.html',
+    ],
+}
 
 
 # -- Options for HTMLHelp output ------------------------------------------

@@ -1,9 +1,5 @@
 """
-see.output
-Manipulating strings for output
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+Manipulating strings for output.
 
 """
 import math
@@ -74,10 +70,12 @@ def display_name(name, obj, local):
     """
     Get the display name of an object.
 
-    Keyword arguments:
-    name -- the name of the object as a string
-    obj -- the object itself
-    local -- whether the object is in local scope or owned by an object
+    Keyword arguments (all required):
+
+    * ``name`` -- the name of the object as a string.
+    * ``obj`` -- the object itself.
+    * ``local`` -- a boolean value indicating whether the object is in local
+      scope or owned by an object.
 
     """
     prefix = '' if local else '.'

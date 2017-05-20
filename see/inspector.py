@@ -1,9 +1,5 @@
 """
-see.inspector
-Object inspector
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+Object inspector.
 
 """
 import inspect
@@ -17,9 +13,9 @@ from .features import FEATURES, PY3
 
 class DefaultArg(object):
     """
-    An object to use as the default argument to ``see``. This allows for
-    a distinction between calling ``see()`` without arguments and calling it
-    with a falsey argument like ``see(None)``.
+    A global instance of this class is used as the default argument to
+    :func:`see.see`. This allows for a distinction between calling ``see()``
+    without arguments and calling it with a falsey argument like ``see(None)``.
     """
     def __repr__(self):
         return 'anything'
@@ -72,8 +68,8 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
 
     Keyword arguments (all optional):
 
-    * ``obj`` -- the object to be inspected. If this is omitted, the objects in
-      the current scope are shown instead.
+    * ``obj`` -- the object to be inspected. If this is omitted, the objects
+      in the current scope are shown instead.
 
     * ``pattern`` -- filter the results with a shell-style search pattern
       (e.g. ``'*len*'``).
@@ -81,18 +77,18 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
     * ``r`` -- filter the results with a regular expression
       (e.g. ``'get|set'``).
 
-    Some special symbols are included in the output from ``see``:
+    Some special symbols are included in the output:
 
     ``.*``
-        implements obj.anything
+        implements ``obj.anything``
     ``[]``
-        implements obj[key]
+        implements ``obj[key]``
     ``in``
-        implements membership tests (e.g. x in obj)
+        implements membership tests (e.g. ``x in obj``)
     ``+obj``
-        unary positive operator (e.g. +2)
+        unary positive operator (e.g. ``+2``)
     ``-obj``
-        unary negative operator (e.g. -2)
+        unary negative operator (e.g. ``-2``)
 
     """
     use_locals = obj is DEFAULT_ARG

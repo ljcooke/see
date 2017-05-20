@@ -1,12 +1,5 @@
 """
-see
-dir for humans
-
-    >>> from see import see
-    >>> help(see)
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+see: dir for humans.
 
 """
 from .inspector import see

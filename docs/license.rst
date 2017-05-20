@@ -3,7 +3,7 @@ Licensing Information
 
 **see** is licensed under the BSD 3-Clause License.
 
-Copyright (c) 2009-2017, Liam Cooke.
+Copyright (c) 2009--2017, Liam Cooke.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

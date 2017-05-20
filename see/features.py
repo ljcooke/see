@@ -1,21 +1,7 @@
 """
-see.features
-Python feature definitions
+Python feature definitions.
 
-Relevant Python changes
------------------------
-
-  * 3.5
-    - Introduced the ``@`` operator and ``__matmul__``, ``__imatmul__``
-    - Introduced ``__await__``, ``__aiter__``, ``__anext__``, ``__aenter__``,
-      ``__aexit__`` (see PEP 492)
-
-  * 3.0-3.3
-    - Dropped ``__cmp__``
-    - Dropped ``__div__``
-
-Reference links
----------------
+Reference links:
 
   * `What's New in Python
     <https://docs.python.org/3/whatsnew/index.html>`__
@@ -26,10 +12,20 @@ Reference links
   * `10.3 Standard operators as functions
     <https://docs.python.org/3/library/operator.html>`__
 
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
-
 """
+# -----------------------------------------------------------------------------
+# Relevant Python changes
+#
+# 3.5
+# - Introduced the @ operator and __matmul__, __imatmul__
+# - Introduced __await__, __aiter__, __anext__, __aenter__, __aexit__
+#   (see PEP 492)
+#
+# 3.0-3.3
+# - Dropped __cmp__
+# - Dropped __div__
+# -----------------------------------------------------------------------------
+
 import sys
 
 from .tools import compact
@@ -50,7 +46,12 @@ class Feature(object):
     """
     Definition of a Python feature that an object might support (such as
     performing an arithmetic operation or returning a length), and a symbol
-    to indicate this in the output from ``see``.
+    to indicate this in the output from :func:`see.see`.
+
+    >>> add_feature = Feature(symbol='+', attrs=[
+    ...     '__add__',
+    ...     '__radd__',
+    ... ])
 
     Support for this feature is detected by checking for one or more special
     attributes on the object.

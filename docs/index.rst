@@ -12,7 +12,6 @@ see: dir for humans
 
 .. module:: see
 
-
 Release v\ |release|.
 
 .. image:: https://travis-ci.org/araile/see.svg?branch=develop
@@ -63,7 +62,8 @@ Contents
    :maxdepth: 2
 
    install
-   api
+   usage
+   api/index
    license
 
 
