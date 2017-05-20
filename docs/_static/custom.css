@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,700');
+
+html, body, div.body {
+    background: #fafafa;
+}
+
+dl.class,
+dl.exception,
+dl.function {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    margin-top: 1.5em;
+    padding: 1em 1em 0.25em;
+}
+
+dl.class {
+    border-color: #b8c3ff;
+}
+dl.exception {
+    border-color: #ff8b9c;
+}
+
+pre {
+    border-radius: 4px;
+}

@@ -1,9 +1,5 @@
 """
-see.tools
-Filtering and other tasks
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+Filtering and other tasks.
 
 """
 import fnmatch
@@ -17,23 +13,23 @@ def compact(objects):
     return tuple(filter(bool, objects or []))
 
 
-def filter_regex(names, pat):
+def filter_regex(names, pattern):
     """
     Return a tuple of strings that match the regular expression pattern.
     """
-    pat = re.compile(pat)
+    pattern = re.compile(pattern)
 
-    def match(name, fn=pat.search):
+    def match(name, fn=pattern.search):
         return fn(name) is not None
 
     return tuple(filter(match, names))
 
 
-def filter_wildcard(names, pat):
+def filter_wildcard(names, pattern):
     """
     Return a tuple of strings that match a shell-style pattern.
     """
-    def match(name, fn=fnmatch.fnmatch, pat=pat):
-        return fn(name, pat)
+    def match(name, fn=fnmatch.fnmatch, pattern=pattern):
+        return fn(name, pattern)
 
     return tuple(filter(match, names))

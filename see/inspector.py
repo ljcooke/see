@@ -1,9 +1,5 @@
 """
-see.inspector
-Object inspector
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+Object inspector.
 
 """
 import inspect
@@ -17,9 +13,9 @@ from .features import FEATURES, PY3
 
 class DefaultArg(object):
     """
-    An object to use as the default argument to ``see``. This allows for
-    a distinction between calling ``see()`` without arguments and calling it
-    with a falsey argument like ``see(None)``.
+    A global instance of this class is used as the default argument to
+    :func:`see.see`. This allows for a distinction between calling ``see()``
+    without arguments and calling it with a falsey argument like ``see(None)``.
     """
     def __repr__(self):
         return 'anything'
@@ -72,20 +68,63 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
 
     Keyword arguments (all optional):
 
-        obj         object to be inspected
-        pattern     shell-style search pattern (e.g. '*len*')
-        r           regular expression
+    * ``obj`` -- the object to be inspected. If this is omitted, the objects
+      in the current scope are shown instead.
 
-    If obj is omitted, objects in the current scope are listed instead.
+    * ``pattern`` -- filter the results with a shell-style search pattern
+      (e.g. ``'*len*'``).
 
-    Some unique symbols are used::
+    * ``r`` -- filter the results with a regular expression
+      (e.g. ``'get|set'``).
 
-        .*      implements obj.anything
-        []      implements obj[key]
-        in      implements membership tests (e.g. x in obj)
-        +obj    unary positive operator (e.g. +2)
-        -obj    unary negative operator (e.g. -2)
-        ?       raised an exception
+    Some special symbols are included in the output:
+
+    ``()``
+        | Object is a function or may be called like a function.
+        | Example: ``obj()``
+    ``.*``
+        | Object implements ``__getattr__``, so it may allow you to access
+          attributes that are not defined.
+        | Example: ``obj.anything``.
+    ``[]``
+        | Object supports the ``[]`` syntax.
+        | Example: ``obj[index]``
+    ``with``
+        | Object can be used in a ``with`` statement.
+        | Example: ``with obj as target``
+    ``in``
+        | Object supports the ``in`` operator.
+        | Example: ``for item in obj``
+    ``+ - * / // % **``
+        | Object supports these arithmetic operators.
+        | Example: ``obj + 1``
+    ``<< >> & ^ |``
+        | Object supports these bitwise operators.
+        | Example: ``obj << 1``
+    ``+obj -obj``
+        | Object supports the unary arithmetic operators ``+`` (positive)
+          and ``-`` (negative) respectively.
+        | Example: ``+1``, ``-1``
+    ``~``
+        | Object supports the unary bitwise operator ``~`` (invert).
+        | Example: ``~1``
+    ``< <= == != > >=``
+        | Object supports these comparison operators.
+        | Example: ``obj << 1``
+    ``@``
+        | Object supports the ``@`` operator (matrix multiplication),
+          introduced in Python 3.5.
+        | Example: ``obj @ matrix``
+
+    The result of see is displayed neatly in columns in the Python interpreter.
+    This result is a regular Python object however, an instance of the
+    :class:`SeeResult` class, which can be treated as a tuple of strings.
+    For example::
+
+        >>> first_result = see()[0]
+
+        >>> for string in see():
+        ...     print(string)
 
     """
     use_locals = obj is DEFAULT_ARG
