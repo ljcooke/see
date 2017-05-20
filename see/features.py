@@ -6,10 +6,10 @@ Reference links:
   * `What's New in Python
     <https://docs.python.org/3/whatsnew/index.html>`__
 
-  * `3. Data model
+  * `Data model
     <https://docs.python.org/3/reference/datamodel.html>`__
 
-  * `10.3 Standard operators as functions
+  * `Standard operators as functions
     <https://docs.python.org/3/library/operator.html>`__
 
 """

@@ -17,11 +17,10 @@ see: dir for humans
 
 .. see/docs <summary>
 
-**see** is an alternative to Python's ``dir()``.
-It shows you a neat summary of what you can do with an object.
-Use it to debug your code or learn new APIs.
+**see** is a legible alternative to ``dir()``, for Python 2.6+ and 3.3+.
 
-For Python 2.6+ and 3.3+.
+It neatly summarises what you can do with an object.
+Use it to inspect your code or learn new APIs.
 
 .. see/docs </summary>
 
@@ -33,36 +32,40 @@ Example
 
 .. see/docs <example>
 
-Try inspecting a list with ``see``::
+Try inspecting an object with ``see``::
 
-    >>> see(list)
-        []            in            +             +=            *
-        *=            <             <=            ==            !=
-        >             >=            dir()         hash()
-        help()        iter()        len()         repr()
-        reversed()    str()         .append()     .clear()
-        .copy()       .count()      .extend()     .index()
-        .insert()     .pop()        .remove()     .reverse()
-        .sort()
+    >>> see(timedelta)
+        isclass             +                   -
+        *                   /                   //
+        %                   +obj                -obj
+        <                   <=                  ==
+        !=                  >                   >=
+        abs()               bool()              dir()
+        divmod()            hash()              help()
+        repr()              str()               .days
+        .max                .microseconds       .min
+        .resolution         .seconds            .total_seconds()
 
-Some of the information revealed here:
+This reveals some information about the ``timedelta`` object, such as:
 
-* You can use the ``in`` keyword with a list.
-* You can get the length of a list with ``len()``.
-* The list has a ``count`` attribute that is a function.
+* The object is a class.
+* You can add something to it with the ``+`` operator.
+* It has a ``seconds`` attribute.
+* It has a ``total_seconds`` attribute which is a function.
 
 Compare with the output of ``dir``::
 
-    >>> dir(list)
-    ['__add__', '__class__', '__contains__', '__delattr__', '__delit
-    em__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '
-    __getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd_
-    _', '__imul__', '__init__', '__init_subclass__', '__iter__', '__
-    le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__r
-    educe__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__
-    ', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__sub
-    classhook__', 'append', 'clear', 'copy', 'count', 'extend', 'ind
-    ex', 'insert', 'pop', 'remove', 'reverse', 'sort']
+    >>> dir(timedelta)
+    ['__abs__', '__add__', '__bool__', '__class__', '__delattr__', '
+    __dir__', '__divmod__', '__doc__', '__eq__', '__floordiv__', '__
+    format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '
+    __init__', '__init_subclass__', '__le__', '__lt__', '__mod__', '
+    __mul__', '__ne__', '__neg__', '__new__', '__pos__', '__radd__',
+     '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rf
+    loordiv__', '__rmod__', '__rmul__', '__rsub__', '__rtruediv__',
+    '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclassho
+    ok__', '__truediv__', 'days', 'max', 'microseconds', 'min', 'res
+    olution', 'seconds', 'total_seconds']
 
 .. see/docs </example>
 

@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,700');
 
+
 html, body, div.body {
     background: #fafafa;
 }
+
 
 dl.class,
 dl.exception,
@@ -14,12 +16,24 @@ dl.function {
     padding: 1em 1em 0.25em;
 }
 
-dl.class {
-    border-color: #b8c3ff;
-}
+dl.class,
 dl.exception {
-    border-color: #ff8b9c;
+    border-width: 2px;
 }
+
+dl.class .property,
+dl.exception .property {
+    font-style: inherit;
+    font-weight: bold;
+}
+
+
+code.descclassname,
+code.descname,
+.sig-paren {
+    font-size: 1em;
+}
+
 
 pre {
     border-radius: 4px;

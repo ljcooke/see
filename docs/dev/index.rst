@@ -1,13 +1,13 @@
 .. API docs, modified from the output of:
    sphinx-apidoc -e -M -f -o docs/api see
 
-Developer Reference
-===================
+Contributing
+============
 
 Get the source code
 -------------------
 
-The source code is maintained
+The :index:`source code` is maintained
 `on GitHub <https://github.com/araile/see>`_.
 Contributions are welcome.
 

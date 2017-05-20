@@ -1,3 +1,6 @@
+.. index::
+   single: Licensing Information
+
 Licensing Information
 =====================
 

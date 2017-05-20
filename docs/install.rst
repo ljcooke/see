@@ -1,3 +1,6 @@
+.. index::
+   single: Installation
+
 Installation
 ============
 
@@ -34,5 +37,9 @@ importing the ``see`` function:
    >>> from see import see
    >>> see('hello')
 
+.. see/docs <use-startup>
+
 You can use a :doc:`startup file <startup>` to ensure that ``see`` is always
 imported when you start Python.
+
+.. see/docs </use-startup>

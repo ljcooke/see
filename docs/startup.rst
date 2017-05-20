@@ -1,3 +1,6 @@
+.. index::
+   single: Startup File
+
 Startup File
 ============
 

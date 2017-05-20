@@ -1,3 +1,6 @@
+.. index::
+   single: Usage
+
 Usage
 =====
 
@@ -12,8 +15,9 @@ In the Python interpreter, run::
 
     >>> from see import see
 
-You can use a :doc:`startup file <startup>` to ensure that ``see`` is always
-imported when you start Python.
+.. include:: install.rst
+   :start-after: see/docs <use-startup>
+   :end-before: see/docs </use-startup>
 
 
 Function reference
