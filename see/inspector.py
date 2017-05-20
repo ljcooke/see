@@ -79,16 +79,40 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
 
     Some special symbols are included in the output:
 
+    ``()``
+        | Object is a function or may be called like a function.
+        | Example: ``obj()``
     ``.*``
-        implements ``obj.anything``
+        | Object implements ``__getattr__``, so it may allow you to access
+          attributes that are not defined.
+        | Example: ``obj.anything``.
     ``[]``
-        implements ``obj[key]``
+        | Object supports the ``[]`` syntax.
+        | Example: ``obj[index]``
+    ``with``
+        | Object can be used in a ``with`` statement.
+        | Example: ``with obj as target``
     ``in``
-        implements membership tests (e.g. ``x in obj``)
-    ``+obj``
-        unary positive operator (e.g. ``+2``)
-    ``-obj``
-        unary negative operator (e.g. ``-2``)
+        | Object supports the ``in`` operator.
+        | Example: ``for item in obj``
+    ``+``, ``-``, ``*``, etc.
+        | Object supports these arithmetic operations.
+        | Example: ``obj1 + obj2``
+    ``+obj``, ``-obj``
+        | Object supports the unary arithmetic operators ``+`` (positive)
+          and ``-`` (negative) respectively.
+        | Example: ``+1``, ``-1``
+    ``~``
+        | Object supports the bitwise invert operator ``~``.
+        | Example: ``~1``
+
+    The result is displayed in columns of text in the interpreter. It can also
+    be accessed as a tuple of strings. For example::
+
+        >>> result = see(obj)
+        >>> print(result[0])  # print the first entry
+        >>> for string in result:  # iterate over the results
+        ...     print(string)
 
     """
     use_locals = obj is DEFAULT_ARG
