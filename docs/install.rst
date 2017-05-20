@@ -33,3 +33,6 @@ importing the ``see`` function:
 
    >>> from see import see
    >>> see('hello')
+
+You can use a :doc:`startup file <startup>` to ensure that ``see`` is always
+imported when you start Python.

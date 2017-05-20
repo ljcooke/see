@@ -65,6 +65,7 @@ Contents
    usage
    startup
    dev/index
+   authors
    license
 
 

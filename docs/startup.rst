@@ -1,6 +1,9 @@
 Startup File
 ============
 
+Create a startup file
+---------------------
+
 You can use a Python startup file to ensure that the ``see`` function is
 available every time you run Python. The following example uses a file named
 ``.pythonrc.py`` in the user's home directory:
