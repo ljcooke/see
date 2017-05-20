@@ -72,20 +72,27 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
 
     Keyword arguments (all optional):
 
-        obj         object to be inspected
-        pattern     shell-style search pattern (e.g. '*len*')
-        r           regular expression
+    * ``obj`` -- the object to be inspected. If this is omitted, the objects in
+      the current scope are shown instead.
 
-    If obj is omitted, objects in the current scope are listed instead.
+    * ``pattern`` -- filter the results with a shell-style search pattern
+      (e.g. ``'*len*'``).
 
-    Some unique symbols are used::
+    * ``r`` -- filter the results with a regular expression
+      (e.g. ``'get|set'``).
 
-        .*      implements obj.anything
-        []      implements obj[key]
-        in      implements membership tests (e.g. x in obj)
-        +obj    unary positive operator (e.g. +2)
-        -obj    unary negative operator (e.g. -2)
-        ?       raised an exception
+    Some special symbols are included in the output from ``see``:
+
+    ``.*``
+        implements obj.anything
+    ``[]``
+        implements obj[key]
+    ``in``
+        implements membership tests (e.g. x in obj)
+    ``+obj``
+        unary positive operator (e.g. +2)
+    ``-obj``
+        unary negative operator (e.g. -2)
 
     """
     use_locals = obj is DEFAULT_ARG

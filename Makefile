@@ -17,8 +17,13 @@ lint:
 
 .PHONY: clean
 clean:
-	rm -vrf build ./*.pyc see/*.pyc __pycache__ see/__pycache__ .eggs
+	rm -vrf build docs/_build
+	rm -vrf ./*.pyc see/*.pyc __pycache__ see/__pycache__ .eggs
 
 .PHONY: dist
 dist:
 	python3 setup.py sdist --formats=bztar,gztar,zip
+
+.PHONY: docs
+docs:
+	(cd docs && make html)
