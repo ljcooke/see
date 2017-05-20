@@ -4,8 +4,8 @@
 Developer Reference
 ===================
 
-Source code
------------
+Get the source code
+-------------------
 
 The source code is maintained
 `on GitHub <https://github.com/araile/see>`_.
@@ -14,8 +14,8 @@ The source code is maintained
 * `Code of Conduct <https://github.com/araile/see/blob/develop/CODE_OF_CONDUCT.md>`_
 
 
-Modules
--------
+Module reference
+----------------
 
 .. toctree::
 

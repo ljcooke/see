@@ -7,7 +7,7 @@ Usage
 Importing see
 -------------
 
-The function named ``see`` is all you need to use **see**.
+The function named ``see`` is all you need.
 In the Python interpreter, run::
 
     >>> from see import see

@@ -101,8 +101,16 @@ html_theme_options = {
     #'canonical_url': '',
 
     'fixed_sidebar': True,
+    'show_powered_by': False,
 
-    'font_family': '-apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Helvetica", sans-serif',
+    # Fonts - see _static/custom.css
+    'font_family': '"Ubuntu", -apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Helvetica", sans-serif',
+    'font_size': '1em',
+    'code_font_family': 'Ubuntu Mono, Consolas, Menlo, "Deja Vu Sans Mono", "Bitstream Vera Sans Mono", monospace',
+    'code_font_size': '1em',
+    'body_text': '#333',
+    'footer_text': '#888',
+    'sidebar_text': '#888',
 }
 
 html_theme_options['caption_font_family'] = html_theme_options['font_family']
@@ -123,6 +131,13 @@ html_sidebars = {
         'donate.html',
     ],
 }
+
+# If true, links to the reST sources are added to the pages.
+html_show_sourcelink = False
+
+# Path to custom.css
+html_static_path = ['_static']
+
 
 
 # -- Options for HTMLHelp output ------------------------------------------

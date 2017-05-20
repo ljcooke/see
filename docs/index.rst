@@ -20,7 +20,7 @@ Release v\ |release|.
 .. image:: https://coveralls.io/repos/github/araile/see/badge.svg?branch=develop
     :target: https://coveralls.io/github/araile/see?branch=develop
 
-**see** is an alternative to ``dir()`` in Python.
+**see** is an alternative to Python's ``dir()``.
 It shows you a neat summary of what you can do with an object.
 Use it to debug your code or learn new APIs.
 

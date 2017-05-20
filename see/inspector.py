@@ -95,23 +95,35 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
     ``in``
         | Object supports the ``in`` operator.
         | Example: ``for item in obj``
-    ``+``, ``-``, ``*``, etc.
-        | Object supports these arithmetic operations.
-        | Example: ``obj1 + obj2``
-    ``+obj``, ``-obj``
+    ``+ - * / // % **``
+        | Object supports these arithmetic operators.
+        | Example: ``obj + 1``
+    ``<< >> & ^ |``
+        | Object supports these bitwise operators.
+        | Example: ``obj << 1``
+    ``+obj -obj``
         | Object supports the unary arithmetic operators ``+`` (positive)
           and ``-`` (negative) respectively.
         | Example: ``+1``, ``-1``
     ``~``
-        | Object supports the bitwise invert operator ``~``.
+        | Object supports the unary bitwise operator ``~`` (invert).
         | Example: ``~1``
+    ``< <= == != > >=``
+        | Object supports these comparison operators.
+        | Example: ``obj << 1``
+    ``@``
+        | Object supports the ``@`` operator (matrix multiplication),
+          introduced in Python 3.5.
+        | Example: ``obj @ matrix``
 
-    The result is displayed in columns of text in the interpreter. It can also
-    be accessed as a tuple of strings. For example::
+    The result of see is displayed neatly in columns in the Python interpreter.
+    This result is a regular Python object however, an instance of the
+    :class:`SeeResult` class, which can be treated as a tuple of strings.
+    For example::
 
-        >>> result = see(obj)
-        >>> print(result[0])  # print the first entry
-        >>> for string in result:  # iterate over the results
+        >>> first_result = see()[0]
+
+        >>> for string in see():
         ...     print(string)
 
     """
