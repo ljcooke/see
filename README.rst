@@ -4,87 +4,88 @@ see: dir for humans
 .. image:: https://img.shields.io/pypi/v/see.svg
     :target: https://pypi.python.org/pypi/see
 
+.. see/docs <common-badges>
+
 .. image:: https://travis-ci.org/araile/see.svg?branch=develop
     :target: https://travis-ci.org/araile/see
 
 .. image:: https://coveralls.io/repos/github/araile/see/badge.svg?branch=develop
     :target: https://coveralls.io/github/araile/see?branch=develop
 
-**see** is an alternative to the built-in ``dir`` function in Python. It shows
-you what you can do with things.
-
-Supports Python 2.6+ and 3.3+. Also works in iPython and PyPy.
-
-Licensed under the BSD 3-Clause License. See the *LICENSE* file.
-
-Contributions are welcome. See the *CODE_OF_CONDUCT.md*, *CHANGELOG.rst*
-and *AUTHORS.rst* files.
+.. see/docs </common-badges>
 
 
-Install
+.. see/docs <summary>
+
+**see** is an alternative to Python's ``dir()``.
+It shows you a neat summary of what you can do with an object.
+Use it to debug your code or learn new APIs.
+
+For Python 2.6+ and 3.3+.
+
+.. see/docs </summary>
+
+
+Example
 -------
 
-To install **see**, run::
+.. For examples, use a 64-column terminal and set sys.ps1 = '>>> '
 
-    $ pip3 install --upgrade see
+.. see/docs <example>
 
+Try inspecting a list with ``see``::
 
-Usage
------
+    >>> see(list)
+        []            in            +             +=            *
+        *=            <             <=            ==            !=
+        >             >=            dir()         hash()
+        help()        iter()        len()         repr()
+        reversed()    str()         .append()     .clear()
+        .copy()       .count()      .extend()     .index()
+        .insert()     .pop()        .remove()     .reverse()
+        .sort()
 
-**see** is designed for the interactive Python interpreter. Import the ``see``
-function like so::
+Some of the information revealed here:
 
-    >>> from see import see
+* You can use the ``in`` keyword with a list.
+* You can get the length of a list with ``len()``.
+* The list has a ``count`` attribute that is a function.
 
-Call ``see()`` without arguments to see all objects in the global scope. ::
+Compare with the output of ``dir``::
 
-    >>> foo = 'bar'
-    >>> see()
-        foo      see()
+    >>> dir(list)
+    ['__add__', '__class__', '__contains__', '__delattr__', '__delit
+    em__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '
+    __getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd_
+    _', '__imul__', '__init__', '__init_subclass__', '__iter__', '__
+    le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__r
+    educe__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__
+    ', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__sub
+    classhook__', 'append', 'clear', 'copy', 'count', 'extend', 'ind
+    ex', 'insert', 'pop', 'remove', 'reverse', 'sort']
 
-Call ``see(an_object)`` to see what you can do with ``an_object``. ::
-
-    >>> number = 1
-    >>> see(number)
-        +                -                *                /                //
-        %                **               <<               >>               &
-        ^                |                +obj             -obj             ~
-        <                <=               ==               !=               >
-        >=               abs()            bool()           dir()
-        divmod()         float()          hash()           help()
-        hex()            int()            oct()            repr()
-        round()          str()            .bit_length()    .conjugate()
-        .denominator     .from_bytes()    .imag            .numerator
-        .real            .to_bytes()
-
-    >>> async def hello_world():
-    ...     print("Hello World!")
-    ...
-    >>> see(hello_world)
-        iscoroutinefunction         isfunction    isroutine     ()
-        <             <=            ==            !=            >
-        >=            dir()         hash()        repr()        str()
+.. see/docs </example>
 
 
-Startup
--------
+Documentation
+-------------
 
-You can use a Python startup file to ensure that ``see`` is available every
-time you run Python. The following example uses a startup file named
-``.pythonrc.py`` in the user's home directory:
+Documentation is available at https://araile.github.io/see/
 
-1. Create the Python startup file, if it does not already exist::
+* `Installation <https://araile.github.io/see/install.html>`_
+* `Usage <https://araile.github.io/see/usage.html>`_
+* `Startup File <https://araile.github.io/see/startup.html>`_
+* `Developer Reference <https://araile.github.io/see/dev/index.html>`_
 
-       $ touch ~/.pythonrc.py
 
-2. Open this file in your preferred editor. Add the following line::
+Contributing
+------------
 
-       from see import see
+The source code is maintained
+`on GitHub <https://github.com/araile/see>`_.
+Contributions are welcome.
 
-3. Set the following environment variable (e.g. in ``~/.bashrc`` for Bash)::
-
-       $ export PYTHONSTARTUP="$HOME/.pythonrc.py"
-
-Now you can use ``see`` immediately after running ``python``, without having to
-manually import it.
+* `Change Log <https://github.com/araile/see/blob/develop/CHANGELOG.rst>`_
+* `Code of Conduct <https://github.com/araile/see/blob/develop/CODE_OF_CONDUCT.md>`_
+* `Authors <https://github.com/araile/see/blob/develop/AUTHORS.rst>`_
+* `License <https://github.com/araile/see/blob/develop/LICENSE>`_
