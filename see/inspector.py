@@ -7,7 +7,7 @@ import sys
 
 from . import output, tools
 from .exceptions import SeeError
-from .features import FEATURES, PY3
+from .features import FEATURES
 
 
 class DefaultArg(object):
@@ -40,6 +40,29 @@ INSPECT_FUNCS = tuple((name, getattr(inspect, name))
                       for name in dir(inspect) if name.startswith('is'))
 
 
+def handle_deprecated_args(tokens, args, kwargs):
+    """
+    Backwards compatibility with deprecated arguments ``pattern`` and ``r``.
+    """
+    num_args = len(args)
+    pattern = args[0] if num_args else kwargs.get('pattern', None)
+    regex = args[1] if num_args > 1 else kwargs.get('r', None)
+
+    if pattern is not None:
+        tokens = tools.filter_wildcard(tokens, pattern)
+        sys.stderr.write(
+            'Please use see().match() now. The "pattern" argument is '
+            'deprecated and will be removed in a later release. \n')
+
+    if regex is not None:
+        tokens = tools.filter_regex(tokens, regex)
+        sys.stderr.write(
+            'Please use see().regex() now. The "r" argument is '
+            'deprecated and will be removed in a later release. \n')
+
+    return tokens
+
+
 def see(obj=DEFAULT_ARG, *args, **kwargs):
     """
     see(obj=anything)
@@ -68,7 +91,6 @@ def see(obj=DEFAULT_ARG, *args, **kwargs):
 
     The return value is an instance of :class:`SeeResult`.
     """
-    arg = obj
     use_locals = obj is DEFAULT_ARG
 
     if use_locals:
@@ -92,25 +114,12 @@ def see(obj=DEFAULT_ARG, *args, **kwargs):
     for attr in filter(lambda a: not a.startswith('_'), attrs):
         try:
             prop = getattr(obj, attr)
-        except (AttributeError, Exception):
+        except (AttributeError, Exception):  # pylint: disable=broad-except
             prop = SeeError()
         action = output.display_name(name=attr, obj=prop, local=use_locals)
         tokens.append(action)
 
-    # Backwards compatibility:
-    # Filter the output with arguments named pattern and r
-    old_args = len(args)
-    pattern = args[0] if old_args else kwargs.get('pattern', None)
-    regex = args[1] if old_args > 1 else kwargs.get('r', None)
-    if pattern is not None:
-        tokens = tools.filter_wildcard(tokens, pattern)
-        sys.stderr.write(
-            'Please use see().match() now. The "pattern" argument is '
-            'deprecated and will be removed in a later release. \n')
-    if regex is not None:
-        tokens = tools.filter_regex(tokens, regex)
-        sys.stderr.write(
-            'Please use see().re() now. The "r" argument is '
-            'deprecated and will be removed in a later release. \n')
+    if args or kwargs:
+        tokens = handle_deprecated_args(tokens, args, kwargs)
 
     return output.SeeResult(tokens)

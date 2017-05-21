@@ -43,8 +43,8 @@ def filter_regex(names, pattern):
     """
     pattern = re.compile(pattern)
 
-    def match(name, fn=pattern.search):
-        return fn(name) is not None
+    def match(name, func=pattern.search):
+        return func(name) is not None
 
     return tuple(filter(match, names))
 
@@ -53,7 +53,7 @@ def filter_wildcard(names, pattern):
     """
     Return a tuple of strings that match a shell-style wildcard pattern.
     """
-    def match(name, fn=fnmatch.fnmatch, pattern=pattern):
-        return fn(name, pattern)
+    def match(name, func=fnmatch.fnmatch, pattern=pattern):
+        return func(name, pattern)
 
     return tuple(filter(match, names))

@@ -66,12 +66,12 @@ class TestSeeResultClass(unittest.TestCase):
         self.assertIsInstance(filtered_result, output.SeeResult)
         self.assertEqual(expected, filtered_result)
 
-    def test_re(self):
+    def test_regex(self):
         obj = []
         pattern = '[aeiou]{2}'
         expected = ('.clear()', '.count()') if PY3 else ('.count()',)
 
-        filtered_result = see(obj).re(pattern)
+        filtered_result = see(obj).regex(pattern)
 
         self.assertIsInstance(filtered_result, output.SeeResult)
         self.assertEqual(expected, filtered_result)

@@ -66,6 +66,7 @@ class Feature(object):
         Return whether the feature represented by this symbol is supported by
         a given object and its attributes.
         """
+        # pylint: disable=unused-argument
         return not self.attrs.isdisjoint(attrs)
 
 

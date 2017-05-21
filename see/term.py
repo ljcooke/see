@@ -5,6 +5,8 @@ Terminal info.
 import platform
 import struct
 
+# pylint: disable=invalid-name
+
 try:
     if platform.system() == 'Windows':  # no-coverage: Windows
         from ctypes import windll, create_string_buffer

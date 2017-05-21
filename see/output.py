@@ -16,7 +16,7 @@ class SeeResult(object):
     The output of the :func:`see` function.
 
     If there are too many results, you can filter them using the
-    :func:`match` and :func:`re` functions.
+    :func:`match` and :func:`regex` functions.
 
     This object acts like a tuple of strings, so you can iterate over the
     results::
@@ -61,7 +61,7 @@ class SeeResult(object):
         """
         Filter the result using a shell-style wildcard pattern. ::
 
-            >>> see([]).glob('*op*')
+            >>> see([]).match('*op*')
                 .copy()    .pop()
 
         See fnmatch_ in the Python documentation.
@@ -70,11 +70,11 @@ class SeeResult(object):
         """
         return SeeResult(tools.filter_wildcard(self, pattern))
 
-    def re(self, pattern):
+    def regex(self, pattern):
         """
         Filter the result using a regular expression. ::
 
-            >>> see([]).re('[aeiou]{2}')
+            >>> see([]).regex('[aeiou]{2}')
                 .clear()    .count()
 
         """
