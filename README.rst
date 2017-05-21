@@ -32,7 +32,11 @@ Example
 
 .. see/docs <example>
 
-Try inspecting an object with ``see``::
+Say you have an object which you'd like to know more about::
+
+    >>> from datetime import timedelta
+
+Try inspecting the object with ``see``::
 
     >>> see(timedelta)
         isclass             +                   -
@@ -46,7 +50,7 @@ Try inspecting an object with ``see``::
         .max                .microseconds       .min
         .resolution         .seconds            .total_seconds()
 
-This reveals some information about the ``timedelta`` object, such as:
+Here we can discover some things about it, such as:
 
 * The object is a class.
 * You can add something to it with the ``+`` operator.
@@ -66,6 +70,15 @@ Compare with the output of ``dir``::
     '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclassho
     ok__', '__truediv__', 'days', 'max', 'microseconds', 'min', 'res
     olution', 'seconds', 'total_seconds']
+
+You can filter the results of ``see`` using a wildcard pattern
+or a regular expression::
+
+    >>> see(timedelta).filter('*sec*')
+        .microseconds       .seconds            .total_seconds()
+
+    >>> see(timedelta).filter('/^d/')
+        dir()       divmod()
 
 .. see/docs </example>
 
