@@ -8,12 +8,12 @@ coverage:
 	coverage run --source=see setup.py test
 	coverage report
 	coverage html
-	pyflakes *.py
-	pep8 --statistics --count *.py
+	flake8 see
 
 .PHONY: lint
 lint:
-	@flake8 *.py && echo OK
+	flake8 see
+	pylint see
 
 .PHONY: clean
 clean:

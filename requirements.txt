@@ -3,8 +3,7 @@
 # See also: .travis.yml
 
 coverage==4.4.1
-pep8==1.7.0
-pyflakes==1.5.0
+flake8==3.3.0
 pylint==1.7.1
 Sphinx==1.6.1
 unittest2==1.1.0
