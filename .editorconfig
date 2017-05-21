@@ -1,0 +1,22 @@
+# EditorConfig http://editorconfig.org
+# See also:
+#   extra/see.sublime-project
+#   extra/vimrc
+
+# top-most editorconfig file
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+[*.{py,rst}]
+indent_style = space
+indent_size = 4
+
+[*.yml]
+indent_style = space
+indent_size = 2
+
+[Makefile]
+indent_style = tab
