@@ -25,15 +25,14 @@ DEFAULT_ARG = DefaultArg()
 
 class Namespace(object):
     """
-    An object that provides attribute access to its namespace.
-
-    See the SimpleNamespace_ class introduced in Python 3.
+    An object whose attributes are initialised with a dictionary.
+    Similar to the SimpleNamespace_ class introduced in Python 3.
 
     .. _SimpleNamespace:  https://
        docs.python.org/3/library/types.html#types.SimpleNamespace
     """
-    def __init__(self, namespace):
-        self.__dict__.update(namespace)
+    def __init__(self, attrs):
+        self.__dict__.update(attrs)
 
 
 # Get all the 'is' functions from the inspect module.
@@ -67,6 +66,7 @@ def see(obj=DEFAULT_ARG, *args, **kwargs):
         >>> see()
             os        random    see()     sys
 
+    The return value is an instance of :class:`SeeResult`.
     """
     arg = obj
     use_locals = obj is DEFAULT_ARG
@@ -105,12 +105,12 @@ def see(obj=DEFAULT_ARG, *args, **kwargs):
     if pattern is not None:
         tokens = tools.filter_wildcard(tokens, pattern)
         sys.stderr.write(
-            'The "pattern" argument is deprecated and will be removed in a '
-            'later release. Please use see(%s).match() now.\n' % repr(arg))
+            'Please use see().match() now. The "pattern" argument is '
+            'deprecated and will be removed in a later release. \n')
     if regex is not None:
         tokens = tools.filter_regex(tokens, regex)
         sys.stderr.write(
-            'The "r" argument is deprecated and will be removed in a '
-            'later release. Please use see(%s).re() now.\n' % repr(arg))
+            'Please use see().re() now. The "r" argument is '
+            'deprecated and will be removed in a later release. \n')
 
     return output.SeeResult(tokens)

@@ -12,7 +12,7 @@ from see import tools
 
 class TestToolsModule(unittest.TestCase):
 
-    def test_compact_list(self):
+    def test_compact(self):
         # Arrange
         items = [0, 1, '', 'foo', True, False, [], ['a'], {}, {1: 2}]
         expected = (1, 'foo', True, ['a'], {1: 2})
@@ -23,7 +23,7 @@ class TestToolsModule(unittest.TestCase):
         # Assert
         self.assertEqual(compacted, expected)
 
-    def test_filter_by_regex(self):
+    def test_filter_regex(self):
         # Arrange
         names = ["george", "helen"]
         pat_wildcard = "e.*g"
@@ -43,7 +43,7 @@ class TestToolsModule(unittest.TestCase):
         self.assertEqual(out_start, ("helen",))
         self.assertEqual(out_end, ("helen",))
 
-    def test_filter_by_wildcard(self):
+    def test_filter_wildcard(self):
         # Arrange
         names = ["george", "helen"]
         pat_wildcard = "*or*"

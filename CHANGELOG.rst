@@ -26,8 +26,8 @@ project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 **Deprecated**
 
-- Dropped the ``pattern`` and ``r`` arguments. These are still
-  this release (via ``*args`` and ``**kwargs``) but they will be removed
+- Deprecated the ``pattern`` and ``r`` arguments. They are still usable (via
+  ``*args`` and ``**kwargs``) but they will be removed in a later release.
 
 
 v1.3.2_ / 2016-04-30

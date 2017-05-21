@@ -1,6 +1,8 @@
 """
 see: dir for humans.
 
+Documentation is available at https://araile.github.io/see/
+
 """
 from .inspector import see
 from .output import SeeResult

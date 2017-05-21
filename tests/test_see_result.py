@@ -9,7 +9,7 @@ try:
 except ImportError:
     import unittest
 
-import see
+from see import see
 
 
 def union(*sets):
@@ -66,8 +66,8 @@ class TestSeeResult(unittest.TestCase):
             lit_ops,
         )
 
-        lit_see = see.see(1)
-        obj_see = see.see(obj)
+        lit_see = see(1)
+        obj_see = see(obj)
 
         self.check_ops('int literal', lit_ops, lit_see)
         self.check_ops('int object', obj_ops, obj_see)
@@ -83,8 +83,8 @@ class TestSeeResult(unittest.TestCase):
             lit_ops,
         )
 
-        lit_see = see.see(1.0)
-        obj_see = see.see(obj)
+        lit_see = see(1.0)
+        obj_see = see(obj)
 
         self.check_ops('float literal', lit_ops, lit_see)
         self.check_ops('float object', obj_ops, obj_see)
@@ -94,7 +94,7 @@ class TestSeeResult(unittest.TestCase):
         def a_function():
             pass
 
-        output = see.see(a_function)
+        output = see(a_function)
 
         self.assertIn('isfunction', output)
         self.assertIn('()', output)

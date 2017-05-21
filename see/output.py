@@ -11,28 +11,6 @@ from .exceptions import SeeError
 from .features import PY3
 
 
-def filter_regex(names, pattern):
-    """
-    Return a tuple of strings that match the regular expression pattern.
-    """
-    pattern = re.compile(pattern)
-
-    def match(name, fn=pattern.search):
-        return fn(name) is not None
-
-    return tuple(filter(match, names))
-
-
-def filter_wildcard(names, pattern):
-    """
-    Return a tuple of strings that match a shell-style pattern.
-    """
-    def match(name, fn=fnmatch.fnmatch, pattern=pattern):
-        return fn(name, pattern)
-
-    return tuple(filter(match, names))
-
-
 class SeeResult(object):
     """
     The output of the :func:`see` function.
@@ -40,8 +18,8 @@ class SeeResult(object):
     If there are too many results, you can filter them using the
     :func:`match` and :func:`re` functions.
 
-    This acts like a tuple of strings, so you can iterate over the results.
-    results. For example::
+    This object acts like a tuple of strings, so you can iterate over the
+    results::
 
         >>> first_result = see()[0]
 
@@ -66,6 +44,9 @@ class SeeResult(object):
         return textwrap.fill(''.join(padded), term.line_width(),
                              initial_indent=indent,
                              subsequent_indent=indent)
+
+    def __eq__(self, other):
+        return tuple(self) == tuple(other)
 
     def __iter__(self):
         return iter(self._tokens)
