@@ -96,6 +96,19 @@ Documentation is available at https://araile.github.io/see/
 * `Startup File <https://araile.github.io/see/startup.html>`_
 * `Developer Reference <https://araile.github.io/see/dev/index.html>`_
 
+
+Contributing
+------------
+
+The source code is maintained
+`on GitHub <https://github.com/araile/see>`_.
+Contributions are welcome.
+
+* `Change Log <https://github.com/araile/see/blob/develop/CHANGELOG.rst>`_
+* `Code of Conduct <https://github.com/araile/see/blob/develop/CODE_OF_CONDUCT.md>`_
+* `Authors <https://github.com/araile/see/blob/develop/AUTHORS.rst>`_
+* `License <https://github.com/araile/see/blob/develop/LICENSE>`_
+
 .. see/docs <ci>
 
 The code repository on GitHub is integrated with a few continuous integration
@@ -110,16 +123,3 @@ services which come into effect each time code is pushed:
   succeeds.
 
 .. see/docs </ci>
-
-
-Contributing
-------------
-
-The source code is maintained
-`on GitHub <https://github.com/araile/see>`_.
-Contributions are welcome.
-
-* `Change Log <https://github.com/araile/see/blob/develop/CHANGELOG.rst>`_
-* `Code of Conduct <https://github.com/araile/see/blob/develop/CODE_OF_CONDUCT.md>`_
-* `Authors <https://github.com/araile/see/blob/develop/AUTHORS.rst>`_
-* `License <https://github.com/araile/see/blob/develop/LICENSE>`_
