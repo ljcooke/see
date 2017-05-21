@@ -1,46 +1,98 @@
 """
-see.output
-Manipulating strings for output
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+Manipulating strings for output.
 
 """
 import math
-import unicodedata
+import re
+import sys
+import textwrap
 
+from . import term, tools
 from .exceptions import SeeError
 from .features import PY3
 
 
-def char_width(char):
-    """
-    Get the display length of a unicode character.
-    """
-    if ord(char) < 128:
-        return 1
-    elif unicodedata.east_asian_width(char) in ('F', 'W'):
-        return 2
-    elif unicodedata.category(char) in ('Mn',):
-        return 0
-    else:
-        return 1
+REGEX_TYPE = type(re.compile('.'))
 
 
-def display_len(text):
+class SeeResult(object):
     """
-    Get the display length of a string. This can differ from the character
-    length if the string contains wide characters.
+    The output of the :func:`see` function.
+
+    Acts like a tuple of strings, so you can iterate over the output::
+
+        >>> first = see()[0]
+
+        >>> for string in see([]):
+        ...     print(string)
+
     """
-    text = unicodedata.normalize('NFD', text)
-    return sum(char_width(char) for char in text)
+    def __init__(self, tokens):
+        self._tokens = tuple(tokens)
+
+    def __repr__(self):
+        col_width = column_width(self)
+        padded = [justify_token(tok, col_width) for tok in self]
+
+        ps1 = getattr(sys, 'ps1', None)
+        if ps1:
+            get_len = tools.display_len if PY3 else len
+            indent = ' ' * get_len(ps1)
+        else:
+            indent = '    '
+
+        return textwrap.fill(''.join(padded), term.line_width(),
+                             initial_indent=indent,
+                             subsequent_indent=indent)
+
+    def __eq__(self, other):
+        return tuple(self) == tuple(other)
+
+    def __iter__(self):
+        return iter(self._tokens)
+
+    def __len__(self):
+        return len(self._tokens)
+
+    def __getitem__(self, index):
+        return self._tokens[index]
+
+    def filter(self, pattern):
+        """
+        Filter the results using a pattern.
+
+        This accepts a shell-style wildcard pattern (as used by the fnmatch_
+        module)::
+
+            >>> see([]).filter('*op*')
+                .copy()    .pop()
+
+        It also accepts a regular expression. This may be a compiled regular
+        expression (from the re_ module) or a string that starts with a ``/``
+        (forward slash) character::
+
+            >>> see([]).filter('/[aeiou]{2}/')
+                .clear()    .count()
+
+        .. _fnmatch: https://docs.python.org/3/library/fnmatch.html
+        .. _re: https://docs.python.org/3/library/re.html
+        """
+        if isinstance(pattern, REGEX_TYPE):
+            func = tools.filter_regex
+        elif pattern.startswith('/'):
+            pattern = re.compile(pattern.strip('/'))
+            func = tools.filter_regex
+        else:
+            func = tools.filter_wildcard
+
+        return SeeResult(func(self, pattern))
 
 
 def column_width(tokens):
     """
     Return a suitable column width to display one or more strings.
     """
-    get_len = display_len if PY3 else len
+    get_len = tools.display_len if PY3 else len
     lens = sorted(map(get_len, tokens or [])) or [0]
     width = lens[-1]
 
@@ -57,7 +109,7 @@ def justify_token(tok, col_width):
     """
     Justify a string to fill one or more columns.
     """
-    get_len = display_len if PY3 else len
+    get_len = tools.display_len if PY3 else len
     tok_len = get_len(tok)
     diff_len = tok_len - len(tok) if PY3 else 0
 
@@ -74,10 +126,12 @@ def display_name(name, obj, local):
     """
     Get the display name of an object.
 
-    Keyword arguments:
-    name -- the name of the object as a string
-    obj -- the object itself
-    local -- whether the object is in local scope or owned by an object
+    Keyword arguments (all required):
+
+    * ``name`` -- the name of the object as a string.
+    * ``obj`` -- the object itself.
+    * ``local`` -- a boolean value indicating whether the object is in local
+      scope or owned by an object.
 
     """
     prefix = '' if local else '.'

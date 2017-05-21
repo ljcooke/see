@@ -1,16 +1,14 @@
 """
-see.term
-Terminal info
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+Terminal info.
 
 """
 import platform
 import struct
 
+# pylint: disable=invalid-name
+
 try:
-    if platform.system() == 'Windows':  # no-coverage: Windows
+    if platform.system() == 'Windows':  # pragma: no cover (windows)
         from ctypes import windll, create_string_buffer
         fcntl, termios = None, None
     else:
@@ -28,7 +26,8 @@ MAX_LINE_WIDTH = 120
 
 def term_width():
     """
-    Return the column width of the terminal, or None if it can't be determined.
+    Return the column width of the terminal, or ``None`` if it can't be
+    determined.
     """
     if fcntl and termios:
         try:
@@ -37,7 +36,7 @@ def term_width():
             return width
         except IOError:
             pass
-    elif windll and create_string_buffer:  # no-coverage: Windows
+    elif windll and create_string_buffer:  # pragma: no cover (windows)
         stderr_handle, struct_size = -12, 22
         handle = windll.kernel32.GetStdHandle(stderr_handle)
         csbi = create_string_buffer(struct_size)
@@ -50,11 +49,11 @@ def term_width():
 
 def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
     """
-    Return the ideal column width for see() output, taking the terminal width
-    into account to avoid wrapping.
+    Return the ideal column width for the output from :func:`see.see`, taking
+    the terminal width into account to avoid wrapping.
     """
     width = term_width()
-    if width:  # no-coverage: terminal width not available with Travis CI
+    if width:  # pragma: no cover (no terminal info in Travis CI)
         return min(width, max_width)
     else:
         return default_width

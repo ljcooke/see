@@ -4,87 +4,107 @@ see: dir for humans
 .. image:: https://img.shields.io/pypi/v/see.svg
     :target: https://pypi.python.org/pypi/see
 
+.. see/docs <common-badges>
+
 .. image:: https://travis-ci.org/araile/see.svg?branch=develop
     :target: https://travis-ci.org/araile/see
 
 .. image:: https://coveralls.io/repos/github/araile/see/badge.svg?branch=develop
     :target: https://coveralls.io/github/araile/see?branch=develop
 
-**see** is an alternative to the built-in ``dir`` function in Python. It shows
-you what you can do with things.
-
-Supports Python 2.6+ and 3.3+. Also works in iPython and PyPy.
-
-Licensed under the BSD 3-Clause License. See the *LICENSE* file.
-
-Contributions are welcome. See the *CODE_OF_CONDUCT.md*, *CHANGELOG.rst*
-and *AUTHORS.rst* files.
+.. see/docs </common-badges>
 
 
-Install
+.. see/docs <summary>
+
+**see** is an alternative to ``dir()``, for Python 2.6+ and 3.3+.
+
+It neatly summarises what you can do with an object.
+Use it to inspect your code or learn new APIs.
+
+.. see/docs </summary>
+
+
+.. contents::
+
+
+Example
 -------
 
-To install **see**, run::
+.. For examples, use a 64-column terminal and set sys.ps1 = '>>> '
 
-    $ pip3 install --upgrade see
+.. see/docs <example>
+
+Say you have an object which you'd like to know more about::
+
+    >>> from datetime import timedelta
+
+Try inspecting the object with ``see``::
+
+    >>> see(timedelta)
+        isclass             +                   -
+        *                   /                   //
+        %                   +obj                -obj
+        <                   <=                  ==
+        !=                  >                   >=
+        abs()               bool()              dir()
+        divmod()            hash()              help()
+        repr()              str()               .days
+        .max                .microseconds       .min
+        .resolution         .seconds            .total_seconds()
+
+Here we can discover some things about it, such as:
+
+* The object is a class.
+* You can add something to it with the ``+`` operator.
+* It has a ``seconds`` attribute.
+* It has a ``total_seconds`` attribute which is a function.
+
+Compare with the output of ``dir``::
+
+    >>> dir(timedelta)
+    ['__abs__', '__add__', '__bool__', '__class__', '__delattr__', '
+    __dir__', '__divmod__', '__doc__', '__eq__', '__floordiv__', '__
+    format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '
+    __init__', '__init_subclass__', '__le__', '__lt__', '__mod__', '
+    __mul__', '__ne__', '__neg__', '__new__', '__pos__', '__radd__',
+     '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rf
+    loordiv__', '__rmod__', '__rmul__', '__rsub__', '__rtruediv__',
+    '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclassho
+    ok__', '__truediv__', 'days', 'max', 'microseconds', 'min', 'res
+    olution', 'seconds', 'total_seconds']
+
+You can filter the results of ``see`` using a wildcard pattern
+or a regular expression::
+
+    >>> see(timedelta).filter('*sec*')
+        .microseconds       .seconds            .total_seconds()
+
+    >>> see(timedelta).filter('/^d/')
+        dir()       divmod()
+
+.. see/docs </example>
 
 
-Usage
------
+Documentation
+-------------
 
-**see** is designed for the interactive Python interpreter. Import the ``see``
-function like so::
+Documentation is available at https://araile.github.io/see/
 
-    >>> from see import see
-
-Call ``see()`` without arguments to see all objects in the global scope. ::
-
-    >>> foo = 'bar'
-    >>> see()
-        foo      see()
-
-Call ``see(an_object)`` to see what you can do with ``an_object``. ::
-
-    >>> number = 1
-    >>> see(number)
-        +                -                *                /                //
-        %                **               <<               >>               &
-        ^                |                +obj             -obj             ~
-        <                <=               ==               !=               >
-        >=               abs()            bool()           dir()
-        divmod()         float()          hash()           help()
-        hex()            int()            oct()            repr()
-        round()          str()            .bit_length()    .conjugate()
-        .denominator     .from_bytes()    .imag            .numerator
-        .real            .to_bytes()
-
-    >>> async def hello_world():
-    ...     print("Hello World!")
-    ...
-    >>> see(hello_world)
-        iscoroutinefunction         isfunction    isroutine     ()
-        <             <=            ==            !=            >
-        >=            dir()         hash()        repr()        str()
+* `Installation <https://araile.github.io/see/install.html>`_
+* `Usage <https://araile.github.io/see/usage.html>`_
+* `Startup File <https://araile.github.io/see/startup.html>`_
+* `Developer Reference <https://araile.github.io/see/dev/index.html>`_
 
 
-Startup
--------
+Contributing
+------------
 
-You can use a Python startup file to ensure that ``see`` is available every
-time you run Python. The following example uses a startup file named
-``.pythonrc.py`` in the user's home directory:
+The source code is maintained
+`on GitHub <https://github.com/araile/see>`_.
+Contributions are welcome.
 
-1. Create the Python startup file, if it does not already exist::
-
-       $ touch ~/.pythonrc.py
-
-2. Open this file in your preferred editor. Add the following line::
-
-       from see import see
-
-3. Set the following environment variable (e.g. in ``~/.bashrc`` for Bash)::
-
-       $ export PYTHONSTARTUP="$HOME/.pythonrc.py"
-
-Now you can use ``see`` immediately after running ``python``, without having to
-manually import it.
+* `Change Log <https://github.com/araile/see/blob/develop/CHANGELOG.rst>`_
+* `Code of Conduct <https://github.com/araile/see/blob/develop/CODE_OF_CONDUCT.md>`_
+* `Authors <https://github.com/araile/see/blob/develop/AUTHORS.rst>`_
+* `License <https://github.com/araile/see/blob/develop/LICENSE>`_

@@ -10,7 +10,7 @@ except ImportError:
 from see import term
 
 
-class TestTerm(unittest.TestCase):
+class TestTermModule(unittest.TestCase):
 
     def test_line_width(self):
         # Arrange

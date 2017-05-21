@@ -2,6 +2,8 @@
 Unit tests for the see.tools module.
 
 """
+import re
+
 try:
     import unittest2 as unittest
 except ImportError:
@@ -12,7 +14,7 @@ from see import tools
 
 class TestToolsModule(unittest.TestCase):
 
-    def test_compact_list(self):
+    def test_compact(self):
         # Arrange
         items = [0, 1, '', 'foo', True, False, [], ['a'], {}, {1: 2}]
         expected = (1, 'foo', True, ['a'], {1: 2})
@@ -23,12 +25,12 @@ class TestToolsModule(unittest.TestCase):
         # Assert
         self.assertEqual(compacted, expected)
 
-    def test_filter_by_regex(self):
+    def test_filter_regex(self):
         # Arrange
         names = ["george", "helen"]
-        pat_wildcard = "e.*g"
-        pat_start = "^h"
-        pat_end = "n$"
+        pat_wildcard = re.compile("e.*g")
+        pat_start = re.compile("^h")
+        pat_end = re.compile("n$")
 
         # Act
         out_wildcard = tools.filter_regex(names, pat_wildcard)
@@ -43,7 +45,7 @@ class TestToolsModule(unittest.TestCase):
         self.assertEqual(out_start, ("helen",))
         self.assertEqual(out_end, ("helen",))
 
-    def test_filter_by_wildcard(self):
+    def test_filter_wildcard(self):
         # Arrange
         names = ["george", "helen"]
         pat_wildcard = "*or*"

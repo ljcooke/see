@@ -7,13 +7,26 @@ All notable changes to this project will be documented in this file. This
 project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 
-Unreleased_
---------------------
+.. Unreleased_
+.. --------------------
+
+.. v1.4.0_ / 2017-05-20
+.. --------------------
 
 **Added**
 
+- New API for filtering the output. Call ``see().filter()`` with either
+  a shell-style wildcard pattern or a regular expression.
+
 - Test each of the ``is`` functions from the *inspect* module, such as
   ``isclass`` and ``isgenerator``, and include them in the result.
+
+- Documentation using Sphinx.
+
+**Deprecated**
+
+- Deprecated the ``pattern`` and ``r`` arguments. They are still usable (via
+  ``*args`` and ``**kwargs``) but they will be removed in a later release.
 
 
 v1.3.2_ / 2016-04-30

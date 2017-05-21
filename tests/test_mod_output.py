@@ -1,73 +1,89 @@
-# coding: utf-8
-from __future__ import unicode_literals
 """
 Unit tests for the see.output module.
 
-This requires Unicode string literals in Python 2.
-
 """
+import re
+
 try:
     import unittest2 as unittest
 except ImportError:
     import unittest
 
-from see import output
+from see import output, see
 from see.features import PY3
 
 
-class TestSeeUnicode(unittest.TestCase):
+class ObjectWithLongAttrName(dict):
 
-    def test_char_width(self):
-        # Arrange
-        char_ascii = 'a'   # narrow char
-        char_accent = 'á'  # narrow char
-        char_combo = 'q̇'   # narrow char + zero-width combining char
-        char_cjk = '猫'    # wide character
+    def lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit(self):
+        pass
 
-        # Act
-        len_ascii = len(char_ascii)
-        len_accent = len(char_accent)
-        len_combo = len(char_combo)
-        len_cjk = len(char_cjk)
-        width_ascii = output.display_len(char_ascii)
-        width_accent = output.display_len(char_accent)
-        width_combo = output.display_len(char_combo)
-        width_cjk = output.display_len(char_cjk)
 
-        # Assert
-        self.assertEqual(len_ascii, 1)
-        self.assertEqual(len_accent, 1)
-        self.assertEqual(len_combo, 2)
-        self.assertEqual(len_cjk, 1)
-        self.assertEqual(width_ascii, 1)
-        self.assertEqual(width_accent, 1)
-        self.assertEqual(width_combo, 1)
-        self.assertEqual(width_cjk, 2)
+class TestSeeResultClass(unittest.TestCase):
 
-    def test_display_len(self):
-        # Arrange
-        attr_ascii = '.hello_world()'
-        attr_cyrillic = '.hello_мир()'
-        attr_cjk = '.hello_世界()'
-        attr_combo = '.hello_q̇()'
-        diff_cjk = 2 if PY3 else 0
-        diff_combo = -1 if PY3 else 0
+    def test_see_returns_result_instance(self):
+        result_for_obj = see([])
+        result_for_locals = see()
 
-        # Act
-        width_ascii = output.display_len(attr_ascii)
-        width_cyrillic = output.display_len(attr_cyrillic)
-        width_cjk = output.display_len(attr_cjk)
-        width_combo = output.display_len(attr_combo)
-        justify_ascii = len(output.justify_token(attr_ascii, 20))
-        justify_cyrillic = len(output.justify_token(attr_cyrillic, 20))
-        justify_cjk = len(output.justify_token(attr_cjk, 20))
-        justify_combo = len(output.justify_token(attr_combo, 20))
+        isinstance(result_for_obj, output.SeeResult)
+        isinstance(result_for_locals, output.SeeResult)
+
+    def test_repr(self):
+        result = see()
+
+        self.assertEqual(str(result), result.__repr__())
+
+    def test_acts_like_tuple(self):
+        result = see([])
+
+        self.assertIsNotNone(tuple(result))
+        self.assertIsNotNone(result[0])
+        self.assertIsNotNone(result[-1])
+        self.assertTrue(any(result))
+        self.assertTrue(len(result) > 0)
+
+    def test_justify_attributes(self):
+        obj = ObjectWithLongAttrName()
+
+        result = see(obj)
+        col_width = output.column_width(result)
+        padded = [output.justify_token(tok, col_width) for tok in result]
+        lens = sorted(map(len, padded))
+        factors = tuple(float(num) / lens[0] for num in lens[1:])
 
         # Assert
-        self.assertEqual(width_ascii, 14)
-        self.assertEqual(width_cyrillic, 12)
-        self.assertEqual(width_cjk, 13)
-        self.assertEqual(width_combo, 10)
-        self.assertEqual(justify_cyrillic, justify_ascii)
-        self.assertEqual(justify_cjk, justify_ascii - diff_cjk)
-        self.assertEqual(justify_combo, justify_ascii - diff_combo)
+        self.assertNotEqual(lens[0], lens[-1],
+                            'Expected differing column widths')
+        self.assertTrue(any(factors))
+        self.assertTrue(all(int(factor) == factor for factor in factors),
+                        'Irregular column widths')
+
+    def test_filter_with_wildcard(self):
+        obj = []
+        pattern = '*op*'
+        expected = ('.copy()', '.pop()') if PY3 else ('.pop()',)
+
+        filtered_result = see(obj).filter(pattern)
+
+        self.assertIsInstance(filtered_result, output.SeeResult)
+        self.assertEqual(expected, filtered_result)
+
+    def test_filter_with_regex_string(self):
+        obj = []
+        pattern = '/[aeiou]{2}/'
+        expected = ('.clear()', '.count()') if PY3 else ('.count()',)
+
+        filtered_result = see(obj).filter(pattern)
+
+        self.assertIsInstance(filtered_result, output.SeeResult)
+        self.assertEqual(expected, filtered_result)
+
+    def test_filter_with_regex_object(self):
+        obj = []
+        pattern = re.compile('[aeiou]{2}')
+        expected = ('.clear()', '.count()') if PY3 else ('.count()',)
+
+        filtered_result = see(obj).filter(pattern)
+
+        self.assertIsInstance(filtered_result, output.SeeResult)
+        self.assertEqual(expected, filtered_result)

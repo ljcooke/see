@@ -1,35 +1,31 @@
 """
-see.features
-Python feature definitions
+Python feature definitions.
 
-Relevant Python changes
------------------------
-
-  * 3.5
-    - Introduced the ``@`` operator and ``__matmul__``, ``__imatmul__``
-    - Introduced ``__await__``, ``__aiter__``, ``__anext__``, ``__aenter__``,
-      ``__aexit__`` (see PEP 492)
-
-  * 3.0-3.3
-    - Dropped ``__cmp__``
-    - Dropped ``__div__``
-
-Reference links
----------------
+Reference links:
 
   * `What's New in Python
     <https://docs.python.org/3/whatsnew/index.html>`__
 
-  * `3. Data model
+  * `Data model
     <https://docs.python.org/3/reference/datamodel.html>`__
 
-  * `10.3 Standard operators as functions
+  * `Standard operators as functions
     <https://docs.python.org/3/library/operator.html>`__
 
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
-
 """
+# -----------------------------------------------------------------------------
+# Relevant Python changes
+#
+# 3.5
+# - Introduced the @ operator and __matmul__, __imatmul__
+# - Introduced __await__, __aiter__, __anext__, __aenter__, __aexit__
+#   (see PEP 492)
+#
+# 3.0-3.3
+# - Dropped __cmp__
+# - Dropped __div__
+# -----------------------------------------------------------------------------
+
 import sys
 
 from .tools import compact
@@ -37,7 +33,7 @@ from .tools import compact
 
 PY_VERSION = sys.version_info
 
-if (PY_VERSION < (2, 6)) or ((3, 0) <= PY_VERSION < (3, 6)):  # no-coverage
+if (PY_VERSION < (2, 6)) or ((3, 0) <= PY_VERSION < (3, 3)):  # pragma: nocover
     sys.stderr.write('Warning: see() is not supported here. '
                      'Please use Python 3.3+ or 2.6+.\n')
 
@@ -50,7 +46,12 @@ class Feature(object):
     """
     Definition of a Python feature that an object might support (such as
     performing an arithmetic operation or returning a length), and a symbol
-    to indicate this in the output from ``see``.
+    to indicate this in the output from :func:`see.see`.
+
+    >>> add_feature = Feature(symbol='+', attrs=[
+    ...     '__add__',
+    ...     '__radd__',
+    ... ])
 
     Support for this feature is detected by checking for one or more special
     attributes on the object.
@@ -65,6 +66,7 @@ class Feature(object):
         Return whether the feature represented by this symbol is supported by
         a given object and its attributes.
         """
+        # pylint: disable=unused-argument
         return not self.attrs.isdisjoint(attrs)
 
 

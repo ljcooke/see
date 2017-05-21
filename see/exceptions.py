@@ -1,15 +1,12 @@
 """
-see.exceptions
-Exception classes
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+Exception classes.
 
 """
 
 
 class SeeError(Exception):
     """
-    Generic see exception.
+    This is used internally by :func:`see.see` to indicate an invalid
+    attribute, such as one that raises an exception when it is accessed.
     """
     pass

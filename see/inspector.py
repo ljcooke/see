@@ -1,25 +1,21 @@
 """
-see.inspector
-Object inspector
-
-Copyright (c) 2009-2017 Liam Cooke
-https://araile.github.io/see/
+Object inspector.
 
 """
 import inspect
+import re
 import sys
-import textwrap
 
-from . import output, term, tools
+from . import output, tools
 from .exceptions import SeeError
-from .features import FEATURES, PY3
+from .features import FEATURES
 
 
 class DefaultArg(object):
     """
-    An object to use as the default argument to ``see``. This allows for
-    a distinction between calling ``see()`` without arguments and calling it
-    with a falsey argument like ``see(None)``.
+    A global instance of this class is used as the default argument to
+    :func:`see.see`. This allows for a distinction between calling ``see()``
+    without arguments and calling it with a falsey argument like ``see(None)``.
     """
     def __repr__(self):
         return 'anything'
@@ -30,35 +26,14 @@ DEFAULT_ARG = DefaultArg()
 
 class Namespace(object):
     """
-    An object that provides attribute access to its namespace.
+    An object whose attributes are initialised with a dictionary.
+    Similar to the SimpleNamespace_ class introduced in Python 3.
 
-    See also: ``types.SimpleNamespace`` in Python 3.
+    .. _SimpleNamespace:  https://
+       docs.python.org/3/library/types.html#types.SimpleNamespace
     """
-    def __init__(self, namespace):
-        self.__dict__.update(namespace)
-
-
-class SeeResult(tuple):
-    """
-    Tuple-like output with a pretty string representation.
-    """
-    def __new__(cls, actions=None):
-        return tuple.__new__(cls, actions or [])
-
-    def __repr__(self):
-        col_width = output.column_width(self)
-        padded = [output.justify_token(tok, col_width) for tok in self]
-
-        ps1 = getattr(sys, 'ps1', None)
-        if ps1:
-            get_len = output.display_len if PY3 else len
-            indent = ' ' * get_len(ps1)
-        else:
-            indent = '    '
-
-        return textwrap.fill(''.join(padded), term.line_width(),
-                             initial_indent=indent,
-                             subsequent_indent=indent)
+    def __init__(self, attrs):
+        self.__dict__.update(attrs)
 
 
 # Get all the 'is' functions from the inspect module.
@@ -66,27 +41,56 @@ INSPECT_FUNCS = tuple((name, getattr(inspect, name))
                       for name in dir(inspect) if name.startswith('is'))
 
 
-def see(obj=DEFAULT_ARG, pattern=None, r=None):
+def handle_deprecated_args(tokens, args, kwargs):
     """
-    Inspect an object. Like the ``dir()`` builtin, but easier on the eyes.
+    Backwards compatibility with deprecated arguments ``pattern`` and ``r``.
+    """
+    num_args = len(args)
+    pattern = args[0] if num_args else kwargs.get('pattern', None)
+    regex = args[1] if num_args > 1 else kwargs.get('r', None)
 
-    Keyword arguments (all optional):
+    if pattern is not None:
+        tokens = tools.filter_wildcard(tokens, pattern)
+        sys.stderr.write(
+            'Please use see().match() now. The "pattern" argument is '
+            'deprecated and will be removed in a later release. \n')
 
-        obj         object to be inspected
-        pattern     shell-style search pattern (e.g. '*len*')
-        r           regular expression
+    if regex is not None:
+        tokens = tools.filter_regex(tokens, re.compile(regex))
+        sys.stderr.write(
+            'Please use see().regex() now. The "r" argument is '
+            'deprecated and will be removed in a later release. \n')
 
-    If obj is omitted, objects in the current scope are listed instead.
+    return tokens
 
-    Some unique symbols are used::
 
-        .*      implements obj.anything
-        []      implements obj[key]
-        in      implements membership tests (e.g. x in obj)
-        +obj    unary positive operator (e.g. +2)
-        -obj    unary negative operator (e.g. -2)
-        ?       raised an exception
+def see(obj=DEFAULT_ARG, *args, **kwargs):
+    """
+    see(obj=anything)
 
+    Show the features and attributes of an object.
+
+    This function takes a single argument, ``obj``, which can be of any type.
+    A summary of the object is printed immediately in the Python interpreter.
+    For example::
+
+        >>> see([])
+            []            in            +             +=            *
+            *=            <             <=            ==            !=
+            >             >=            dir()         hash()
+            help()        iter()        len()         repr()
+            reversed()    str()         .append()     .clear()
+            .copy()       .count()      .extend()     .index()
+            .insert()     .pop()        .remove()     .reverse()
+            .sort()
+
+    If this function is run without arguments, it will instead list the objects
+    that are available in the current scope. ::
+
+        >>> see()
+            os        random    see()     sys
+
+    The return value is an instance of :class:`SeeResult`.
     """
     use_locals = obj is DEFAULT_ARG
 
@@ -95,31 +99,28 @@ def see(obj=DEFAULT_ARG, pattern=None, r=None):
         # Typically this is the scope of an interactive Python session.
         obj = Namespace(inspect.currentframe().f_back.f_locals)
 
-    actions = []
+    tokens = []
     attrs = dir(obj)
 
     if not use_locals:
 
         for name, func in INSPECT_FUNCS:
             if func(obj):
-                actions.append(name)
+                tokens.append(name)
 
         for feature in FEATURES:
             if feature.match(obj, attrs):
-                actions.append(feature.symbol)
+                tokens.append(feature.symbol)
 
     for attr in filter(lambda a: not a.startswith('_'), attrs):
         try:
             prop = getattr(obj, attr)
-        except (AttributeError, Exception):
+        except (AttributeError, Exception):  # pylint: disable=broad-except
             prop = SeeError()
         action = output.display_name(name=attr, obj=prop, local=use_locals)
-        actions.append(action)
+        tokens.append(action)
 
-    if pattern is not None:
-        actions = tools.filter_wildcard(actions, pattern)
+    if args or kwargs:
+        tokens = handle_deprecated_args(tokens, args, kwargs)
 
-    if r is not None:
-        actions = tools.filter_regex(actions, r)
-
-    return SeeResult(actions)
+    return output.SeeResult(tokens)

@@ -1,3 +1,5 @@
+.. Note: This file is included by Sphinx when generating HTML documentation.
+
 Authors
 =======
 
