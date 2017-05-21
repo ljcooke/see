@@ -1,3 +1,4 @@
+import codecs
 import sys
 from setuptools import setup
 
@@ -9,12 +10,17 @@ TESTS_REQUIRE = [
     'unittest2>=1.1.0' if sys.version_info < (2, 7) else None,
 ]
 
+with codecs.open('README.rst', encoding='utf-8') as file:
+    README = file.read()
+
 setup(name='see',
       version=VERSION,
       description='dir for humans',
+      long_description=README,
       author='Liam Cooke',
       author_email='see@araile.com',
       license='BSD License',
+      platforms=['any'],
       url='https://araile.github.io/see/',
       packages=['see'],
       install_requires=list(filter(bool, INSTALL_REQUIRES)),
