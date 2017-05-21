@@ -6,13 +6,13 @@ suggestions from various contributors:
 
 - `Liam Cooke <https://github.com/araile>`__
 - Ian Gowen
-- `Baishampayan Ghose <http://github.com/ghoseb>`__
-- `Jeremy Dunck <http://github.com/jdunck>`__
+- `Baishampayan Ghose <https://github.com/ghoseb>`__
+- `Jeremy Dunck <https://github.com/jdunck>`__
 - Gabriel Genellina
-- `Eduardo de Oliveira Padoan <http://github.com/edcrypt>`__
-- `Guff <http://github.com/Guff>`__
-- `Bob Farrell <http://github.com/bobf>`__
-- `Ed Page <http://github.com/epage>`__
+- `Eduardo de Oliveira Padoan <https://github.com/edcrypt>`__
+- `Guff <https://github.com/Guff>`__
+- `Bob Farrell <https://github.com/bobf>`__
+- `Ed Page <https://github.com/epage>`__
 - Charlie Nolan
 - `Steve Losh <https://github.com/sjl>`__
 - `Adam Lloyd <https://github.com/alloy-d>`__
