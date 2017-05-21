@@ -41,19 +41,15 @@ def filter_regex(names, pattern):
     """
     Return a tuple of strings that match the regular expression pattern.
     """
-    pattern = re.compile(pattern)
+    regex = re.compile(pattern)
 
-    def match(name, func=pattern.search):
-        return func(name) is not None
-
-    return tuple(filter(match, names))
+    return tuple(name for name in names
+                 if regex.search(name) is not None)
 
 
 def filter_wildcard(names, pattern):
     """
     Return a tuple of strings that match a shell-style wildcard pattern.
     """
-    def match(name, func=fnmatch.fnmatch, pattern=pattern):
-        return func(name, pattern)
-
-    return tuple(filter(match, names))
+    return tuple(name for name in names
+                 if fnmatch.fnmatch(name, pattern))
