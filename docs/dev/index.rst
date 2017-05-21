@@ -15,6 +15,14 @@ Contributions are welcome.
 * `Code of Conduct <https://github.com/araile/see/blob/develop/CODE_OF_CONDUCT.md>`_
 
 
+Continuous integration
+----------------------
+
+.. include:: ../../README.rst
+   :start-after: see/docs <ci>
+   :end-before: see/docs </ci>
+
+
 Module reference
 ----------------
 
