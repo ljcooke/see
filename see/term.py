@@ -4,6 +4,7 @@ Terminal info.
 """
 import platform
 import struct
+import sys
 
 # pylint: disable=invalid-name
 
@@ -45,6 +46,8 @@ def term_width():
             (_, _, _, _, _, left, _, right, _,
              _, _) = struct.unpack('hhhhHhhhhhh', csbi.raw)
             return right - left + 1
+        else:
+            return 0  # console screen buffer not available
 
 
 def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):

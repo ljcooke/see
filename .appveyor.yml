@@ -1,0 +1,42 @@
+# Windows CI with AppVeyor.com
+
+build: off  # skip the build step, just test
+
+matrix:
+  fast_finish: true
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+      TOXENV: "py27"
+
+    - PYTHON: "C:\\Python33-x64"
+      PYTHON_VERSION: "3.3.x"
+      PYTHON_ARCH: "64"
+      TOXENV: "py33"
+
+    - PYTHON: "C:\\Python34-x64"
+      PYTHON_VERSION: "3.4.x"
+      PYTHON_ARCH: "64"
+      TOXENV: "py34"
+
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5.x"
+      PYTHON_ARCH: "64"
+      TOXENV: "py35"
+
+    - PYTHON: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6.x"
+      PYTHON_ARCH: "64"
+      TOXENV: "py36"
+
+install:
+  - python --version
+  - pip install setuptools>=17.1
+  - pip install mock>=2.0
+  - pip install coverage
+
+test_script:
+ - coverage run --source=see setup.py test

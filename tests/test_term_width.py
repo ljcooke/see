@@ -77,7 +77,7 @@ class TestSupportedTerminal(unittest.TestCase):
 
         self.assertIsNotNone(width)
 
-        # Note: terminal info is not available in Travis
+        # Note: terminal info is not available in Travis or AppVeyor
         # self.assertGreater(width, 0)
 
     def test_ioctl_fail(self):
