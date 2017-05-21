@@ -254,8 +254,9 @@ v0.1 / 2009-02-16
 - Original release.
 
 
-.. _unreleased: https://github.com/inky/see/compare/v1.3.2...develop
+.. _unreleased: https://github.com/inky/see/compare/v1.4.0...develop
 
+.. _v1.4.0: https://github.com/inky/see/compare/v1.3.2...v1.4.0
 .. _v1.3.2: https://github.com/inky/see/compare/v1.3.1...v1.3.2
 .. _v1.3.1: https://github.com/inky/see/compare/v1.3.0...v1.3.1
 .. _v1.3.0: https://github.com/inky/see/compare/v1.2.0...v1.3.0
