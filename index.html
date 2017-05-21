@@ -1,116 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>see()</title>
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet" type="text/css">
-  <link href="see.css?v=2017-05-13-1" rel="stylesheet" type="text/css">
-</head>
 
-<body>
-  <div id="body">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-    <h1>
-      see<span class="secondary" aria-hidden="true" role="presentation">()</span>
-    </h1>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>see: dir for humans &#8212; see 1.4.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.4.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <div id="content">
-
-      <p id="description">
-        Python&rsquo;s <code>dir</code> for humans.
-      </p>
-
-      <p>
-        Latest release:
-        <a href="https://pypi.python.org/pypi/see">v1.3.2</a>
-        <span class="sep" aria-hidden="true" role="presentation">/</span>
-        2016-04-30
-      </p>
-
-
-      <h2>Install</h2>
-
-      <p>To install <code>see</code>, run:</p>
-
-      <pre><span>$</span> pip install --upgrade see</pre>
-
-
-      <h2>Download</h2>
-
-      <p>The latest release can be found on the
-      <a href="https://pypi.python.org/pypi/see">Python Package Index</a>.</p>
-
-      <p>Source code in development can be found on
-      <a href="http://github.com/araile/see">GitHub</a>.
-      Clone the project with
-      <a href="http://git-scm.com/">Git</a> by&nbsp;running:</p>
-
-      <pre>$ git clone https://github.com/araile/see.git</pre>
+  </head>
+  <body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">see</a></h1>
 
 
-<!-- excerpt of HTML generated from README.rst -->
-
-<h2>Usage</h2>
-
-<p><code>see</code> is designed for the interactive Python interpreter. Import the <code>see</code>
-function like so:</p>
-
-<pre>&gt;&gt;&gt; from see import see
-</pre>
-
-<p>Call <code>see()</code> without arguments to see all objects in the global scope.</p>
-
-<pre>&gt;&gt;&gt; foo = 'bar'
-&gt;&gt;&gt; see()
-    foo      see()
-</pre>
-
-<p>Call <code>see(an_object)</code> to see what you can do with <code>an_object</code>.</p>
-
-<pre>&gt;&gt;&gt; number = 1
-&gt;&gt;&gt; see(number)
-    +                -                *                /                //
-    %                **               &lt;&lt;               &gt;&gt;               &amp;
-    ^                |                +obj             -obj             ~
-    &lt;                &lt;=               ==               !=               &gt;
-    &gt;=               abs()            bool()           dir()
-    divmod()         float()          hash()           help()
-    hex()            int()            oct()            repr()
-    round()          str()            .bit_length()    .conjugate()
-    .denominator     .from_bytes()    .imag            .numerator
-    .real            .to_bytes()
-</pre>
-
-<!-- /README.rst excerpt -->
-
-      <p>If you don&rsquo;t want to manually import <code>see</code> every time
-      you run the interpreter, you can make a Python startup file to import it
-      automatically. Information on how to do this is in the
-      <a href="http://github.com/araile/see/blob/develop/README.rst">README</a>&nbsp;file.</p>
 
 
-      <h2>Info</h2>
 
-      <p>Copyright &copy; 2009&#8211;2017 <a href="http://araile.github.io/">Liam Cooke</a>.
-      Licensed under the <a href="http://github.com/araile/see/raw/develop/LICENSE"
-        rel="license">BSD&nbsp;License</a>.</p>
 
-      <p>
-        <a href="http://github.com/araile/see/blob/develop/CHANGELOG.rst">Change Log</a>
-        <span class="sep" aria-hidden="true" role="presentation">+</span>
-        <a href="http://github.com/araile/see/blob/develop/AUTHORS.rst">Contributors</a>
-        <span class="sep" aria-hidden="true" role="presentation">+</span>
-        <a href="http://github.com/araile/see/blob/develop/CODE_OF_CONDUCT.md">Code of Conduct</a>
-        <span class="sep" aria-hidden="true" role="presentation">+</span>
-        <a href="http://pypi.python.org/pypi/see">Python Package Index</a>
-      </p>
 
-    </div><!-- /#content -->
 
-  </div><!-- /#body -->
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">Startup File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing Information</a></li>
+</ul>
 
-  <!-- uncomment to test accessibility -->
-  <!--<script src="tota11y.js"></script>-->
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="install.html" title="next chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-see">
+<span id="see-dir-for-humans"></span><h1>see: dir for humans<a class="headerlink" href="#module-see" title="Permalink to this headline">¶</a></h1>
+<p>Release v1.4.0.</p>
+<a class="reference external image-reference" href="https://travis-ci.org/araile/see"><img alt="https://travis-ci.org/araile/see.svg?branch=develop" src="https://travis-ci.org/araile/see.svg?branch=develop" /></a>
+<a class="reference external image-reference" href="https://coveralls.io/github/araile/see?branch=develop"><img alt="https://coveralls.io/repos/github/araile/see/badge.svg?branch=develop" src="https://coveralls.io/repos/github/araile/see/badge.svg?branch=develop" /></a>
+<p><strong>see</strong> is an alternative to <code class="docutils literal"><span class="pre">dir()</span></code>, for Python 2.6+ and 3.3+.</p>
+<p>It neatly summarises what you can do with an object.
+Use it to inspect your code or learn new APIs.</p>
+<p>To get started, see the <a class="reference internal" href="install.html"><span class="doc">Installation</span></a> and <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> pages.</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Say you have an object which you’d like to know more about:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">timedelta</span>
+</pre></div>
+</div>
+<p>Try inspecting the object with <code class="docutils literal"><span class="pre">see</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">(</span><span class="n">timedelta</span><span class="p">)</span>
+<span class="go">    isclass             +                   -</span>
+<span class="go">    *                   /                   //</span>
+<span class="go">    %                   +obj                -obj</span>
+<span class="go">    &lt;                   &lt;=                  ==</span>
+<span class="go">    !=                  &gt;                   &gt;=</span>
+<span class="go">    abs()               bool()              dir()</span>
+<span class="go">    divmod()            hash()              help()</span>
+<span class="go">    repr()              str()               .days</span>
+<span class="go">    .max                .microseconds       .min</span>
+<span class="go">    .resolution         .seconds            .total_seconds()</span>
+</pre></div>
+</div>
+<p>Here we can discover some things about it, such as:</p>
+<ul class="simple">
+<li>The object is a class.</li>
+<li>You can add something to it with the <code class="docutils literal"><span class="pre">+</span></code> operator.</li>
+<li>It has a <code class="docutils literal"><span class="pre">seconds</span></code> attribute.</li>
+<li>It has a <code class="docutils literal"><span class="pre">total_seconds</span></code> attribute which is a function.</li>
+</ul>
+<p>Compare with the output of <code class="docutils literal"><span class="pre">dir</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">timedelta</span><span class="p">)</span>
+<span class="go">[&#39;__abs__&#39;, &#39;__add__&#39;, &#39;__bool__&#39;, &#39;__class__&#39;, &#39;__delattr__&#39;, &#39;</span>
+<span class="go">__dir__&#39;, &#39;__divmod__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__floordiv__&#39;, &#39;__</span>
+<span class="go">format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;</span>
+<span class="go">__init__&#39;, &#39;__init_subclass__&#39;, &#39;__le__&#39;, &#39;__lt__&#39;, &#39;__mod__&#39;, &#39;</span>
+<span class="go">__mul__&#39;, &#39;__ne__&#39;, &#39;__neg__&#39;, &#39;__new__&#39;, &#39;__pos__&#39;, &#39;__radd__&#39;,</span>
+<span class="go"> &#39;__rdivmod__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__rf</span>
+<span class="go">loordiv__&#39;, &#39;__rmod__&#39;, &#39;__rmul__&#39;, &#39;__rsub__&#39;, &#39;__rtruediv__&#39;,</span>
+<span class="go">&#39;__setattr__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__sub__&#39;, &#39;__subclassho</span>
+<span class="go">ok__&#39;, &#39;__truediv__&#39;, &#39;days&#39;, &#39;max&#39;, &#39;microseconds&#39;, &#39;min&#39;, &#39;res</span>
+<span class="go">olution&#39;, &#39;seconds&#39;, &#39;total_seconds&#39;]</span>
+</pre></div>
+</div>
+<p>You can filter the results of <code class="docutils literal"><span class="pre">see</span></code> using a wildcard pattern
+or a regular expression:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">(</span><span class="n">timedelta</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;*sec*&#39;</span><span class="p">)</span>
+<span class="go">    .microseconds       .seconds            .total_seconds()</span>
 
-</body>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">(</span><span class="n">timedelta</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;/^d/&#39;</span><span class="p">)</span>
+<span class="go">    dir()       divmod()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#install-with-pip">Install with Pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#after-installing">After installing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#import-see">Import see</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#inspect-an-object">Inspect an object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#examine-the-results">Examine the results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#symbols">Symbols</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">Startup File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#create-a-startup-file">Create a startup file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev/index.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev/index.html#get-the-source-code">Get the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev/index.html#module-reference">Module reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing Information</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2009–2017, Liam Cooke.
+      
+    </div>
+
+    
+
+    
+  </body>
 </html>

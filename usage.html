@@ -1,0 +1,263 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Usage &#8212; see 1.4.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.4.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Startup File" href="startup.html" />
+    <link rel="prev" title="Installation" href="install.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">see</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#import-see">Import see</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inspect-an-object">Inspect an object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examine-the-results">Examine the results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#symbols">Symbols</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">Startup File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev/index.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing Information</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="install.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="startup.html" title="next chapter">Startup File</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-see">
+<span id="usage"></span><span id="index-0"></span><h1>Usage<a class="headerlink" href="#module-see" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="import-see">
+<h2>Import see<a class="headerlink" href="#import-see" title="Permalink to this headline">¶</a></h2>
+<p>The function named <code class="docutils literal"><span class="pre">see</span></code> is all you need.
+In the Python interpreter, run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">see</span> <span class="k">import</span> <span class="n">see</span>
+</pre></div>
+</div>
+<p>You can use a <a class="reference internal" href="startup.html"><span class="doc">startup file</span></a> to ensure that <code class="docutils literal"><span class="pre">see</span></code> is always
+imported when you start Python.</p>
+</div>
+<div class="section" id="inspect-an-object">
+<h2>Inspect an object<a class="headerlink" href="#inspect-an-object" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descclassname">see.</code><code class="descname">see</code><span class="sig-paren">(</span><em>obj=anything</em><span class="sig-paren">)</span></dt>
+<dd><p>Show the features and attributes of an object.</p>
+<p>This function takes a single argument, <code class="docutils literal"><span class="pre">obj</span></code>, which can be of any type.
+A summary of the object is printed immediately in the Python interpreter.
+For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">([])</span>
+<span class="go">    []            in            +             +=            *</span>
+<span class="go">    *=            &lt;             &lt;=            ==            !=</span>
+<span class="go">    &gt;             &gt;=            dir()         hash()</span>
+<span class="go">    help()        iter()        len()         repr()</span>
+<span class="go">    reversed()    str()         .append()     .clear()</span>
+<span class="go">    .copy()       .count()      .extend()     .index()</span>
+<span class="go">    .insert()     .pop()        .remove()     .reverse()</span>
+<span class="go">    .sort()</span>
+</pre></div>
+</div>
+<p>If this function is run without arguments, it will instead list the objects
+that are available in the current scope.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">()</span>
+<span class="go">    os        random    see()     sys</span>
+</pre></div>
+</div>
+<p>The return value is an instance of <code class="xref py py-class docutils literal"><span class="pre">SeeResult</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="examine-the-results">
+<h2>Examine the results<a class="headerlink" href="#examine-the-results" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">see.output.</code><code class="descname">SeeResult</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span></dt>
+<dd><p>The output of the <a class="reference internal" href="#module-see" title="see"><code class="xref py py-func docutils literal"><span class="pre">see()</span></code></a> function.</p>
+<p>Acts like a tuple of strings, so you can iterate over the output:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">first</span> <span class="o">=</span> <span class="n">see</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">see</span><span class="p">([]):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt>
+<code class="descname">filter</code><span class="sig-paren">(</span><em>pattern</em><span class="sig-paren">)</span></dt>
+<dd><p>Filter the results using a pattern.</p>
+<p>This accepts a shell-style wildcard pattern (as used by the <a class="reference external" href="https://docs.python.org/3/library/fnmatch.html">fnmatch</a>
+module):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">([])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;*op*&#39;</span><span class="p">)</span>
+<span class="go">    .copy()    .pop()</span>
+</pre></div>
+</div>
+<p>It also accepts a regular expression. This may be a compiled regular
+expression (from the <a class="reference external" href="https://docs.python.org/3/library/re.html">re</a> module) or a string that starts with a <code class="docutils literal"><span class="pre">/</span></code>
+(forward slash) character:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">([])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;/[aeiou]</span><span class="si">{2}</span><span class="s1">/&#39;</span><span class="p">)</span>
+<span class="go">    .clear()    .count()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="symbols">
+<h2>Symbols<a class="headerlink" href="#symbols" title="Permalink to this headline">¶</a></h2>
+<p>Some special symbols are used in the output from <code class="docutils literal"><span class="pre">see</span></code> to show the features
+of the object.</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">()</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object is a function or may be called like a function.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">obj()</span></code></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">.*</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object implements <code class="docutils literal"><span class="pre">__getattr__</span></code>, so it may allow you to access
+attributes that are not defined.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">obj.anything</span></code>.</div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">[]</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object supports the <code class="docutils literal"><span class="pre">[]</span></code> syntax.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">obj[index]</span></code></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">with</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object can be used in a <code class="docutils literal"><span class="pre">with</span></code> statement.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">with</span> <span class="pre">obj</span> <span class="pre">as</span> <span class="pre">target</span></code></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">in</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object supports the <code class="docutils literal"><span class="pre">in</span></code> operator.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">for</span> <span class="pre">item</span> <span class="pre">in</span> <span class="pre">obj</span></code></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">+</span> <span class="pre">-</span> <span class="pre">*</span> <span class="pre">/</span> <span class="pre">//</span> <span class="pre">%</span> <span class="pre">**</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object supports these arithmetic operators.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">obj</span> <span class="pre">+</span> <span class="pre">1</span></code></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">&lt;&lt;</span> <span class="pre">&gt;&gt;</span> <span class="pre">&amp;</span> <span class="pre">^</span> <span class="pre">|</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object supports these bitwise operators.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">obj</span> <span class="pre">&lt;&lt;</span> <span class="pre">1</span></code></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">+obj</span> <span class="pre">-obj</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object supports the unary arithmetic operators <code class="docutils literal"><span class="pre">+</span></code> (positive)
+and <code class="docutils literal"><span class="pre">-</span></code> (negative) respectively.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">+1</span></code>, <code class="docutils literal"><span class="pre">-1</span></code></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">~</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object supports the unary bitwise operator <code class="docutils literal"><span class="pre">~</span></code> (invert).</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">~1</span></code></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">&lt;</span> <span class="pre">&lt;=</span> <span class="pre">==</span> <span class="pre">!=</span> <span class="pre">&gt;</span> <span class="pre">&gt;=</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object supports these comparison operators.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">obj</span> <span class="pre">&lt;&lt;</span> <span class="pre">1</span></code></div>
+</div>
+</dd>
+<dt><code class="docutils literal"><span class="pre">&#64;</span></code></dt>
+<dd><div class="first last line-block">
+<div class="line">Object supports the <code class="docutils literal"><span class="pre">&#64;</span></code> operator (matrix multiplication),
+introduced in Python 3.5.</div>
+<div class="line">Example: <code class="docutils literal"><span class="pre">obj</span> <span class="pre">&#64;</span> <span class="pre">matrix</span></code></div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2009–2017, Liam Cooke.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

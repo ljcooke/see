@@ -1,0 +1,158 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>see.features module &#8212; see 1.4.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="see.inspector module" href="see.inspector.html" />
+    <link rel="prev" title="see.exceptions module" href="see.exceptions.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">see</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../startup.html">Startup File</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contributing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#get-the-source-code">Get the source code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#module-reference">Module reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Licensing Information</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Contributing</a><ul>
+      <li>Previous: <a href="see.exceptions.html" title="previous chapter">see.exceptions module</a></li>
+      <li>Next: <a href="see.inspector.html" title="next chapter">see.inspector module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-see.features">
+<span id="see-features-module"></span><h1>see.features module<a class="headerlink" href="#module-see.features" title="Permalink to this headline">¶</a></h1>
+<p>Python feature definitions.</p>
+<p>Reference links:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://docs.python.org/3/whatsnew/index.html">What’s New in Python</a></li>
+<li><a class="reference external" href="https://docs.python.org/3/reference/datamodel.html">Data model</a></li>
+<li><a class="reference external" href="https://docs.python.org/3/library/operator.html">Standard operators as functions</a></li>
+</ul>
+</div></blockquote>
+<dl class="class">
+<dt id="see.features.Feature">
+<em class="property">class </em><code class="descclassname">see.features.</code><code class="descname">Feature</code><span class="sig-paren">(</span><em>symbol</em>, <em>attrs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#see.features.Feature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Definition of a Python feature that an object might support (such as
+performing an arithmetic operation or returning a length), and a symbol
+to indicate this in the output from <code class="xref py py-func docutils literal"><span class="pre">see.see()</span></code>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">add_feature</span> <span class="o">=</span> <span class="n">Feature</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">[</span>
+<span class="gp">... </span>    <span class="s1">&#39;__add__&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;__radd__&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Support for this feature is detected by checking for one or more special
+attributes on the object.</p>
+<dl class="method">
+<dt id="see.features.Feature.match">
+<code class="descname">match</code><span class="sig-paren">(</span><em>obj</em>, <em>attrs</em><span class="sig-paren">)</span><a class="headerlink" href="#see.features.Feature.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the feature represented by this symbol is supported by
+a given object and its attributes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="see.features.HelpFeature">
+<em class="property">class </em><code class="descclassname">see.features.</code><code class="descname">HelpFeature</code><span class="sig-paren">(</span><em>symbol</em>, <em>attrs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#see.features.HelpFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#see.features.Feature" title="see.features.Feature"><code class="xref py py-class docutils literal"><span class="pre">see.features.Feature</span></code></a></p>
+<p>Help feature.</p>
+<dl class="method">
+<dt id="see.features.HelpFeature.match">
+<code class="descname">match</code><span class="sig-paren">(</span><em>obj</em>, <em>attrs</em><span class="sig-paren">)</span><a class="headerlink" href="#see.features.HelpFeature.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only match if the object contains a non-empty docstring.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2009–2017, Liam Cooke.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

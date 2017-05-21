@@ -1,0 +1,163 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>see.inspector module &#8212; see 1.4.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="see.output module" href="see.output.html" />
+    <link rel="prev" title="see.features module" href="see.features.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">see</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../startup.html">Startup File</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contributing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#get-the-source-code">Get the source code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#module-reference">Module reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Licensing Information</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Contributing</a><ul>
+      <li>Previous: <a href="see.features.html" title="previous chapter">see.features module</a></li>
+      <li>Next: <a href="see.output.html" title="next chapter">see.output module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-see.inspector">
+<span id="see-inspector-module"></span><h1>see.inspector module<a class="headerlink" href="#module-see.inspector" title="Permalink to this headline">¶</a></h1>
+<p>Object inspector.</p>
+<dl class="class">
+<dt id="see.inspector.DefaultArg">
+<em class="property">class </em><code class="descclassname">see.inspector.</code><code class="descname">DefaultArg</code><a class="headerlink" href="#see.inspector.DefaultArg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A global instance of this class is used as the default argument to
+<code class="xref py py-func docutils literal"><span class="pre">see.see()</span></code>. This allows for a distinction between calling <code class="docutils literal"><span class="pre">see()</span></code>
+without arguments and calling it with a falsey argument like <code class="docutils literal"><span class="pre">see(None)</span></code>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="see.inspector.Namespace">
+<em class="property">class </em><code class="descclassname">see.inspector.</code><code class="descname">Namespace</code><span class="sig-paren">(</span><em>attrs</em><span class="sig-paren">)</span><a class="headerlink" href="#see.inspector.Namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>An object whose attributes are initialised with a dictionary.
+Similar to the <a class="reference external" href="https://docs.python.org/3/library/types.html#types.SimpleNamespace">SimpleNamespace</a> class introduced in Python 3.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="see.inspector.handle_deprecated_args">
+<code class="descclassname">see.inspector.</code><code class="descname">handle_deprecated_args</code><span class="sig-paren">(</span><em>tokens</em>, <em>args</em>, <em>kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#see.inspector.handle_deprecated_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Backwards compatibility with deprecated arguments <code class="docutils literal"><span class="pre">pattern</span></code> and <code class="docutils literal"><span class="pre">r</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="see.inspector.see">
+<code class="descclassname">see.inspector.</code><code class="descname">see</code><span class="sig-paren">(</span><em>obj=anything</em><span class="sig-paren">)</span><a class="headerlink" href="#see.inspector.see" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the features and attributes of an object.</p>
+<p>This function takes a single argument, <code class="docutils literal"><span class="pre">obj</span></code>, which can be of any type.
+A summary of the object is printed immediately in the Python interpreter.
+For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">([])</span>
+<span class="go">    []            in            +             +=            *</span>
+<span class="go">    *=            &lt;             &lt;=            ==            !=</span>
+<span class="go">    &gt;             &gt;=            dir()         hash()</span>
+<span class="go">    help()        iter()        len()         repr()</span>
+<span class="go">    reversed()    str()         .append()     .clear()</span>
+<span class="go">    .copy()       .count()      .extend()     .index()</span>
+<span class="go">    .insert()     .pop()        .remove()     .reverse()</span>
+<span class="go">    .sort()</span>
+</pre></div>
+</div>
+<p>If this function is run without arguments, it will instead list the objects
+that are available in the current scope.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">()</span>
+<span class="go">    os        random    see()     sys</span>
+</pre></div>
+</div>
+<p>The return value is an instance of <code class="xref py py-class docutils literal"><span class="pre">SeeResult</span></code>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2009–2017, Liam Cooke.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

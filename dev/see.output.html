@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>see.output module &#8212; see 1.4.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.4.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="see.term module" href="see.term.html" />
+    <link rel="prev" title="see.inspector module" href="see.inspector.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">see</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../startup.html">Startup File</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contributing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#get-the-source-code">Get the source code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#module-reference">Module reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Licensing Information</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Contributing</a><ul>
+      <li>Previous: <a href="see.inspector.html" title="previous chapter">see.inspector module</a></li>
+      <li>Next: <a href="see.term.html" title="next chapter">see.term module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-see.output">
+<span id="see-output-module"></span><h1>see.output module<a class="headerlink" href="#module-see.output" title="Permalink to this headline">¶</a></h1>
+<p>Manipulating strings for output.</p>
+<dl class="class">
+<dt id="see.output.SeeResult">
+<em class="property">class </em><code class="descclassname">see.output.</code><code class="descname">SeeResult</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="headerlink" href="#see.output.SeeResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The output of the <a class="reference internal" href="../usage.html#module-see" title="see"><code class="xref py py-func docutils literal"><span class="pre">see()</span></code></a> function.</p>
+<p>Acts like a tuple of strings, so you can iterate over the output:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">first</span> <span class="o">=</span> <span class="n">see</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">see</span><span class="p">([]):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="see.output.SeeResult.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>pattern</em><span class="sig-paren">)</span><a class="headerlink" href="#see.output.SeeResult.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter the results using a pattern.</p>
+<p>This accepts a shell-style wildcard pattern (as used by the <a class="reference external" href="https://docs.python.org/3/library/fnmatch.html">fnmatch</a>
+module):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">([])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;*op*&#39;</span><span class="p">)</span>
+<span class="go">    .copy()    .pop()</span>
+</pre></div>
+</div>
+<p>It also accepts a regular expression. This may be a compiled regular
+expression (from the <a class="reference external" href="https://docs.python.org/3/library/re.html">re</a> module) or a string that starts with a <code class="docutils literal"><span class="pre">/</span></code>
+(forward slash) character:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">see</span><span class="p">([])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;/[aeiou]</span><span class="si">{2}</span><span class="s1">/&#39;</span><span class="p">)</span>
+<span class="go">    .clear()    .count()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="see.output.column_width">
+<code class="descclassname">see.output.</code><code class="descname">column_width</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="headerlink" href="#see.output.column_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a suitable column width to display one or more strings.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="see.output.display_name">
+<code class="descclassname">see.output.</code><code class="descname">display_name</code><span class="sig-paren">(</span><em>name</em>, <em>obj</em>, <em>local</em><span class="sig-paren">)</span><a class="headerlink" href="#see.output.display_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the display name of an object.</p>
+<p>Keyword arguments (all required):</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">name</span></code> – the name of the object as a string.</li>
+<li><code class="docutils literal"><span class="pre">obj</span></code> – the object itself.</li>
+<li><code class="docutils literal"><span class="pre">local</span></code> – a boolean value indicating whether the object is in local
+scope or owned by an object.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="see.output.justify_token">
+<code class="descclassname">see.output.</code><code class="descname">justify_token</code><span class="sig-paren">(</span><em>tok</em>, <em>col_width</em><span class="sig-paren">)</span><a class="headerlink" href="#see.output.justify_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Justify a string to fill one or more columns.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2009–2017, Liam Cooke.
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
