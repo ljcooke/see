@@ -4,7 +4,6 @@ Terminal info.
 """
 import platform
 import struct
-import sys
 
 # pylint: disable=invalid-name
 
