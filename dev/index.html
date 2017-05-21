@@ -56,6 +56,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../startup.html">Startup File</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#get-the-source-code">Get the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-reference">Module reference</a></li>
 </ul>
 </li>
@@ -98,6 +99,20 @@ Contributions are welcome.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/araile/see/blob/develop/CHANGELOG.rst">Change Log</a></li>
 <li><a class="reference external" href="https://github.com/araile/see/blob/develop/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+</ul>
+</div>
+<div class="section" id="continuous-integration">
+<h2>Continuous integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h2>
+<p>The code repository on GitHub is integrated with a few continuous integration
+services which come into effect each time code is pushed:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://travis-ci.org/araile/see">Travis CI</a> runs the unit tests in
+a Linux environment for each supported Python release.</li>
+<li><a class="reference external" href="https://ci.appveyor.com/project/araile/see">AppVeyor</a> runs the unit tests
+in a Windows environment.</li>
+<li><a class="reference external" href="https://coveralls.io/github/araile/see">Coveralls</a> tracks how much of the
+code is covered by the unit tests. This is updated by Travis when a test
+succeeds.</li>
 </ul>
 </div>
 <div class="section" id="module-reference">
