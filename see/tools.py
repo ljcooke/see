@@ -3,7 +3,6 @@ Filtering and other tasks.
 
 """
 import fnmatch
-import re
 import unicodedata
 
 
@@ -37,12 +36,10 @@ def display_len(text):
     return sum(char_width(char) for char in text)
 
 
-def filter_regex(names, pattern):
+def filter_regex(names, regex):
     """
     Return a tuple of strings that match the regular expression pattern.
     """
-    regex = re.compile(pattern)
-
     return tuple(name for name in names
                  if regex.search(name) is not None)
 

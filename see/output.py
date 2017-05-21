@@ -3,12 +3,16 @@ Manipulating strings for output.
 
 """
 import math
+import re
 import sys
 import textwrap
 
 from . import term, tools
 from .exceptions import SeeError
 from .features import PY3
+
+
+REGEX_TYPE = type(re.compile('.'))
 
 
 class SeeResult(object):
@@ -63,16 +67,20 @@ class SeeResult(object):
             >>> see([]).filter('*op*')
                 .copy()    .pop()
 
-        It also accepts a regular expression, if the pattern starts with
-        a ``/`` (forward slash) character::
+        It also accepts a regular expression. This may be a compiled regular
+        expression (from the re_ module) or a string that starts with a ``/``
+        (forward slash) character::
 
             >>> see([]).filter('/[aeiou]{2}/')
                 .clear()    .count()
 
         .. _fnmatch: https://docs.python.org/3/library/fnmatch.html
+        .. _re: https://docs.python.org/3/library/re.html
         """
-        if pattern.startswith('/'):
-            pattern = pattern.strip('/')
+        if isinstance(pattern, REGEX_TYPE):
+            func = tools.filter_regex
+        elif pattern.startswith('/'):
+            pattern = re.compile(pattern.strip('/'))
             func = tools.filter_regex
         else:
             func = tools.filter_wildcard

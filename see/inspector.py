@@ -3,6 +3,7 @@ Object inspector.
 
 """
 import inspect
+import re
 import sys
 
 from . import output, tools
@@ -55,7 +56,7 @@ def handle_deprecated_args(tokens, args, kwargs):
             'deprecated and will be removed in a later release. \n')
 
     if regex is not None:
-        tokens = tools.filter_regex(tokens, regex)
+        tokens = tools.filter_regex(tokens, re.compile(regex))
         sys.stderr.write(
             'Please use see().regex() now. The "r" argument is '
             'deprecated and will be removed in a later release. \n')

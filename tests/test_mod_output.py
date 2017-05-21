@@ -2,6 +2,8 @@
 Unit tests for the see.output module.
 
 """
+import re
+
 try:
     import unittest2 as unittest
 except ImportError:
@@ -56,7 +58,7 @@ class TestSeeResultClass(unittest.TestCase):
         self.assertTrue(all(int(factor) == factor for factor in factors),
                         'Irregular column widths')
 
-    def test_filter_wildcard(self):
+    def test_filter_with_wildcard(self):
         obj = []
         pattern = '*op*'
         expected = ('.copy()', '.pop()') if PY3 else ('.pop()',)
@@ -66,9 +68,19 @@ class TestSeeResultClass(unittest.TestCase):
         self.assertIsInstance(filtered_result, output.SeeResult)
         self.assertEqual(expected, filtered_result)
 
-    def test_filter_regex(self):
+    def test_filter_with_regex_string(self):
         obj = []
         pattern = '/[aeiou]{2}/'
+        expected = ('.clear()', '.count()') if PY3 else ('.count()',)
+
+        filtered_result = see(obj).filter(pattern)
+
+        self.assertIsInstance(filtered_result, output.SeeResult)
+        self.assertEqual(expected, filtered_result)
+
+    def test_filter_with_regex_object(self):
+        obj = []
+        pattern = re.compile('[aeiou]{2}')
         expected = ('.clear()', '.count()') if PY3 else ('.count()',)
 
         filtered_result = see(obj).filter(pattern)

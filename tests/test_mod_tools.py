@@ -2,6 +2,8 @@
 Unit tests for the see.tools module.
 
 """
+import re
+
 try:
     import unittest2 as unittest
 except ImportError:
@@ -26,9 +28,9 @@ class TestToolsModule(unittest.TestCase):
     def test_filter_regex(self):
         # Arrange
         names = ["george", "helen"]
-        pat_wildcard = "e.*g"
-        pat_start = "^h"
-        pat_end = "n$"
+        pat_wildcard = re.compile("e.*g")
+        pat_start = re.compile("^h")
+        pat_end = re.compile("n$")
 
         # Act
         out_wildcard = tools.filter_regex(names, pat_wildcard)
