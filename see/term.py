@@ -8,7 +8,7 @@ import struct
 # pylint: disable=invalid-name
 
 try:
-    if platform.system() == 'Windows':  # no-coverage: Windows
+    if platform.system() == 'Windows':  # pragma: no cover (windows)
         from ctypes import windll, create_string_buffer
         fcntl, termios = None, None
     else:
@@ -36,7 +36,7 @@ def term_width():
             return width
         except IOError:
             pass
-    elif windll and create_string_buffer:  # no-coverage: Windows
+    elif windll and create_string_buffer:  # pragma: no cover (windows)
         stderr_handle, struct_size = -12, 22
         handle = windll.kernel32.GetStdHandle(stderr_handle)
         csbi = create_string_buffer(struct_size)
@@ -53,7 +53,7 @@ def line_width(default_width=DEFAULT_LINE_WIDTH, max_width=MAX_LINE_WIDTH):
     the terminal width into account to avoid wrapping.
     """
     width = term_width()
-    if width:  # no-coverage: terminal width not available with Travis CI
+    if width:  # pragma: no cover (no terminal info in Travis CI)
         return min(width, max_width)
     else:
         return default_width
