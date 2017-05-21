@@ -33,7 +33,7 @@ from .tools import compact
 
 PY_VERSION = sys.version_info
 
-if (PY_VERSION < (2, 6)) or ((3, 0) <= PY_VERSION < (3, 3)): # pragma: no cover
+if (PY_VERSION < (2, 6)) or ((3, 0) <= PY_VERSION < (3, 3)):  # pragma: nocover
     sys.stderr.write('Warning: see() is not supported here. '
                      'Please use Python 3.3+ or 2.6+.\n')
 
