@@ -27,6 +27,7 @@ setup(name='see',
       test_suite='tests',
       tests_require=list(filter(bool, TESTS_REQUIRE)),
       zip_safe=True,
+      keywords='see dir alternative inspect human readable pretty'.split(),
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Console',
