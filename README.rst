@@ -25,6 +25,9 @@ Use it to inspect your code or learn new APIs.
 .. see/docs </summary>
 
 
+.. contents::
+
+
 Example
 -------
 
