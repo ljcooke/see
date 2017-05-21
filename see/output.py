@@ -15,15 +15,11 @@ class SeeResult(object):
     """
     The output of the :func:`see` function.
 
-    If there are too many results, you can filter them using the
-    :func:`match` and :func:`regex` functions.
+    Acts like a tuple of strings, so you can iterate over the output::
 
-    This object acts like a tuple of strings, so you can iterate over the
-    results::
+        >>> first = see()[0]
 
-        >>> first_result = see()[0]
-
-        >>> for string in see():
+        >>> for string in see([]):
         ...     print(string)
 
     """
@@ -57,28 +53,31 @@ class SeeResult(object):
     def __getitem__(self, index):
         return self._tokens[index]
 
-    def match(self, pattern):
+    def filter(self, pattern):
         """
-        Filter the result using a shell-style wildcard pattern. ::
+        Filter the results using a pattern.
 
-            >>> see([]).match('*op*')
+        This accepts a shell-style wildcard pattern (as used by the fnmatch_
+        module)::
+
+            >>> see([]).filter('*op*')
                 .copy()    .pop()
 
-        See fnmatch_ in the Python documentation.
+        It also accepts a regular expression, if the pattern starts with
+        a ``/`` (forward slash) character::
+
+            >>> see([]).filter('/[aeiou]{2}/')
+                .clear()    .count()
 
         .. _fnmatch: https://docs.python.org/3/library/fnmatch.html
         """
-        return SeeResult(tools.filter_wildcard(self, pattern))
+        if pattern.startswith('/'):
+            pattern = pattern.strip('/')
+            func = tools.filter_regex
+        else:
+            func = tools.filter_wildcard
 
-    def regex(self, pattern):
-        """
-        Filter the result using a regular expression. ::
-
-            >>> see([]).regex('[aeiou]{2}')
-                .clear()    .count()
-
-        """
-        return SeeResult(tools.filter_regex(self, pattern))
+        return SeeResult(func(self, pattern))
 
 
 def column_width(tokens):

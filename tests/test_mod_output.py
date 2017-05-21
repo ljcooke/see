@@ -56,22 +56,22 @@ class TestSeeResultClass(unittest.TestCase):
         self.assertTrue(all(int(factor) == factor for factor in factors),
                         'Irregular column widths')
 
-    def test_match(self):
+    def test_filter_wildcard(self):
         obj = []
         pattern = '*op*'
         expected = ('.copy()', '.pop()') if PY3 else ('.pop()',)
 
-        filtered_result = see(obj).match(pattern)
+        filtered_result = see(obj).filter(pattern)
 
         self.assertIsInstance(filtered_result, output.SeeResult)
         self.assertEqual(expected, filtered_result)
 
-    def test_regex(self):
+    def test_filter_regex(self):
         obj = []
-        pattern = '[aeiou]{2}'
+        pattern = '/[aeiou]{2}/'
         expected = ('.clear()', '.count()') if PY3 else ('.count()',)
 
-        filtered_result = see(obj).regex(pattern)
+        filtered_result = see(obj).filter(pattern)
 
         self.assertIsInstance(filtered_result, output.SeeResult)
         self.assertEqual(expected, filtered_result)

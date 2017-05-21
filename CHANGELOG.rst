@@ -15,9 +15,9 @@ project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 **Added**
 
-- New API for filtering the output of ``see``. Instead of passing in
-  a ``pattern`` or ``r`` argument, call ``see().match()`` or ``see().re()``
-  respectively.
+- New API for filtering the results. Results can be filtered by a wildcard
+  pattern or regular expression by calling ``filter()`` on the output,
+  i.e. ``see().filter()``.
 
 - Test each of the ``is`` functions from the *inspect* module, such as
   ``isclass`` and ``isgenerator``, and include them in the result.
