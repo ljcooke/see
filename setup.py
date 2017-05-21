@@ -1,23 +1,25 @@
-#!/usr/bin/env python
 import sys
 from setuptools import setup
 
-tests_require = [
+VERSION = '1.4.0'
+
+INSTALL_REQUIRES = []
+TESTS_REQUIRE = [
     'mock>=2.0.0' if sys.version_info < (3, 3) else None,
     'unittest2>=1.1.0' if sys.version_info < (2, 7) else None,
 ]
 
 setup(name='see',
-      version='1.4.0',
+      version=VERSION,
       description='dir for humans',
       author='Liam Cooke',
       author_email='see@araile.com',
       license='BSD License',
       url='https://araile.github.io/see/',
       packages=['see'],
-      install_requires=[],
+      install_requires=list(filter(bool, INSTALL_REQUIRES)),
       test_suite='tests',
-      tests_require=[lib for lib in tests_require if lib],
+      tests_require=list(filter(bool, TESTS_REQUIRE)),
       zip_safe=True,
       classifiers=[
           'Development Status :: 5 - Production/Stable',

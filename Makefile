@@ -18,13 +18,18 @@ lint:
 .PHONY: clean
 clean:
 	rm -rf build
-	rm -rf ./*.pyc see/*.pyc __pycache__ see/__pycache__ .eggs
+	rm -rf ./*.pyc see/*.pyc __pycache__ see/__pycache__
+	rm -rf .eggs *.egg-info
 	(cd docs && make clean)
-
-.PHONY: dist
-dist:
-	python3 setup.py sdist --formats=bztar,gztar,zip
 
 .PHONY: docs
 docs:
 	(cd docs && make html)
+
+.PHONY: dist
+dist:
+	python3 setup.py sdist bdist_wheel
+
+.PHONY: publish
+publish:
+	python3 setup.py sdist bdist_wheel upload # -r testpypi

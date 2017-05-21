@@ -1,6 +1,5 @@
-include see/*.py
-include tests/*.py
+recursive-include see *.py
+recursive-include tests *.py
 
-include LICENSE
-include *.md
-include *.rst
+include *.md *.rst LICENSE
+include .travis.yml .coveragerc
