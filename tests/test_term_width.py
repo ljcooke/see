@@ -57,6 +57,10 @@ class TestSupportedTerminal(unittest.TestCase):
         self.system = platform.system()
         self.windows = (self.system == 'Windows')
 
+    def tearDown(self):
+        if hasattr(sys, 'ps1'):
+            del sys.ps1
+
     def test_system(self):
         self.assertTrue(self.system, 'System/OS name could not be determined')
 
@@ -90,7 +94,21 @@ class TestSupportedTerminal(unittest.TestCase):
 
             self.assertIsNone(width)
 
-    def test_indent_to_prompt(self):
+    def test_reduce_indent_to_narrow_prompt(self):
+        if hasattr(sys, 'ps1'):
+            self.fail('expected sys.ps1 to be absent during unit testing')
+
+        # Arrange
+        sys.ps1 = '> '
+
+        # Act
+        out = see.see()
+        indent = len(str(out)) - len(str(out).lstrip())
+
+        # Assert
+        self.assertEqual(indent, len(sys.ps1))
+
+    def test_maximum_indent(self):
         if hasattr(sys, 'ps1'):
             self.fail('expected sys.ps1 to be absent during unit testing')
 
@@ -102,7 +120,7 @@ class TestSupportedTerminal(unittest.TestCase):
         indent = len(str(out)) - len(str(out).lstrip())
 
         # Assert
-        self.assertEqual(indent, len(sys.ps1))
+        self.assertEqual(indent, 4)
 
 
 class TestMockWindowsTerminal(unittest.TestCase):
