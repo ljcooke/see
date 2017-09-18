@@ -10,6 +10,10 @@ project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 Unreleased_
 --------------------
 
+**Changed**
+
+- Limit the output indentation to a maximum of 4 spaces.
+
 **Fixed**
 
 - Fixed the function name in the 'deprecated' message that appears when you use

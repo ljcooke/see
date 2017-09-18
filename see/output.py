@@ -14,6 +14,8 @@ from .features import PY3
 
 REGEX_TYPE = type(re.compile('.'))
 
+MAX_INDENT = 4
+
 
 class SeeResult(object):
     """
@@ -37,9 +39,9 @@ class SeeResult(object):
         ps1 = getattr(sys, 'ps1', None)
         if ps1:
             get_len = tools.display_len if PY3 else len
-            indent = ' ' * get_len(ps1)
+            indent = ' ' * min(get_len(ps1), MAX_INDENT)
         else:
-            indent = '    '
+            indent = ' ' * MAX_INDENT
 
         return textwrap.fill(''.join(padded), term.line_width(),
                              initial_indent=indent,
