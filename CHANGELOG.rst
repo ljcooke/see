@@ -7,7 +7,10 @@ All notable changes to this project will be documented in this file. This
 project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 
-Unreleased_
+.. Unreleased_
+.. --------------------
+
+v1.4.1_ / 2017-09-24
 --------------------
 
 **Changed**
@@ -267,8 +270,9 @@ v0.1 / 2009-02-16
 - Original release.
 
 
-.. _unreleased: https://github.com/inky/see/compare/v1.4.0...develop
+.. _unreleased: https://github.com/inky/see/compare/v1.4.1...develop
 
+.. _v1.4.1: https://github.com/inky/see/compare/v1.4.0...v1.4.1
 .. _v1.4.0: https://github.com/inky/see/compare/v1.3.2...v1.4.0
 .. _v1.3.2: https://github.com/inky/see/compare/v1.3.1...v1.3.2
 .. _v1.3.1: https://github.com/inky/see/compare/v1.3.0...v1.3.1

@@ -2,7 +2,7 @@ import codecs
 import sys
 from setuptools import setup
 
-VERSION = '1.4.0'
+VERSION = '1.4.1'
 
 INSTALL_REQUIRES = []
 TESTS_REQUIRE = [
