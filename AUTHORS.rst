@@ -4,7 +4,7 @@ Authors
 **see** is written and maintained by Liam Cooke, with features, patches, and
 suggestions from various contributors:
 
-- `Liam Cooke <https://github.com/araile>`__
+- `Liam Cooke <https://github.com/ljcooke>`__
 - Ian Gowen
 - `Baishampayan Ghose <https://github.com/ghoseb>`__
 - `Jeremy Dunck <https://github.com/jdunck>`__

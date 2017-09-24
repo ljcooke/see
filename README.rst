@@ -6,11 +6,11 @@ see: dir for humans
 
 .. see/docs <common-badges>
 
-.. image:: https://travis-ci.org/araile/see.svg?branch=develop
-    :target: https://travis-ci.org/araile/see
+.. image:: https://travis-ci.org/ljcooke/see.svg?branch=develop
+    :target: https://travis-ci.org/ljcooke/see
 
-.. image:: https://coveralls.io/repos/github/araile/see/badge.svg?branch=develop
-    :target: https://coveralls.io/github/araile/see?branch=develop
+.. image:: https://coveralls.io/repos/github/ljcooke/see/badge.svg?branch=develop
+    :target: https://coveralls.io/github/ljcooke/see?branch=develop
 
 .. see/docs </common-badges>
 
@@ -89,22 +89,22 @@ or a regular expression::
 Documentation
 -------------
 
-Documentation is available at https://araile.github.io/see/
+Documentation is available at https://ljcooke.github.io/see/
 
-* `Installation <https://araile.github.io/see/install.html>`_
-* `Usage <https://araile.github.io/see/usage.html>`_
-* `Startup File <https://araile.github.io/see/startup.html>`_
-* `Developer Reference <https://araile.github.io/see/dev/index.html>`_
+* `Installation <https://ljcooke.github.io/see/install.html>`_
+* `Usage <https://ljcooke.github.io/see/usage.html>`_
+* `Startup File <https://ljcooke.github.io/see/startup.html>`_
+* `Developer Reference <https://ljcooke.github.io/see/dev/index.html>`_
 
 
 Contributing
 ------------
 
 The source code is maintained
-`on GitHub <https://github.com/araile/see>`_.
+`on GitHub <https://github.com/ljcooke/see>`_.
 Contributions are welcome.
 
-* `Change Log <https://github.com/araile/see/blob/develop/CHANGELOG.rst>`_
-* `Code of Conduct <https://github.com/araile/see/blob/develop/CODE_OF_CONDUCT.md>`_
-* `Authors <https://github.com/araile/see/blob/develop/AUTHORS.rst>`_
-* `License <https://github.com/araile/see/blob/develop/LICENSE>`_
+* `Change Log <https://github.com/ljcooke/see/blob/develop/CHANGELOG.rst>`_
+* `Code of Conduct <https://github.com/ljcooke/see/blob/develop/CODE_OF_CONDUCT.md>`_
+* `Authors <https://github.com/ljcooke/see/blob/develop/AUTHORS.rst>`_
+* `License <https://github.com/ljcooke/see/blob/develop/LICENSE>`_

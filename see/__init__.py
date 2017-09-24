@@ -1,7 +1,7 @@
 """
 see: dir for humans.
 
-Documentation is available at https://araile.github.io/see/
+Documentation is available at https://ljcooke.github.io/see/
 
 """
 from .inspector import see
