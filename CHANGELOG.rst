@@ -7,7 +7,10 @@ All notable changes to this project will be documented in this file. This
 project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 
-Unreleased_
+.. Unreleased_
+.. --------------------
+
+v1.4.1_ / 2017-09-24
 --------------------
 
 **Changed**
@@ -267,24 +270,25 @@ v0.1 / 2009-02-16
 - Original release.
 
 
-.. _unreleased: https://github.com/inky/see/compare/v1.4.0...develop
+.. _unreleased: https://github.com/ljcooke/see/compare/v1.4.1...develop
 
-.. _v1.4.0: https://github.com/inky/see/compare/v1.3.2...v1.4.0
-.. _v1.3.2: https://github.com/inky/see/compare/v1.3.1...v1.3.2
-.. _v1.3.1: https://github.com/inky/see/compare/v1.3.0...v1.3.1
-.. _v1.3.0: https://github.com/inky/see/compare/v1.2.0...v1.3.0
-.. _v1.2.0: https://github.com/inky/see/compare/v1.1.1...v1.2.0
-.. _v1.1.1: https://github.com/inky/see/compare/v1.1.0...v1.1.1
-.. _v1.1.0: https://github.com/inky/see/compare/v1.0.1...v1.1.0
+.. _v1.4.1: https://github.com/ljcooke/see/compare/v1.4.0...v1.4.1
+.. _v1.4.0: https://github.com/ljcooke/see/compare/v1.3.2...v1.4.0
+.. _v1.3.2: https://github.com/ljcooke/see/compare/v1.3.1...v1.3.2
+.. _v1.3.1: https://github.com/ljcooke/see/compare/v1.3.0...v1.3.1
+.. _v1.3.0: https://github.com/ljcooke/see/compare/v1.2.0...v1.3.0
+.. _v1.2.0: https://github.com/ljcooke/see/compare/v1.1.1...v1.2.0
+.. _v1.1.1: https://github.com/ljcooke/see/compare/v1.1.0...v1.1.1
+.. _v1.1.0: https://github.com/ljcooke/see/compare/v1.0.1...v1.1.0
 
-.. _v1.0.1: https://github.com/inky/see/compare/v1.0-fixed...v1.0.1
-.. _v1.0:   https://github.com/inky/see/compare/v0.5.4...v1.0-fixed
-.. _v0.5.4: https://github.com/inky/see/compare/v0.5.3...v0.5.4
-.. _v0.5.3: https://github.com/inky/see/compare/v0.5.2...v0.5.3
-.. _v0.5.2: https://github.com/inky/see/compare/v0.5.1...v0.5.2
-.. _v0.5.1: https://github.com/inky/see/compare/v0.5...v0.5.1
-.. _v0.5:   https://github.com/inky/see/compare/v0.4.1...v0.5
-.. _v0.4.1: https://github.com/inky/see/compare/v0.4...v0.4.1
-.. _v0.4:   https://github.com/inky/see/compare/v0.3.1...v0.4
-.. _v0.3.1: https://github.com/inky/see/compare/v0.3...v0.3.1
-.. _v0.3:   https://github.com/inky/see/compare/v0.2...v0.3
+.. _v1.0.1: https://github.com/ljcooke/see/compare/v1.0-fixed...v1.0.1
+.. _v1.0:   https://github.com/ljcooke/see/compare/v0.5.4...v1.0-fixed
+.. _v0.5.4: https://github.com/ljcooke/see/compare/v0.5.3...v0.5.4
+.. _v0.5.3: https://github.com/ljcooke/see/compare/v0.5.2...v0.5.3
+.. _v0.5.2: https://github.com/ljcooke/see/compare/v0.5.1...v0.5.2
+.. _v0.5.1: https://github.com/ljcooke/see/compare/v0.5...v0.5.1
+.. _v0.5:   https://github.com/ljcooke/see/compare/v0.4.1...v0.5
+.. _v0.4.1: https://github.com/ljcooke/see/compare/v0.4...v0.4.1
+.. _v0.4:   https://github.com/ljcooke/see/compare/v0.3.1...v0.4
+.. _v0.3.1: https://github.com/ljcooke/see/compare/v0.3...v0.3.1
+.. _v0.3:   https://github.com/ljcooke/see/compare/v0.2...v0.3
