@@ -2,4 +2,3 @@ recursive-include see *.py
 recursive-include tests *.py
 
 include *.md *.rst LICENSE
-include .travis.yml .coveragerc
