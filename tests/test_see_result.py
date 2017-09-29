@@ -3,11 +3,7 @@ Unit tests for the result of calling see() with various types of object.
 
 """
 import itertools
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
 from see import see
 

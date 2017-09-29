@@ -10,16 +10,12 @@ loads see.
 import platform
 import sys
 from imp import reload
+import unittest
 
 try:
-    import unittest2 as unittest
+    import unittest.mock as mock  # Python 3.3+
 except ImportError:
-    import unittest
-
-try:
-    import unittest.mock as mock
-except ImportError:
-    import mock
+    import mock  # Python 2
 
 try:
     import builtins  # Python 3

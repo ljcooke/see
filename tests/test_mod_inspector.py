@@ -2,10 +2,7 @@
 Unit tests for the see.inspector module.
 
 """
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
 from see import inspector, output, see
 
