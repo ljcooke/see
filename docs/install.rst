@@ -4,7 +4,7 @@
 Installation
 ============
 
-**see** supports Python 2.6+ and 3.3+.
+**see** supports Python 2.7 and 3.4+.
 
 The latest release can be found on the
 `Python Package Index <https://pypi.python.org/pypi/see>`_.
