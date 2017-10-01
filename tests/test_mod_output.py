@@ -3,11 +3,7 @@ Unit tests for the see.output module.
 
 """
 import re
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
 from see import output, see
 from see.features import PY3

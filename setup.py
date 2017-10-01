@@ -7,7 +7,6 @@ VERSION = '1.4.1'
 INSTALL_REQUIRES = []
 TESTS_REQUIRE = [
     'mock>=2.0.0' if sys.version_info < (3, 3) else None,
-    'unittest2>=1.1.0' if sys.version_info < (2, 7) else None,
 ]
 
 with codecs.open('README.rst', encoding='utf-8') as file:
@@ -36,9 +35,9 @@ setup(name='see',
           'License :: OSI Approved :: BSD License',
           'Natural Language :: English',
           'Operating System :: OS Independent',
-          'Programming Language :: Python :: 2.6',
+          'Programming Language :: Python :: 2',
           'Programming Language :: Python :: 2.7',
-          'Programming Language :: Python :: 3.3',
+          'Programming Language :: Python :: 3',
           'Programming Language :: Python :: 3.4',
           'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 3.6',

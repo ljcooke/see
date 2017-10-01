@@ -3,11 +3,7 @@ Unit tests for the see.tools module.
 
 """
 import re
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
 from see import tools
 

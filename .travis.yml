@@ -2,16 +2,14 @@
 # See:
 #   https://docs.travis-ci.com/user/customizing-the-build/
 #   https://docs.travis-ci.com/user/languages/python
-#   http://lint.travis-ci.org
+#   https://lint.travis-ci.org
 
 language: python
 
 python:
   - "pypy"
   - "pypy3"
-  - "2.6"
   - "2.7"
-  - "3.3"
   - "3.4"
   - "3.5"
   - "3.6"
@@ -29,8 +27,6 @@ sudo: false
 install:
  - pip install 'setuptools>=17.1'
  - pip install 'mock>=2.0'
- - if [ "$TRAVIS_PYTHON_VERSION" == "2.6" ]; then pip install unittest2; fi
- # Expecting Coverage to fail for pypy3 until Travis supports PyPy3 5.5+ (as of May 2017)
  - pip install coverage
 
 script:

@@ -7,8 +7,13 @@ All notable changes to this project will be documented in this file. This
 project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 
 
-.. Unreleased_
-.. --------------------
+Unreleased_
+--------------------
+
+**Deprecated**
+
+- Dropped support for Python 2.6 and 3.3.
+
 
 v1.4.1_ / 2017-09-24
 --------------------

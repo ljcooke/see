@@ -17,7 +17,7 @@ see: dir for humans
 
 .. see/docs <summary>
 
-**see** is an alternative to ``dir()``, for Python 2.6+ and 3.3+.
+**see** is an alternative to ``dir()``, for Python 2.7 and 3.4+.
 
 It neatly summarises what you can do with an object.
 Use it to inspect your code or learn new APIs.

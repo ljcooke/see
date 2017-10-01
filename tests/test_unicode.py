@@ -6,10 +6,7 @@ Unit tests for Unicode issues.
 This requires Unicode string literals in Python 2.
 
 """
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
 from see import output, tools
 from see.features import PY3
