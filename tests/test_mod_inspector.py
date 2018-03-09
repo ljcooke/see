@@ -4,7 +4,7 @@ Unit tests for the see.inspector module.
 """
 import unittest
 
-from see import inspector, output, see
+from see import inspector, see
 
 
 class ObjectWithAttributeError(object):
