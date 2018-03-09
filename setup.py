@@ -6,7 +6,7 @@ VERSION = '1.4.1'
 
 INSTALL_REQUIRES = []
 TESTS_REQUIRE = [
-    'mock>=2.0.0' if sys.version_info < (3, 3) else None,
+    'mock>=2.0.0' if sys.version_info.major == 2 else None,
 ]
 
 with codecs.open('README.rst', encoding='utf-8') as file:
@@ -22,6 +22,7 @@ setup(name='see',
       platforms=['any'],
       url='https://ljcooke.github.io/see/',
       packages=['see'],
+      python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
       install_requires=list(filter(bool, INSTALL_REQUIRES)),
       test_suite='tests',
       tests_require=list(filter(bool, TESTS_REQUIRE)),
