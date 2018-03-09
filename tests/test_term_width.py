@@ -85,7 +85,7 @@ class TestSupportedTerminal(unittest.TestCase):
             return
 
         package = 'see.term.fcntl.ioctl'
-        with mock.patch(package, side_effect=IOError('')) as patch:
+        with mock.patch(package, side_effect=IOError('')):
             width = term.term_width()
 
             self.assertIsNone(width)
