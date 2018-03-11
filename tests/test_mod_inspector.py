@@ -4,7 +4,7 @@ Unit tests for the see.inspector module.
 """
 import unittest
 
-from see import inspector, output, see
+from see import inspector, see
 
 
 class ObjectWithAttributeError(object):
@@ -103,6 +103,7 @@ class TestSeeFunction(unittest.TestCase):
         filtered_result_pos_arg = see(obj, '*', pattern)
 
         # Assert
+        self.assertEqual(filtered_result, filtered_result_pos_arg)
         self.assertIn('.count()', filtered_result)
         self.assertNotIn('.pop()', filtered_result)
 

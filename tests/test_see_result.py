@@ -12,18 +12,18 @@ def union(*sets):
     return set(itertools.chain(*sets))
 
 
-SIGN_OPS = set(['+obj', '-obj'])
+SIGN_OPS = {'+obj', '-obj'}
 
 NUMBER_OPS = set('+ - * / // % **'.split())
 NUMBER_ASSIGN_OPS = set()
 
 BITWISE_OPS = set('<< >> & ^ | ~'.split())
-BITWISE_ASSIGN_OPS = set(op + '=' for op in BITWISE_OPS)
+BITWISE_ASSIGN_OPS = {op + '=' for op in BITWISE_OPS}
 
 COMPARE_OPS = set('< <= == != > >='.split())
 
-MATRIX_OPS = set(['@'])
-MATRIX_ASSIGN_OPS = set(['@='])
+MATRIX_OPS = {'@'}
+MATRIX_ASSIGN_OPS = {'@='}
 
 ALL_OPS = union(
     SIGN_OPS,
