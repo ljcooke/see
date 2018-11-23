@@ -22,3 +22,4 @@ suggestions from various contributors:
 - `Frederic De Groef <https://github.com/sevas>`__
 - `hugovk <https://github.com/hugovk>`__
 - `dbaker <https://github.com/d-baker>`__
+- `Rodrigo Ferreira de Souza <https://github.com/rodfersou>`__

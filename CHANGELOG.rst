@@ -10,6 +10,12 @@ project adheres to `Semantic Versioning <http://semver.org>`__  as of v1.1.0.
 Unreleased_
 --------------------
 
+**Added**
+
+- ``.filter_ignore_case()`` -- Ignore case when filtering results.
+
+- ``.filter_exclude()`` -- Exclude results that match a regular expression.
+
 **Deprecated**
 
 - Dropped support for Python 2.6 and 3.3.
