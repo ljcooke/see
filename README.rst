@@ -9,6 +9,9 @@ see: dir for humans
 .. image:: https://travis-ci.org/ljcooke/see.svg?branch=develop
     :target: https://travis-ci.org/ljcooke/see
 
+.. image:: https://ci.appveyor.com/api/projects/status/o6rc2yd65fkp7ym7/branch/develop?svg=true
+    :target: https://ci.appveyor.com/project/ljcooke/see/branch/develop
+
 .. image:: https://coveralls.io/repos/github/ljcooke/see/badge.svg?branch=develop
     :target: https://coveralls.io/github/ljcooke/see?branch=develop
 
