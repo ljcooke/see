@@ -83,3 +83,34 @@ class TestSeeResultClass(unittest.TestCase):
 
         self.assertIsInstance(filtered_result, output.SeeResult)
         self.assertEqual(expected, filtered_result)
+
+    @unittest.skip('Not implemented')
+    def test_filter_ignore_case_with_wildcard(self):
+        pass
+
+    def test_filter_ignore_case_with_regex_string(self):
+        obj = []
+        pattern = '[AEIOU]{2}' # TODO: Change this to '/[AEIOU]{2}/'
+        expected = ('.clear()', '.count()') if PY3 else ('.count()',)
+
+        filtered_result = see(obj).filter_ignore_case(pattern)
+
+        self.assertIsInstance(filtered_result, output.SeeResult)
+        self.assertEqual(expected, filtered_result)
+
+    @unittest.skip('Not implemented')
+    def test_filter_exclude_with_wildcard(self):
+        pass
+
+    def test_filter_exclude_with_regex_string(self):
+        obj = []
+        pattern = '[aeiou]{2}' # TODO: Change this to '/[aeiou]{2}/'
+        excluded = set(('.clear()', '.count()')) if PY3 else set(('.count()',))
+
+        unfiltered_result = see(obj)
+        filtered_result = see(obj).filter_exclude(pattern)
+
+        self.assertIsInstance(filtered_result, output.SeeResult)
+        self.assertEqual(set(unfiltered_result).difference(filtered_result),
+                         excluded)
+        self.assertFalse(set(filtered_result).difference(unfiltered_result))
