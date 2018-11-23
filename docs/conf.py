@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'see'
-copyright = '2009–2017, Liam Cooke'
+copyright = '2009–2018, Liam Cooke'
 author = 'Liam Cooke'
 
 # The version info for the project you're documenting, acts as replacement for
