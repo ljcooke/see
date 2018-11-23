@@ -12,9 +12,10 @@ Unreleased_
 
 **Added**
 
-- ``.filter_ignore_case()`` -- Ignore case when filtering results.
+- ``.filter_ignoring_case()`` -- Like ``.filter()`` but case-insensitive.
 
-- ``.filter_exclude()`` -- Exclude results that match a regular expression.
+- ``.exclude()`` -- The opposite of ``.filter()``. Excludes results that match
+  a regular expression.
 
 **Deprecated**
 

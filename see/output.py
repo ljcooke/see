@@ -89,17 +89,28 @@ class SeeResult(object):
 
         return SeeResult(func(self, pattern))
 
-    def filter_ignore_case(self, pattern):
+    def filter_ignoring_case(self, pattern):
         """
-        Filter the results ignoring case
+        Like ``filter`` but case-insensitive.
+
+        Expects a regular expression string without the surrounding ``/``
+        characters.
+
+            >>> see().filter('^my', ignore_case=True)
+                MyClass()
+
         """
         return self.filter(re.compile(pattern, re.I))
 
-    def filter_exclude(self, pattern):
+    def exclude(self, pattern):
         """
-        Filter wwith a pattern to exclude in results
-        https://stackoverflow.com/a/957581
+        The opposite of ``filter``: excludes items from the result that match
+        a given pattern.
+
+        Expects a regular expression string without the surrounding ``/``
+        characters.
         """
+        # See https://stackoverflow.com/a/957581
         return self.filter(re.compile('^((?!{0}).)*$'.format(pattern)))
 
 
