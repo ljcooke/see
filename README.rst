@@ -2,7 +2,7 @@ see: dir for humans
 ===================
 
 .. image:: https://img.shields.io/pypi/v/see.svg
-    :target: https://pypi.python.org/pypi/see
+    :target: https://pypi.org/project/see/
 
 .. see/docs <common-badges>
 

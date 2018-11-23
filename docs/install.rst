@@ -7,7 +7,7 @@ Installation
 **see** supports Python 2.7 and 3.4+.
 
 The latest release can be found on the
-`Python Package Index <https://pypi.python.org/pypi/see>`_.
+`Python Package Index <https://pypi.org/project/see/>`_.
 
 
 Install with Pip
