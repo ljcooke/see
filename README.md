@@ -81,7 +81,14 @@ Documentation is available at <https://ljcooke.github.io/see/>.
 
 ## Contributing
 
-The source code is maintained on Sourcehut at <https://sr.ht/~ljc/see/>.
+The source code is available from the following locations:
+
+- [Sourcehut](https://sr.ht/~ljc/see/):<br/>
+  `git clone https://git.sr.ht/~ljc/see`
+
+- [GitHub](https://github.com/ljcooke/see):<br/>
+  `git clone https://github.com/ljcooke/see.git`
+
 Contributions are welcome.
 
 - [Change Log](https://github.com/ljcooke/see/blob/develop/CHANGELOG.rst)
