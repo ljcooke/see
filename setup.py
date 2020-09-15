@@ -9,7 +9,7 @@ TESTS_REQUIRE = [
     'mock>=2.0.0' if sys.version_info.major == 2 else None,
 ]
 
-with codecs.open('README.rst', encoding='utf-8') as file:
+with codecs.open('README.md', encoding='utf-8') as file:
     README = file.read()
 
 setup(name='see',
