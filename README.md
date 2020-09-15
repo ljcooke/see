@@ -50,7 +50,7 @@ __dir__', '__divmod__', '__doc__', '__eq__', '__floordiv__', '__
 format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '
 __init__', '__init_subclass__', '__le__', '__lt__', '__mod__', '
 __mul__', '__ne__', '__neg__', '__new__', '__pos__', '__radd__',
-  '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rf
+ '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rf
 loordiv__', '__rmod__', '__rmul__', '__rsub__', '__rtruediv__',
 '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclassho
 ok__', '__truediv__', 'days', 'max', 'microseconds', 'min', 'res
